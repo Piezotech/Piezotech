@@ -4,12 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    /* ------------------------------------------------------
-       1. Global Reset & Temel Ayarlar
-       ------------------------------------------------------ */
     * {
       margin: 0;
       padding: 0;
@@ -17,129 +13,107 @@
       font-family: 'Inter', sans-serif;
     }
 
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
-    }
-
     body {
       background-color: #0f0f0f;
-      color: #ffffff;
-      scroll-behavior: smooth;
+      color: #fff;
+      overflow: hidden;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ------------------------------------------------------
-       2. Landing Container ve Partiküller
-       ------------------------------------------------------ */
     .landing {
-      position: relative;
-      width: 100%;
       height: 100vh;
-      background: radial-gradient(ellipse at top, #1a1a1a, #000000);
+      background: radial-gradient(ellipse at top, #1a1a1a, #000);
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      position: relative;
     }
 
     .background-particles {
       position: absolute;
-      inset: 0; /* top:0; left:0; right:0; bottom:0; */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       z-index: 0;
     }
 
     .particle {
       position: absolute;
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       background-color: #f7c600;
       border-radius: 50%;
-      opacity: 0.6;
+      opacity: 0.7;
       animation: float 8s infinite ease-in-out;
     }
 
     @keyframes float {
       0% {
         transform: translateY(0) scale(1);
-        opacity: 0.6;
+        opacity: 0.7;
       }
       50% {
-        transform: translateY(-40px) scale(1.3);
+        transform: translateY(-30px) scale(1.2);
         opacity: 1;
       }
       100% {
         transform: translateY(0) scale(1);
-        opacity: 0.6;
+        opacity: 0.7;
       }
     }
 
-    /* ------------------------------------------------------
-       3. Overlay İçerik (Logo, Başlık, Typewriter, Butonlar)
-       ------------------------------------------------------ */
     .overlay {
-      position: relative;
       z-index: 2;
-      max-width: 90%;
-      width: 700px;
-      padding: 0 1rem;
-      text-align: center;
+      position: relative;
     }
 
-    /* 3.1. Logonun Cam İçi Hissiyatı */
+    /* Logoyu yazıların arkasına, hafif flu ve yarı saydam yapalım */
     .logo {
       position: absolute;
-      top: 50%;
+      top: 38%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(2);
-      width: 100px;
-      opacity: 0.08;      /* Daha belirgin olsun diye %12'den %8’e çektim */
-      filter: blur(1px);
+      transform: translate(-50%, -50%) scale(2.5);
+      width: 120px;
+      opacity: 0.12;
+      filter: blur(1.2px);
       z-index: 1;
       pointer-events: none;
     }
 
-    /* 3.2. Başlık */
     h1 {
       font-size: 2.8rem;
-      font-weight: 800;
       color: #f7c600;
+      font-weight: 800;
       margin-bottom: 1rem;
       position: relative;
       z-index: 2;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
 
-    /* 3.3. Typewriter Efekti */
+    /* Typewriter kısmını ch birimine göre ayarlayalım */
     .typewriter {
       font-size: 1.2rem;
-      color: #cccccc;
-      margin: 0 auto 2rem;
-      max-width: 80%;
+      color: #ccc;
+      margin-bottom: 2rem;
       border-right: 2px solid #f7c600;
       white-space: nowrap;
       overflow: hidden;
-      width: 0;
-      animation: typing 4s steps(60, end) forwards, blink 0.75s step-end infinite;
+      width: 0ch; /* Başlangıçta görünmez */
+      animation: typing 4s steps(50, end) forwards, blink 0.75s step-end infinite;
       position: relative;
       z-index: 2;
     }
 
     @keyframes typing {
-      from { width: 0; }
-      to   { width: 100%; }
+      from { width: 0ch; }
+      to   { width: 50ch; /* Metnin karakter sayısı civarı */ }
     }
+
     @keyframes blink {
       50% { border-color: transparent; }
     }
 
-    /* 3.4. Buton Grubu */
     .buttons {
       display: flex;
       flex-wrap: wrap;
@@ -148,70 +122,43 @@
       position: relative;
       z-index: 2;
     }
+
     .btn {
       background-color: #f7c600;
       color: #000;
-      padding: 0.7rem 1.6rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 6px;
-      font-size: 1rem;
+      text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    }
-    .btn:hover,
-    .btn:focus {
-      background-color: #ffe066;
-      transform: scale(1.05);
-      outline: none;
     }
 
-    /* ------------------------------------------------------
-       4. Mobil (Responsive) Düzenlemeler
-       ------------------------------------------------------ */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.4rem;
-      }
-      .typewriter {
-        font-size: 1rem;
-      }
-      .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.95rem;
-      }
-    }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .typewriter {
-        font-size: 0.9rem;
-      }
-      .btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
+    .btn:hover {
+      background-color: #ffe066;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-
   <div class="landing">
-    <!-- Arka plandaki Partiküller -->
-    <div class="background-particles"></div>
-
-    <!-- Üzerine yazı, buton, logo vb. gelecek katman -->
+    <div class="background-particles">
+      <script>
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 5 + 's';
+          document.querySelector('.background-particles').appendChild(particle);
+        }
+      </script>
+    </div>
     <div class="overlay">
-      <!-- Logonun Arkada Cam Hissi: Sadece yıldırım simgesi -->
-      <img src="yildirim-logo.png" alt="PiezoTech Yıldırım Logosı" class="logo" />
-
-      <!-- Başlık -->
+      <img src="64670dee-1329-4ae0-a0f7-cb08a073841e.png" alt="PiezoTech Logo" class="logo" />
       <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
-
-      <!-- Typewriter Animasyonlu Yazı -->
-      <div class="typewriter">PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedinn...</div>
-
-      <!-- Navigasyon Butonları -->
+      <div class="typewriter">
+        PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
+      </div>
       <div class="buttons">
         <a href="hakkimizda.html" class="btn">Hakkımızda</a>
         <a href="projeler.html" class="btn">Projeler</a>
@@ -220,26 +167,5 @@
       </div>
     </div>
   </div>
-
-  <!-- Partikülleri JavaScript ile Oluşturuyoruz -->
-  <!-- (Bu kodun <body> sonundan hemen önce yer alması, performansı artırır.) -->
-  <script>
-    const container = document.querySelector('.background-particles');
-    const colors = ['#f7c600', '#ffe066', '#ffeb99'];
-
-    for (let i = 0; i < 60; i++) {
-      const p = document.createElement('div');
-      p.classList.add('particle');
-      p.style.width = `${Math.random() * 4 + 2}px`;   // 2px ile 6px arası boyut
-      p.style.height = p.style.width;
-      p.style.left = `${Math.random() * 100}%`;
-      p.style.top = `${Math.random() * 100}%`;
-      p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      p.style.animationDuration = `${Math.random() * 6 + 4}s`;  // 4s ile 10s arası süre
-      p.style.animationDelay = `${Math.random() * 5}s`;
-      container.appendChild(p);
-    }
-  </script>
-
 </body>
 </html>
