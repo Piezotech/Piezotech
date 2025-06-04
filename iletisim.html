@@ -1,172 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim | PiezoTech</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
-      background-color: #0f0f0f;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .landing {
-      height: 100vh;
-      background: radial-gradient(ellipse at top, #1a1a1a, #000);
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 2rem;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      text-align: center;
-      position: relative;
-    }
-
-    .background-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: #f7c600;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(-30px) scale(1.2);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
-      }
-    }
-
-    .overlay {
-      z-index: 2;
-      position: relative;
-    }
-
-    /* Logoyu yazıların arkasına, hafif flu ve yarı saydam yapalım */
-    .logo {
-      position: absolute;
-      top: 38%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(2.5);
-      width: 120px;
-      opacity: 0.12;
-      filter: blur(1.2px);
-      z-index: 1;
-      pointer-events: none;
+      justify-content: center;
     }
 
     h1 {
-      font-size: 2.8rem;
-      color: #f7c600;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Typewriter kısmını ch birimine göre ayarlayalım */
-    .typewriter {
-      font-size: 1.2rem;
-      color: #ccc;
+      color: #1e1e1e;
       margin-bottom: 2rem;
-      border-right: 2px solid #f7c600;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0ch; /* Başlangıçta görünmez */
-      animation: typing 4s steps(50, end) forwards, blink 0.75s step-end infinite;
-      position: relative;
-      z-index: 2;
     }
 
-    @keyframes typing {
-      from { width: 0ch; }
-      to   { width: 50ch; /* Metnin karakter sayısı civarı */ }
+    .contact-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      text-align: center;
+      width: 300px;
+      margin: 1rem;
+      transition: transform 0.3s;
     }
 
-    @keyframes blink {
-      50% { border-color: transparent; }
+    .contact-card:hover {
+      transform: scale(1.05);
     }
 
-    .buttons {
+    .contact-icon {
+      width: 80px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+
+    .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn {
-      background-color: #f7c600;
-      color: #000;
-      padding: 0.7rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #ffe066;
-      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <div class="landing">
-    <div class="background-particles">
-      <script>
-        for (let i = 0; i < 50; i++) {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
-          particle.style.left = Math.random() * 100 + '%';
-          particle.style.top = Math.random() * 100 + '%';
-          particle.style.animationDelay = Math.random() * 5 + 's';
-          document.querySelector('.background-particles').appendChild(particle);
-        }
-      </script>
+  <h1>PİEZOTECH ARAŞTIRMA EKİBİNE ULAŞIN</h1>
+  <div class="container">
+    <div class="contact-card">
+      <a href="https://www.linkedin.com/company/piezotechtr/" target="_blank">
+        <img src="linkedin.png" alt="PiezoTech LinkedIn" class="contact-icon">
+        <p>LinkedIn Profilimiz</p>
+      </a>
     </div>
-    <div class="overlay">
-      <img src="64670dee-1329-4ae0-a0f7-cb08a073841e.png" alt="PiezoTech Logo" class="logo" />
-      <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
-      <div class="typewriter">
-        PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
-      </div>
-      <div class="buttons">
-        <a href="hakkimizda.html" class="btn">Hakkımızda</a>
-        <a href="projeler.html" class="btn">Projeler</a>
-        <a href="galeri.html" class="btn">Galeri</a>
-        <a href="iletisim.html" class="btn">İletişim</a>
-      </div>
+
+    <div class="contact-card">
+      <a href="https://www.instagram.com/piezotechtr/" target="_blank">
+        <img src="instagram.png" alt="PiezoTech Instagram" class="contact-icon">
+        <p>İnstagram Hesabımız</p>
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <a href="mailto:piezotech.ikc@gmail.com">
+        <img src="mail.png" alt="PiezoTech Mail" class="contact-icon">
+        <p>Bize Mail Gönderin</p>
+      </a>
     </div>
   </div>
 </body>
 </html>
-
