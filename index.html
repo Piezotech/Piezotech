@@ -8,6 +8,7 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
     body { background:#0f0f0f; color:#fff; overflow-x:hidden; }
+
     /* HERO */
     .landing {
       height:100vh;
@@ -24,19 +25,17 @@
       animation:float 8s infinite ease-in-out;
     }
     @keyframes float {
-      0%   { transform:translateY(0) scale(1); opacity:.7; }
+      0%   { transform:translateY(0); opacity:.7; }
       50%  { transform:translateY(-30px) scale(1.2); opacity:1; }
-      100% { transform:translateY(0) scale(1); opacity:.7; }
+      100% { transform:translateY(0); opacity:.7; }
     }
     .overlay { position:relative; z-index:2; }
     .logo {
       position:absolute; top:20%; left:50%;
       transform:translate(-50%,-50%) scale(3);
-      width:140px; opacity:.1; filter:blur(1.5px); pointer-events:none;
+      width:140px; opacity:.1; filter:blur(1.5px);
     }
-    h1 {
-      font-size:4rem; color:#f7c600; font-weight:800; margin-bottom:1rem;
-    }
+    h1 { font-size:4rem; color:#f7c600; font-weight:800; margin-bottom:1rem; }
     .typewriter {
       font-size:1.4rem; color:#ccc; margin-bottom:2rem;
       border-right:3px solid #f7c600;
@@ -45,6 +44,7 @@
     }
     @keyframes typing { from{width:0ch;} to{width:60ch;} }
     @keyframes blink { 50%{border-color:transparent;} }
+
     /* OFF-CANVAS MENU */
     #menu-toggle {
       position:fixed; top:1rem; right:1rem;
@@ -66,14 +66,21 @@
       font-size:1.2rem; padding:.5rem 0; transition:color .2s;
     }
     #offcanvas a:hover { color:#f7c600; }
+
     /* SECTIONS */
     .section {
-      padding:4rem 2rem; max-width:800px; margin:0 auto; color:#eee;
+      padding:4rem 2rem; max-width:800px; margin:0 auto;
+      opacity:0; transform:scale(0.8);
+      transition:transform .4s ease, opacity .4s ease;
+    }
+    .section.visible {
+      opacity:1; transform:scale(1);
     }
     .section h2 {
       font-size:2.4rem; color:#f7c600; margin-bottom:1rem;
     }
     .section p { line-height:1.6; margin-bottom:1rem; }
+
     /* FOOTER */
     footer {
       text-align:center; padding:2rem 1rem; background:#0a0a0a;
@@ -150,9 +157,22 @@
   </footer>
 
   <script>
-    const toggle=document.getElementById('menu-toggle'),
-          panel=document.getElementById('offcanvas');
+    // Off-canvas toggle
+    const toggle = document.getElementById('menu-toggle'),
+          panel  = document.getElementById('offcanvas');
     toggle.addEventListener('click', ()=> panel.classList.toggle('open'));
+
+    // Scroll-triggered section reveal
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(s => observer.observe(s));
   </script>
 </body>
 </html>
