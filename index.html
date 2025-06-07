@@ -6,156 +6,78 @@
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Inter', sans-serif;
-    }
-    body {
-      background-color:#0f0f0f;
-      color:#fff;
-      overflow-x:hidden;      /* Yalnızca x-eksenini kapat, y-eksen açılacak */
-    }
-    /* HERO SECTION */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+    body { background:#0f0f0f; color:#fff; overflow-x:hidden; }
+    /* HERO */
     .landing {
       height:100vh;
       background:radial-gradient(ellipse at top,#1a1a1a,#000);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      position:relative;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; text-align:center;
     }
     .background-particles {
-      position:absolute;
-      top:0; left:0;
-      width:100%; height:100%;
-      overflow:hidden;
-      z-index:0;
+      position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden;
     }
     .particle {
-      position:absolute;
-      width:4px; height:4px;
-      background-color:#f7c600;
-      border-radius:50%;
-      opacity:0.7;
+      position:absolute; width:4px; height:4px;
+      background:#f7c600; border-radius:50%; opacity:.7;
       animation:float 8s infinite ease-in-out;
     }
     @keyframes float {
-      0%   {transform:translateY(0) scale(1); opacity:0.7;}
-      50%  {transform:translateY(-30px) scale(1.2); opacity:1;}
-      100% {transform:translateY(0) scale(1); opacity:0.7;}
+      0%   { transform:translateY(0) scale(1); opacity:.7; }
+      50%  { transform:translateY(-30px) scale(1.2); opacity:1; }
+      100% { transform:translateY(0) scale(1); opacity:.7; }
     }
-    .overlay {
-      position:relative;
-      z-index:2;
-    }
+    .overlay { position:relative; z-index:2; }
     .logo {
-      position:absolute;
-      top:38%; left:50%;
-      transform:translate(-50%,-50%) scale(2.5);
-      width:120px;
-      opacity:0.12;
-      filter:blur(1.2px);
-      pointer-events:none;
-      z-index:1;
+      position:absolute; top:20%; left:50%;
+      transform:translate(-50%,-50%) scale(3);
+      width:140px; opacity:.1; filter:blur(1.5px); pointer-events:none;
     }
     h1 {
-      font-size:3rem;
-      color:#f7c600;
-      font-weight:800;
-      margin-bottom:1rem;
+      font-size:4rem; color:#f7c600; font-weight:800; margin-bottom:1rem;
     }
     .typewriter {
-      font-size:1.2rem;
-      color:#ccc;
-      margin-bottom:2rem;
-      border-right:2px solid #f7c600;
-      white-space:nowrap;
-      overflow:hidden;
-      width:0ch;
-      animation:typing 4s steps(50,end) forwards, blink .75s step-end infinite;
+      font-size:1.4rem; color:#ccc; margin-bottom:2rem;
+      border-right:3px solid #f7c600;
+      white-space:nowrap; overflow:hidden; width:0ch;
+      animation:typing 5s steps(60,end) forwards, blink .75s step-end infinite;
     }
-    @keyframes typing {
-      from { width:0ch; }
-      to   { width:50ch; }
-    }
-    @keyframes blink {
-      50% { border-color:transparent; }
-    }
-    /* OFF-CANVAS TOGGLE */
+    @keyframes typing { from{width:0ch;} to{width:60ch;} }
+    @keyframes blink { 50%{border-color:transparent;} }
+    /* OFF-CANVAS MENU */
     #menu-toggle {
-      position:fixed;
-      top:1rem; right:1rem;
-      background:#f7c600;
-      color:#000;
-      border:none;
-      padding:0.8rem 1rem;
-      font-size:1.4rem;
-      cursor:pointer;
-      border-radius:4px;
-      z-index:20;           /* Toggle hep üstte kalsın */
+      position:fixed; top:1rem; right:1rem;
+      background:#f7c600; color:#000; border:none;
+      padding:.8rem 1rem; font-size:1.6rem; border-radius:4px;
+      cursor:pointer; z-index:20;
     }
-    /* OFF-CANVAS PANEL */
     #offcanvas {
-      position:fixed;
-      top:0; right:-300px;   /* Sağdan gizli başla */
-      width:300px;
-      height:100%;
-      background:#111;
-      padding:2rem;
-      box-shadow:-4px 0 8px rgba(0,0,0,.7);
-      transition:right .4s ease;
-      z-index:19;
-      overflow-y:auto;       /* Panel içi scroll */
+      position:fixed; top:0; right:-320px;
+      width:320px; height:100%; padding:2rem;
+      background:#111; box-shadow:-4px 0 8px rgba(0,0,0,.7);
+      transition:right .4s ease; z-index:19; overflow-y:auto;
     }
-    #offcanvas.open {
-      right:0;
+    #offcanvas.open { right:0; }
+    #offcanvas h2 { color:#f7c600; font-size:1.6rem; margin-bottom:1rem; }
+    #offcanvas ul { list-style:none; }
+    #offcanvas a {
+      display:block; color:#fff; text-decoration:none;
+      font-size:1.2rem; padding:.5rem 0; transition:color .2s;
     }
-    #offcanvas h2 {
-      color:#f7c600;
-      margin-bottom:1rem;
-      font-size:1.5rem;
-    }
-    #offcanvas ul {
-      list-style:none;
-    }
-    #offcanvas ul li {
-      margin:1rem 0;
-    }
-    #offcanvas ul li a {
-      text-decoration:none;
-      color:#fff;
-      font-size:1.1rem;
-      transition:color .2s;
-    }
-    #offcanvas ul li a:hover {
-      color:#f7c600;
-    }
-    /* Sayfa içeriği bölümleri */
+    #offcanvas a:hover { color:#f7c600; }
+    /* SECTIONS */
     .section {
-      padding:4rem 2rem;
-      max-width:800px;
-      margin:0 auto;
-      color:#eee;
+      padding:4rem 2rem; max-width:800px; margin:0 auto; color:#eee;
     }
     .section h2 {
-      font-size:2rem;
-      color:#f7c600;
-      margin-bottom:1rem;
+      font-size:2.4rem; color:#f7c600; margin-bottom:1rem;
     }
-    .section p {
-      line-height:1.6;
-      margin-bottom:1rem;
-    }
+    .section p { line-height:1.6; margin-bottom:1rem; }
     /* FOOTER */
     footer {
-      text-align:center;
-      padding:2rem 1rem;
-      font-size:.9rem;
-      color:#666;
-      background:#0a0a0a;
+      text-align:center; padding:2rem 1rem; background:#0a0a0a;
+      font-size:.9rem; color:#666;
     }
   </style>
 </head>
@@ -164,13 +86,13 @@
   <div class="landing">
     <div class="background-particles">
       <script>
-        for(let i=0;i<50;i++){
-          const d=document.createElement('div');
-          d.className='particle';
-          d.style.left=Math.random()*100+'%';
-          d.style.top=Math.random()*100+'%';
-          d.style.animationDelay=Math.random()*5+'s';
-          document.querySelector('.background-particles').appendChild(d);
+        for(let i=0;i<60;i++){
+          const p=document.createElement('div');
+          p.className='particle';
+          p.style.left=Math.random()*100+'%';
+          p.style.top=Math.random()*100+'%';
+          p.style.animationDelay=Math.random()*5+'s';
+          document.querySelector('.background-particles').appendChild(p);
         }
       </script>
     </div>
@@ -181,7 +103,6 @@
         PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
       </div>
     </div>
-    <!-- Toggle butonu -->
     <button id="menu-toggle">☰</button>
   </div>
 
@@ -189,15 +110,15 @@
   <nav id="offcanvas">
     <h2>Menü</h2>
     <ul>
-      <li><a href="hakkimizda.html">Hakkımızda</a></li>
-      <li><a href="projeler.html">Projeler</a></li>
-      <li><a href="galeri.html">Galeri</a></li>
-      <li><a href="ekibimiz.html">Ekibimiz</a></li>
-      <li><a href="iletisim.html">İletişim</a></li>
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
+      <li><a href="#projeler">Projeler</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#ekibimiz">Ekibimiz</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
     </ul>
   </nav>
 
-  <!-- SAYFA İÇERİKLERİ -->
+  <!-- SAYFA İÇERİK BÖLÜMLERİ -->
   <section id="hakkimizda" class="section">
     <h2>Hakkımızda</h2>
     <p>Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</p>
@@ -210,7 +131,6 @@
 
   <section id="galeri" class="section">
     <h2>Galeri</h2>
-    <!-- Buraya kendi img etiketlerini koyabilirsin -->
     <p>Görseller yakında eklenecek.</p>
   </section>
 
@@ -230,9 +150,9 @@
   </footer>
 
   <script>
-    const btn = document.getElementById('menu-toggle'),
-          off = document.getElementById('offcanvas');
-    btn.onclick = ()=> off.classList.toggle('open');
+    const toggle=document.getElementById('menu-toggle'),
+          panel=document.getElementById('offcanvas');
+    toggle.addEventListener('click', ()=> panel.classList.toggle('open'));
   </script>
 </body>
 </html>
