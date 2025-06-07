@@ -2,171 +2,169 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+    /* ─── Genel Reset ───────────────────────────────────────────────────────── */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+    body { background:#0f0f0f; color:#fff; overflow-x:hidden; }
 
-    body {
-      background-color: #0f0f0f;
-      color: #fff;
-      overflow: hidden;
-    }
-
+    /* ─── HERO / LANDING ───────────────────────────────────────────────────── */
     .landing {
-      height: 100vh;
-      background: radial-gradient(ellipse at top, #1a1a1a, #000);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
+      height:100vh;
+      background:radial-gradient(ellipse at top,#1a1a1a,#000);
+      display:flex; justify-content:center; align-items:center; text-align:center;
+      position:relative; overflow:hidden;
     }
-
-    .background-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-
+    .background-particles { position:absolute; inset:0; z-index:0; }
     .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: #f7c600;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: float 8s infinite ease-in-out;
+      position:absolute; width:4px; height:4px; background:#f7c600;
+      border-radius:50%; opacity:0.7; animation:float 8s infinite ease-in-out;
     }
-
     @keyframes float {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(-30px) scale(1.2);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
-      }
+      0%,100%{transform:translateY(0) scale(1);opacity:.7}
+      50%{transform:translateY(-30px) scale(1.2);opacity:1}
     }
-
-    .overlay {
-      z-index: 2;
-      position: relative;
-    }
-
-    /* Logoyu yazıların arkasına, hafif flu ve yarı saydam yapalım */
+    .overlay { position:relative; z-index:2; padding:0 1rem; }
     .logo {
-      position: absolute;
-      top: 38%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(2.5);
-      width: 120px;
-      opacity: 0.12;
-      filter: blur(1.2px);
-      z-index: 1;
-      pointer-events: none;
+      position:absolute; top:38%; left:50%; transform:translate(-50%,-50%) scale(2.5);
+      width:120px; opacity:.12; filter:blur(1.2px); pointer-events:none; z-index:1;
     }
-
     h1 {
-      font-size: 2.8rem;
-      color: #f7c600;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
+      font-size:2.8rem; color:#f7c600; font-weight:800; margin-bottom:1rem; z-index:2;
     }
-
-    /* Typewriter kısmını ch birimine göre ayarlayalım */
     .typewriter {
-      font-size: 1.2rem;
-      color: #ccc;
-      margin-bottom: 2rem;
-      border-right: 2px solid #f7c600;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0ch; /* Başlangıçta görünmez */
-      animation: typing 4s steps(50, end) forwards, blink 0.75s step-end infinite;
-      position: relative;
-      z-index: 2;
+      font-size:1.2rem; color:#ccc; margin-bottom:2rem;
+      border-right:2px solid #f7c600; white-space:nowrap; overflow:hidden;
+      width:0ch; animation:typing 4s steps(50,end) forwards, blink .75s step-end infinite;
+      z-index:2;
     }
-
-    @keyframes typing {
-      from { width: 0ch; }
-      to   { width: 50ch; /* Metnin karakter sayısı civarı */ }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
+    @keyframes typing { from{width:0ch} to{width:50ch} }
+    @keyframes blink { 50%{border-color:transparent} }
     .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      position: relative;
-      z-index: 2;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; z-index:2;
     }
-
     .btn {
-      background-color: #f7c600;
-      color: #000;
-      padding: 0.7rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      background:#f7c600; color:#000; padding:.7rem 1.4rem; border-radius:6px;
+      text-decoration:none; font-weight:600; transition:.3s;
+    }
+    .btn:hover { background:#ffe066; transform:scale(1.05); }
+
+    /* ─── ACCORDION / İÇERİK BÖLÜMLERİ ───────────────────────────────────── */
+    section#content-sections { background:#111; padding:2rem 0; }
+    .accordion { width:90%; max-width:800px; margin:0 auto; }
+    .accordion-item { border-bottom:1px solid #333; }
+    .accordion-header {
+      background:#1a1a1a; cursor:pointer; padding:1rem; font-size:1.1rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .accordion-header::after {
+      content:'\25BC'; transition:transform .3s;
+    }
+    .accordion-header.active::after {
+      transform:rotate(-180deg);
+    }
+    .accordion-body {
+      max-height:0; overflow:hidden; transition:max-height .4s ease;
+      background:#0f0f0f;
+    }
+    .accordion-body iframe {
+      width:100%; height:300px; border:none;
     }
 
-    .btn:hover {
-      background-color: #ffe066;
-      transform: scale(1.05);
-    }
+    /* ─── NAV & FOOTER (şimdilik boş) ─────────────────────────────────────── */
+    nav, footer { display:none; }
   </style>
 </head>
 <body>
+
+  <!-- NAV (ileride partial yüklersen id=nav-placeholder) -->
+  <nav id="nav-placeholder"></nav>
+
+  <!-- HERO -->
   <div class="landing">
-    <div class="background-particles">
-      <script>
-        for (let i = 0; i < 50; i++) {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
-          particle.style.left = Math.random() * 100 + '%';
-          particle.style.top = Math.random() * 100 + '%';
-          particle.style.animationDelay = Math.random() * 5 + 's';
-          document.querySelector('.background-particles').appendChild(particle);
-        }
-      </script>
-    </div>
+    <div class="background-particles"></div>
     <div class="overlay">
-      <img src="yildirim-logo.png" alt="PiezoTech Logo" class="logo" />
+      <img src="yildirim-logo.png" alt="PiezoTech Logo" class="logo"/>
       <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
       <div class="typewriter">
-        PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin     ...
+        PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
       </div>
       <div class="buttons">
         <a href="hakkimizda.html" class="btn">Hakkımızda</a>
-        <a href="projeler.html" class="btn">Projeler</a>
-        <a href="galeri.html" class="btn">Galeri</a>
-        <a href="iletisim.html" class="btn">İletişim</a>
-        <a href="ekibimiz.html" class="btn">Ekibimiz</a>
+        <a href="projeler.html"   class="btn">Projeler</a>
+        <a href="galeri.html"     class="btn">Galeri</a>
+        <a href="iletisim.html"   class="btn">İletişim</a>
+        <a href="ekibimiz.html"   class="btn">Ekibimiz</a>
       </div>
     </div>
   </div>
+
+  <!-- SCROLL ↓ AÇILIR/KAPANIR BÖLÜMLER -->
+  <section id="content-sections">
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header">Hakkımızda</button>
+        <div class="accordion-body">
+          <iframe src="hakkimizda.html"></iframe>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Projeler</button>
+        <div class="accordion-body">
+          <iframe src="projeler.html"></iframe>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Galeri</button>
+        <div class="accordion-body">
+          <iframe src="galeri.html"></iframe>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">Ekibimiz</button>
+        <div class="accordion-body">
+          <iframe src="ekibimiz.html"></iframe>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-header">İletişim</button>
+        <div class="accordion-body">
+          <iframe src="iletisim.html"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (ileride partial yüklersen id=footer-placeholder) -->
+  <footer id="footer-placeholder"></footer>
+
+  <!-- ─── ACCORDION JAVASCRIPT ──────────────────────────────────────────── -->
+  <script>
+    // Particle’ları başlat
+    const bg = document.querySelector('.background-particles');
+    for(let i=0;i<50;i++){
+      const p=document.createElement('div');
+      p.className='particle';
+      p.style.left= Math.random()*100+'%';
+      p.style.top=  Math.random()*100+'%';
+      p.style.animationDelay= Math.random()*5+'s';
+      bg.append(p);
+    }
+
+    // Accordion aç/kapa
+    document.querySelectorAll('.accordion-header').forEach(header=>{
+      header.addEventListener('click',()=>{
+        header.classList.toggle('active');
+        const body= header.nextElementSibling;
+        if(body.style.maxHeight){
+          body.style.maxHeight = null;
+        } else {
+          body.style.maxHeight = body.scrollHeight+'px';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
