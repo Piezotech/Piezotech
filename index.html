@@ -12,46 +12,44 @@
 
     /* HERO */
     .landing {
-      height:120vh; /* ekranın 1.2 katı yüksekliğinde */
+      height:120vh;                       /* 120% viewport yüksekliği */
       background: radial-gradient(ellipse at top,#1a1a1a,#000);
-      display:flex;justify-content:center;align-items:center;text-align:center;position:relative;
+      position:relative;
+      display:flex;justify-content:center;align-items:center;
     }
-    .background-particles { position:absolute;inset:0;overflow:hidden;z-index:0; }
-    .particle {
-      position:absolute;width:4px;height:4px;border-radius:50%;background:#f7c600;opacity:.7;
-      animation:float 8s infinite ease-in-out;
-    }
-    @keyframes float {
-      0%,100%{transform:translateY(0) scale(1);opacity:.7}
-      50%{transform:translateY(-30px) scale(1.2);opacity:1}
-    }
-    .overlay{position:relative;z-index:2;padding:2rem;}
-    .logo{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%) scale(3);
-      width:140px;opacity:.1;filter:blur(1.5px);pointer-events:none;}
-    h1{font-size:3.2rem;color:#f7c600;font-weight:800;margin-bottom:1rem;}
-    .typewriter{text-align:center;font-size:1.4rem;color:#ccc;margin-bottom:2rem;
-      border-right:2px solid #f7c600;white-space:nowrap;overflow:hidden;width:0ch;
-      animation:typing 5s steps(60,end) forwards,blink .75s step-end infinite;}
+    .background-particles{position:absolute;inset:0;overflow:hidden;z-index:0;}
+    .particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#f7c600;opacity:.7;
+      animation:float 8s infinite ease-in-out;}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:.7}50%{transform:translateY(-30px) scale(1.2);opacity:1}}
+    .overlay{position:relative;z-index:2;text-align:center;padding:0 2rem;}
+    .logo{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%) scale(4);
+      width:180px;opacity:.12;filter:blur(1px);pointer-events:none;}
+    h1{font-size:4rem;color:#f7c600;font-weight:800;z-index:2;margin-bottom:1rem;}
+    .typewriter{font-size:1.6rem;color:#ccc;max-width:80ch;margin:0 auto;
+      border-right:2px solid #f7c600;white-space:nowrap;overflow:hidden;
+      width:0ch;animation:typing 5s steps(60,end) forwards,blink .75s step-end infinite;}
     @keyframes typing{from{width:0ch}to{width:60ch}}@keyframes blink{50%{border-color:transparent}}
-    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;}
-    .btn{background:#f7c600;color:#000;padding:.75rem 1.6rem;border-radius:6px;font-weight:600;transition:.3s;}
-    .btn:hover{background:#ffe066;transform:scale(1.05);}
-
-    /* SECTIONS */
-    main{padding:0 1rem;margin-top:-20vh;} /* Hero'nun altını biraz üstten çek */
-    section{opacity:0;transform:translateY(40px);transition:all .8s ease-out;padding:4rem 0;}
-    section.visible{opacity:1;transform:translateY(0);}
-    section h2{font-size:2rem;margin-bottom:1rem;color:#f7c600;}
-
-    /* OFF-CANVAS MENU */
-    #menu-toggle{position:fixed;top:1rem;right:1rem;background:#f7c600;color:#000;
-      border:none;padding:.7rem;cursor:pointer;z-index:10;border-radius:4px;font-weight:600;}
-    #offcanvas{position:fixed;top:0;right:-260px;width:260px;height:100%;background:#111;padding:2rem;
-      box-shadow:-4px 0 8px rgba(0,0,0,.7);transition:right .4s ease;z-index:9;overflow:auto;}
+    
+    /* OFF-CANVAS BUTON */
+    #menu-toggle{position:fixed;top:1rem;right:1rem;
+      width:3rem;height:3rem;background:#f7c600;color:#000;
+      border:none;border-radius:.5rem;font-size:1.5rem;
+      cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;}
+    #offcanvas{position:fixed;top:0;right:-260px;width:260px;height:100%;background:#111;
+      padding:2rem;box-shadow:-4px 0 8px rgba(0,0,0,.7);transition:right .4s ease;z-index:9;overflow:auto;}
     #offcanvas.open{right:0;}
-    #offcanvas h2{margin-bottom:1rem;color:#f7c600;font-size:1.2rem;}
+    #offcanvas h2{font-size:1.2rem;margin-bottom:1rem;color:#f7c600;}
     #offcanvas a{display:block;padding:.5rem 0;border-bottom:1px solid #222;transition:color .3s;}
     #offcanvas a:hover{color:#f7c600;}
+
+    /* SECTIONS */
+    main{margin-top:-20vh;}      /* Hero’nun hemen altından başlat */
+    section{opacity:0;transform:translateY(40px);transition:all .8s ease-out;padding:4rem 2rem;}
+    section.visible{opacity:1;transform:translateY(0);}
+    section h2{font-size:2rem;color:#f7c600;margin-bottom:1rem;}
+
+    /* FOOTER */
+    footer{padding:2rem;text-align:center;font-size:.9rem;color:#666;position:relative;}
   </style>
 </head>
 <body>
@@ -65,17 +63,11 @@
       <div class="typewriter">
         PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
       </div>
-      <div class="buttons">
-        <a href="#hakkimizda" class="btn">Hakkımızda</a>
-        <a href="#projeler"   class="btn">Projeler</a>
-        <a href="#galeri"     class="btn">Galeri</a>
-        <a href="#ekibimiz"   class="btn">Ekibimiz</a>
-      </div>
     </div>
   </div>
 
   <!-- OFF-CANVAS MENU -->
-  <button id="menu-toggle">≡</button>
+  <button id="menu-toggle">☰</button>
   <nav id="offcanvas">
     <h2>Sayfa İçeriği</h2>
     <a href="#hakkimizda">Hakkımızda</a>
@@ -84,7 +76,7 @@
     <a href="#ekibimiz">Ekibimiz</a>
   </nav>
 
-  <!-- SECTIONS -->
+  <!-- MAIN CONTENT -->
   <main>
     <section id="hakkimizda">
       <h2>Hakkımızda</h2>
@@ -108,40 +100,43 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Tüm hakları PiezoTech Araştırma Grubu'na aittir.
+  </footer>
+
   <script>
     // Partiküller
-    const container=document.querySelector('.background-particles');
+    const bg=document.querySelector('.background-particles');
     for(let i=0;i<60;i++){
       let p=document.createElement('div');
       p.className='particle';
       p.style.left=`${Math.random()*100}%`;
       p.style.top=`${Math.random()*100}%`;
       p.style.animationDelay=`${Math.random()*5}s`;
-      container.append(p);
+      bg.append(p);
     }
 
-    // Scroll-reveal
-    const sections=document.querySelectorAll('main section');
-    const io=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('visible');
-      });
-    },{threshold:0.2});
-    sections.forEach(s=>io.observe(s));
+    // Section scroll reveal
+    document.querySelectorAll('main section').forEach(sec=>{
+      new IntersectionObserver((e)=>{
+        if(e[0].isIntersecting) sec.classList.add('visible');
+      },{threshold:.2}).observe(sec);
+    });
 
     // Off-canvas toggle
-    const btn=document.getElementById('menu-toggle'),
-          panel=document.getElementById('offcanvas');
-    btn.onclick=()=>panel.classList.toggle('open');
+    let btn=document.getElementById('menu-toggle'),
+        nav=document.getElementById('offcanvas');
+    btn.onclick=()=>nav.classList.toggle('open');
 
     // Smooth scroll
-    document.querySelectorAll('#offcanvas a, .buttons a').forEach(a=>{
-      a.addEventListener('click',e=>{
+    document.querySelectorAll('#offcanvas a').forEach(a=>{
+      a.onclick=e=>{
         e.preventDefault();
-        panel.classList.remove('open');
+        nav.classList.remove('open');
         document.querySelector(a.getAttribute('href'))
           .scrollIntoView({behavior:'smooth'});
-      });
+      };
     });
   </script>
 </body>
