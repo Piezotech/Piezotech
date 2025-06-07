@@ -6,61 +6,82 @@
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-    body{background:#0f0f0f;color:#fff;overflow-x:hidden;}
-    
-    /* HERO */
+    /* ---------------- GLOBAL ---------------- */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+    body { background:#0f0f0f; color:#eee; overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; display:block; }
+
+    /* -------------- HERO ---------------- */
     .landing {
-      height:110vh;              /* tam ekranın üstüne taşır */
-      background:radial-gradient(ellipse at top,#1a1a1a,#000);
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+      position:relative; height:100vh; display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(ellipse at top, #1a1a1a, #000);
+      overflow:hidden;
     }
-    .background-particles { position:absolute;inset:0;overflow:hidden;z-index:0;}
-    .particle{position:absolute;width:5px;height:5px;border-radius:50%;background:#f7c600;opacity:.8;animation:float 8s infinite ease-in-out;}
-    @keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-35px) scale(1.3);opacity:1}}
-    
-    .overlay{position:relative;z-index:2;padding:2rem;}
-    .logo{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%) scale(4);width:160px;opacity:.08;filter:blur(1.5px);pointer-events:none;}
-    
-    h1{font-size:4rem;color:#f7c600;font-weight:800;margin-bottom:.5rem;}
-    .subtitle{font-size:1.8rem;color:#ccc;margin-bottom:2rem;}
-    
-    /* OFF-CANVAS MENU BUTONU */
-    #menu-toggle{
-      position:fixed;top:1rem;left:1rem;
-      background:#f7c600;color:#000;
-      border:none;padding:1rem 1.2rem;
-      font-size:1.5rem;cursor:pointer;
-      border-radius:4px;z-index:10;
+    .landing .particles { position:absolute;inset:0;z-index:0; }
+    .landing .particle {
+      position:absolute;width:5px;height:5px;border-radius:50%;background:#f7c600;opacity:.8;
+      animation:float 8s infinite ease-in-out;
     }
-    
-    /* OFF-CANVAS PANEL */
-    #offcanvas{
-      position:fixed;top:0;right:-280px;
-      width:280px;height:100%;background:#111;
-      padding:2rem;box-shadow:-4px 0 8px rgba(0,0,0,.7);
-      transition:right .4s ease;z-index:9;overflow:auto;
+    @keyframes float {
+      0%,100%{transform:translateY(0) scale(1);opacity:.8}
+      50%{transform:translateY(-35px) scale(1.3);opacity:1}
     }
-    #offcanvas.open{right:0;}
-    #offcanvas h2{font-size:1.3rem;color:#f7c600;margin-bottom:1rem;}
-    #offcanvas a{display:block;color:#ccc;padding:.5rem 0;border-bottom:1px solid #222;transition:color .3s;}
-    #offcanvas a:hover{color:#f7c600;}
-    
-    /* MAIN & SECTIONS */
-    main{margin-top:-10vh;}  /* hero’un altından içerik akışı */
-    section{opacity:0;transform:translateY(50px);transition:all .8s ease-out;padding:4rem 1rem;}
-    section.visible{opacity:1;transform:translateY(0);}
-    section h2{font-size:2rem;color:#f7c600;margin-bottom:1rem;}
-    section p{font-size:1.1rem;line-height:1.6;color:#ddd;}
-    
-    /* FOOTER */
-    footer{
-      text-align:center;padding:1.5rem 1rem;background:#111;color:#777;
-      font-size:.9rem;
+    .landing .hero-content {
+      position:relative;z-index:2;text-align:center;padding:2rem;
+      max-width:800px;
+    }
+    .landing .logo { position:absolute;top:30%;left:50%;transform:translate(-50%,-50%) scale(4);
+      opacity:.08;filter:blur(1.5px);pointer-events:none;
+    }
+    .landing h1 {
+      font-size:4.5rem;color:#f7c600;font-weight:800;margin-bottom:.5rem;
+    }
+    .landing p {
+      font-size:1.8rem;color:#ccc;margin-bottom:3rem;
+    }
+    #menu-toggle {
+      position:fixed;top:1rem;right:1rem;background:#f7c600;color:#000;
+      border:none;padding:1rem 1.2rem;font-size:1.5rem;cursor:pointer;border-radius:4px;z-index:10;
+    }
+
+    /* ------------ OFFCANVAS ------------- */
+    #offcanvas {
+      position:fixed;top:0;left:-300px;width:300px;height:100%;background:#111;
+      padding:2rem;box-shadow:-4px 0 8px rgba(0,0,0,.7);transition:right .4s ease;
+      z-index:9;overflow-y:auto;
+    }
+    #offcanvas.open { right:0; }
+    #offcanvas h2 { color:#f7c600;margin-bottom:1rem; }
+    #offcanvas nav a {
+      display:block;padding:.6rem 0;color:#ccc;border-bottom:1px solid #222;
+      transition:color .3s;
+    }
+    #offcanvas nav a:hover { color:#f7c600; }
+
+    /* ------------ MAIN & SECTIONS ----------- */
+    main { margin-top:-5vh; }
+    section {
+      opacity:0;transform:translateY(50px);transition:all .8s ease-out;
+      padding:4rem 1rem; display:flex;justify-content:center;
+    }
+    section.visible { opacity:1;transform:translateY(0); }
+    .card {
+      background:rgba(20,20,20,0.85);backdrop-filter:blur(6px);
+      border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.5);
+      max-width:800px;padding:2rem; width:100%;
+    }
+    .card h2 { font-size:2.4rem;color:#f7c600;margin-bottom:1rem; }
+    .card p { font-size:1.1rem;line-height:1.6;color:#ddd; }
+
+    /* Galeri grid */
+    .gallery-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem; }
+    .gallery-grid img { border-radius:6px; box-shadow:0 2px 10px rgba(0,0,0,0.4); }
+
+    /* ------------ FOOTER ------------- */
+    footer {
+      text-align:center;padding:1.5rem 1rem;margin-top:2rem;
+      background:#111;color:#777;font-size:.9rem;
     }
   </style>
 </head>
@@ -68,47 +89,69 @@
 
   <!-- HERO -->
   <div class="landing">
-    <div class="background-particles"></div>
-    <div class="overlay">
-      <img src="yildirim-logo.png" alt="Logo" class="logo"/>
+    <div class="particles"></div>
+    <div class="hero-content">
+      <img src="yildirim-logo.png" alt="PiezoTech Logo" class="logo"/>
       <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
-      <div class="subtitle">
-        PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...
-      </div>
+      <p>PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...</p>
     </div>
   </div>
 
-  <!-- OFF-CANVAS MENU -->
+  <!-- MENU TOGGLE -->
   <button id="menu-toggle">☰</button>
-  <nav id="offcanvas">
+  <aside id="offcanvas">
     <h2>Sayfa İçeriği</h2>
-    <a href="#hakkimizda">Hakkımızda</a>
-    <a href="#projeler">Projeler</a>
-    <a href="#galeri">Galeri</a>
-    <a href="#ekibimiz">Ekibimiz</a>
-  </nav>
+    <nav>
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#projeler">Projeler</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#ekibimiz">Ekibimiz</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </aside>
 
-  <!-- İÇERİK -->
+  <!-- MAIN CONTENT -->
   <main>
     <section id="hakkimizda">
-      <h2>Hakkımızda</h2>
-      <p>Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</p>
+      <div class="card">
+        <h2>Hakkımızda</h2>
+        <p>Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız. Ar-Ge’den üretime, tüm süreçlerimiz inovasyon ve sürdürülebilirlik üzerine kurulu...</p>
+      </div>
     </section>
 
     <section id="projeler">
-      <h2>Projeler</h2>
-      <p>Projelerimiz arasında akıllı tekstil sensörleri, piezo-enerji kumaşlar...</p>
+      <div class="card">
+        <h2>Projeler</h2>
+        <p>Projelerimiz arasında akıllı tekstil sensörleri, piezo-enerji kumaşlar ve enerji toplayan modüler platformlar bulunuyor. Tüm projelerimiz endüstriyel ölçek için tasarlandı...</p>
+      </div>
     </section>
 
     <section id="galeri">
-      <h2>Galeri</h2>
-      <img src="galeri1.jpg" alt="..." style="max-width:100%;margin-bottom:1rem;"/>
-      <img src="galeri2.jpg" alt="..." style="max-width:100%;"/>
+      <div class="card">
+        <h2>Galeri</h2>
+        <div class="gallery-grid">
+          <img src="galeri1.jpg" alt="Proje Fotoğrafı 1"/>
+          <img src="galeri2.jpg" alt="Proje Fotoğrafı 2"/>
+          <!-- placeholder görseller -->
+        </div>
+      </div>
     </section>
 
     <section id="ekibimiz">
-      <h2>Ekibimiz</h2>
-      <p>Ar-Ge, tasarım ve üretim departmanlarımız ile uzman kadromuz...</p>
+      <div class="card">
+        <h2>Ekibimiz</h2>
+        <p>Ar-Ge, tasarım ve üretim departmanlarımızda görev yapan uzman kadromuzla sektöre yön veriyoruz. Her alanda deneyimli mühendis ve araştırmacılarımız var...</p>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="card">
+        <h2>İletişim</h2>
+        <p><strong>Adres:</strong> Teknokent Cad. No:42, İzmir<br/>
+           <strong>Telefon:</strong> +90 (232) 000 00 00<br/>
+           <strong>E-posta:</strong> info@piezotech.com</p>
+        <!-- ileride harita, iletişim formu da ekleyebilirsiniz -->
+      </div>
     </section>
   </main>
 
@@ -117,43 +160,42 @@
     © 2025 PiezoTech Araştırma Grubu. Tüm hakları saklıdır.
   </footer>
 
+
   <!-- SCRIPTS -->
   <script>
     // partiküller
-    const container = document.querySelector('.background-particles');
+    const cont = document.querySelector('.particles');
     for(let i=0;i<70;i++){
-      let p = document.createElement('div');
-      p.className='particle';
-      p.style.left    = Math.random()*100 + '%';
-      p.style.top     = Math.random()*100 + '%';
-      p.style.animationDelay = Math.random()*5 + 's';
-      container.append(p);
+      const d = document.createElement('div');
+      d.className='particle';
+      d.style.left = Math.random()*100+'%';
+      d.style.top  = Math.random()*100+'%';
+      d.style.animationDelay = Math.random()*5+'s';
+      cont.append(d);
     }
 
-    // scroll reveal
-    const secs = document.querySelectorAll('main section');
-    const io = new IntersectionObserver((ents)=>{
-      ents.forEach(e=>{
+    // scroll-reveal
+    const sec = document.querySelectorAll('main section');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
         if(e.isIntersecting) e.target.classList.add('visible');
       });
-    },{threshold:0.2});
-    secs.forEach(s=>io.observe(s));
+    }, {threshold:0.2});
+    sec.forEach(s=>io.observe(s));
 
-    // off-canvas toggle
+    // offcanvas toggle
     document.getElementById('menu-toggle').onclick = ()=>{
       document.getElementById('offcanvas').classList.toggle('open');
     };
-
     // smooth scroll
     document.querySelectorAll('#offcanvas a').forEach(a=>{
       a.onclick = e=>{
         e.preventDefault();
         document.getElementById('offcanvas').classList.remove('open');
-        document.querySelector(a.getAttribute('href'))
-                .scrollIntoView({behavior:'smooth'});
+        const tgt = document.querySelector(a.getAttribute('href'));
+        tgt.scrollIntoView({behavior:'smooth'});
       };
     });
   </script>
-
 </body>
 </html>
