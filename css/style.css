@@ -1,0 +1,23 @@
+/* — Genel Sıfırlama & Yazı Tipi — */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:#000; color:#fff; }
+
+/* — Accordion stil — */
+.accordion { width:90%; max-width:800px; margin:4rem auto; }
+.accordion-item { border-bottom:1px solid #333; }
+.accordion-header {
+  background:#111; cursor:pointer; padding:1rem;
+  font-size:1.1rem; display:flex; justify-content:space-between;
+}
+.accordion-header::after {
+  content:'\25BC'; transition:transform .3s;
+}
+.accordion-header.active::after {
+  transform:rotate(-180deg);
+}
+.accordion-body {
+  max-height:0; overflow:hidden; transition:max-height .4s ease;
+}
+.accordion-body iframe {
+  width:100%; height:300px; border:none;
+}
