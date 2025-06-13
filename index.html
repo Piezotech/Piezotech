@@ -5,157 +5,217 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <!-- Basit ikonlar için Remixicon CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    html, body { background:#111; color:#fff; font-family:'Inter',sans-serif; min-height:100vh; }
+    :root {
+      --yellow: #f7c600;
+      --dark: #111;
+      --gray: #e8e8e8;
+    }
+    html, body { background:var(--dark); color:#fff; font-family:'Inter',sans-serif; min-height:100vh; scroll-behavior:smooth;}
     body { margin:0; }
+    /* Partiküller */
     .particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
-    .particle { position:absolute; width:3px; height:3px; background:#f7c600; border-radius:50%; opacity:.4; }
-    /* Menü butonu */
-    #menu-toggle {
-      position:fixed; top:32px; left:32px; z-index:21;
-      width:48px;height:48px;background:#f7c600;border-radius:12px;border:none;color:#191919;
-      font-size:1.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 9px #0006;
-      transition:.18s;
+    .particle { position:absolute; width:3px; height:3px; background:var(--yellow); border-radius:50%; opacity:.18; }
+    /* Animasyonlu açılış splash */
+    #splash {
+      position:fixed; z-index:200; top:0; left:0; width:100vw; height:100vh; background:var(--dark);
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      transition:opacity .7s;
     }
-    /* Soldan çıkan menü */
-    #offcanvas {
-      position:fixed; top:0; left:-280px; width:240px; height:100vh; background:#191919f2;
-      box-shadow:4px 0 24px #000a; z-index:22; transition:left .35s cubic-bezier(.86,0,.07,1);
-      padding:48px 0 0 0; display:flex;flex-direction:column;gap:1.6rem;
+    #splash.hide { opacity:0; pointer-events:none;}
+    #splash-logo {
+      width:130px; margin-bottom:36px; opacity:0; transform:scale(0.8);
+      filter: drop-shadow(0 0 30px #f7c60060);
     }
-    #offcanvas.open { left:0; }
-    #offcanvas ul { list-style:none;padding:0 0 0 26px; }
-    #offcanvas li {margin:0 0 19px 0;}
-    #offcanvas a {
-      color:#fff;font-size:1.14rem;font-weight:600;text-decoration:none;transition:.15s;
-      letter-spacing:0.02em;
+    #splash-title {
+      font-size:2.8rem; font-weight:800; color:var(--yellow); opacity:0; transform:scale(0.6);
+      text-shadow:0 4px 40px #f7c6004c;
+      letter-spacing:5px;
     }
-    #offcanvas a:hover { color:#f7c600;}
-    #close-menu {
-      position:absolute;top:14px;left:182px;font-size:2rem;background:none;color:#f7c600;border:none;cursor:pointer;
+    /* ÜST NAV */
+    .topnav {
+      width:100vw; position:fixed; top:0; left:0; z-index:21; background:rgba(10,10,10,0.94);
+      height:70px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 44px #0006;
+      border-bottom:1.5px solid #1e1e1e;
+      backdrop-filter: blur(10px);
     }
-    /* Blur/fade arka plan overlay menü açıkken */
-    .overlay-blur {
-      position:fixed;inset:0;z-index:21;backdrop-filter:blur(4px);background:#111b;transition:.2s;
-      opacity:1; pointer-events:auto;
+    .nav-inner {
+      display:flex; gap:32px; align-items:center;
     }
-    .overlay-blur.hide { opacity:0; pointer-events:none;}
-    /* Hero */
+    .nav-link {
+      display:flex; align-items:center; gap:9px; color:#fff; font-weight:600; font-size:1.14rem;
+      text-decoration:none; transition:.19s; letter-spacing:.04em; padding:8px 12px; border-radius:8px;
+    }
+    .nav-link:hover { background:#232323; color:var(--yellow);}
+    .nav-logo {
+      height:38px; margin-right:24px; opacity:.85;
+    }
+    /* HERO */
     .hero {
-      display:flex; flex-direction:column; align-items:center; justify-content:center; min-height: 52vh;
-      z-index:2; position:relative; margin-top:4vh;
-    }
-    .hero-logo {
-      width:120px; opacity:0.12; margin-bottom:20px; filter:blur(1px);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      min-height:75vh;
+      margin-top:100px;
+      z-index:2; position:relative; 
     }
     .hero-title {
-      font-size:2.6rem; font-weight:800; color:#f7c600; margin-bottom:14px; text-align:center; letter-spacing:.6px;
-      text-shadow:0 3px 30px #19191960;
+      font-size:clamp(2.2rem,7vw,3.6rem); font-weight:800; color:var(--yellow);
+      margin-bottom:18px; letter-spacing:1.3px;
+      text-align:center; line-height:1.15;
+      text-shadow:0 6px 44px #f7c60030, 0 1px 0 #000, 0 2px 14px #f7c60080;
+      filter:brightness(1.1);
+      animation: glow 2.5s infinite alternate;
     }
+    @keyframes glow { to {text-shadow:0 8px 70px #f7c60090,0 1px 0 #000, 0 2px 12px #f7c60080;} }
     .hero-desc {
-      font-size:1.13rem; color:#e3e3e3; margin-bottom:10vh; text-align:center; letter-spacing:.02em;
-      max-width:560px;
+      font-size:clamp(1.1rem,2vw,1.6rem);
+      color:#ededed; max-width:650px;
+      margin-bottom:6vh;
+      text-align:center;
+      text-shadow:0 0 14px #f7c60009;
     }
+    /* SECTIONS */
     .sections {
-      width:100%;max-width:730px;margin:0 auto;display:flex;flex-direction:column;gap:2.4rem;z-index:2;position:relative;
+      margin:0 auto; width:100%; max-width:880px;
+      display:flex; flex-direction:column; gap:8vh; z-index:2; position:relative;
+      scroll-snap-type: y proximity;
+      padding-bottom:8vh;
     }
     .section {
       text-align:left;
+      scroll-snap-align: start;
+      padding:0 24px;
     }
     .section-title {
-      font-size:1.33rem; font-weight:700; color:#f7c600; margin-bottom:.6rem; letter-spacing:0.1em;
+      font-size:clamp(1.18rem,2vw,1.46rem); font-weight:700; color:var(--yellow); margin-bottom:.75rem; letter-spacing:0.1em;
+      text-shadow:0 2px 12px #f7c60014;
     }
-    .section-desc { font-size:1.07rem; color:#efefef; max-width:660px;}
     .section-title a { color:inherit; text-decoration:none;}
     .section-title a:hover { text-decoration:underline; }
-    footer { margin-top:8vh;text-align:center; color:#bbb; font-size:.99rem; padding-bottom:1.8rem;}
-    @media(max-width:700px){
-      .hero-title {font-size:1.3rem;}
-      .hero-desc {font-size:.95rem;}
-      .sections{gap:1.2rem;}
-      #menu-toggle {top:14px;left:14px;width:38px;height:38px;}
-      #offcanvas { width:88vw; min-width:120px; left:-96vw;}
-      #offcanvas.open { left:0;}
-      #close-menu{ left:73vw;}
+    .section-desc { font-size:clamp(1.01rem,2vw,1.15rem); color:#efefef; max-width:660px; line-height:1.6;}
+    /* Footer */
+    footer {
+      margin-top:10vh;text-align:center;color:#888;font-size:.88rem;padding-bottom:2.2rem;opacity:.6;
+      letter-spacing:.08em;
+    }
+    @media (max-width:700px){
+      .nav-inner {gap:14px;}
+      .nav-logo {height:27px;margin-right:10px;}
+      .hero {margin-top:80px;}
+      .sections {gap:4vh;}
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-  <div class="particles"></div>
-  <button id="menu-toggle" aria-label="Menü Aç/Kapat">☰</button>
-  <nav id="offcanvas">
-    <button id="close-menu" title="Menüyü Kapat">&times;</button>
-    <ul>
-      <li><a href="hakkimizda.html">Hakkımızda</a></li>
-      <li><a href="projeler.html">Projeler</a></li>
-      <li><a href="galeri.html">Galeri</a></li>
-      <li><a href="ekibimiz.html">Ekibimiz</a></li>
-      <li><a href="iletisim.html">İletişim</a></li>
-    </ul>
-  </nav>
-  <div id="blur-overlay" class="overlay-blur hide"></div>
-  <main>
-    <section class="hero">
-      <img src="yildirim-logo.png" class="hero-logo" alt="PiezoTech Logo"/>
-      <div class="hero-title">Enerjiyi Geleceğe Taşıyoruz</div>
-      <div class="hero-desc" id="typewriter"></div>
-    </section>
-    <section class="sections">
-      <div class="section">
-        <div class="section-title"><a href="hakkimizda.html">Hakkımızda</a></div>
-        <div class="section-desc">Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</div>
-      </div>
-      <div class="section">
-        <div class="section-title"><a href="projeler.html">Projeler</a></div>
-        <div class="section-desc">Projelerimiz arasında akıllı tekstil sensörleri, piezo-enerji kumaşlar...</div>
-      </div>
-      <div class="section">
-        <div class="section-title"><a href="galeri.html">Galeri</a></div>
-        <div class="section-desc">Görseller yakında eklenecek.</div>
-      </div>
-      <div class="section">
-        <div class="section-title"><a href="ekibimiz.html">Ekibimiz</a></div>
-        <div class="section-desc">Ar-Ge, tasarım ve üretim departmanlarımız ile uzman kadromuz...</div>
-      </div>
-      <div class="section">
-        <div class="section-title"><a href="iletisim.html">İletişim</a></div>
-        <div class="section-desc">Adres: Balatçık Mahallesi Havaalanı Şosesi No:33/2 Balatçık 35620 Çiğli İZMİR <br/>Telefon: …<br/>E-posta: piezotech.ikc@gmail.com</div>
-      </div>
-    </section>
-    <footer>
-      © 2025 Bu sitenin tüm hakları PiezoTech Araştırma Grubu tarafından saklıdır.
-    </footer>
-  </main>
-  <script>
-    // Partiküller
-    (() => {
-      const c = document.querySelector('.particles');
-      for(let i=0;i<30;i++){
-        const p = document.createElement('div');
-        p.className='particle';
-        p.style.left=Math.random()*100+'%';
-        p.style.top=Math.random()*100+'%';
-        c.appendChild(p);
-      }
-    })();
-    // Menü & overlay
-    const toggle=document.getElementById('menu-toggle'), panel=document.getElementById('offcanvas'), closeBtn=document.getElementById('close-menu'), overlay=document.getElementById('blur-overlay');
-    toggle.onclick=()=>{panel.classList.toggle('open');overlay.classList.toggle('hide');}
-    closeBtn.onclick=()=>{panel.classList.remove('open');overlay.classList.add('hide');}
-    overlay.onclick=()=>{panel.classList.remove('open');overlay.classList.add('hide');}
-    // Typewriter
-    const typeTarget = document.getElementById('typewriter');
-    const typeText = 'PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...';
-    let i = 0;
-    function typeWriter() {
-      if (i <= typeText.length) {
-        typeTarget.innerHTML = typeText.substring(0, i);
-        i++;
-        setTimeout(typeWriter, 26);
-      }
+<!-- Açılış Splash Animasyonu -->
+<div id="splash">
+  <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
+  <div id="splash-title">Piezotech</div>
+</div>
+
+<!-- Üstte Modern Navigation -->
+<nav class="topnav">
+  <div class="nav-inner">
+    <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
+    <a href="hakkimizda.html" class="nav-link"><i class="ri-information-line"></i> Hakkımızda</a>
+    <a href="projeler.html" class="nav-link"><i class="ri-lightbulb-flash-line"></i> Projeler</a>
+    <a href="galeri.html" class="nav-link"><i class="ri-image-line"></i> Galeri</a>
+    <a href="ekibimiz.html" class="nav-link"><i class="ri-team-line"></i> Ekibimiz</a>
+    <a href="iletisim.html" class="nav-link"><i class="ri-mail-line"></i> İletişim</a>
+  </div>
+</nav>
+
+<!-- Partikül Efekti -->
+<div class="particles"></div>
+
+<main>
+  <section class="hero">
+    <div class="hero-title">Enerjiyi Geleceğe Taşıyoruz</div>
+    <div class="hero-desc" id="typewriter"></div>
+  </section>
+  <section class="sections">
+    <div class="section">
+      <div class="section-title"><a href="hakkimizda.html">Hakkımızda</a></div>
+      <div class="section-desc">Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><a href="projeler.html">Projeler</a></div>
+      <div class="section-desc">Projelerimiz arasında akıllı tekstil sensörleri, piezo-enerji kumaşlar...</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><a href="galeri.html">Galeri</a></div>
+      <div class="section-desc">Görseller yakında eklenecek.</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><a href="ekibimiz.html">Ekibimiz</a></div>
+      <div class="section-desc">Ar-Ge, tasarım ve üretim departmanlarımız ile uzman kadromuz...</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><a href="iletisim.html">İletişim</a></div>
+      <div class="section-desc">Adres: Balatçık Mahallesi Havaalanı Şosesi No:33/2 Balatçık 35620 Çiğli İZMİR <br/>Telefon: …<br/>E-posta: piezotech.ikc@gmail.com</div>
+    </div>
+  </section>
+  <footer>
+    © 2025 Bu sitenin tüm hakları PiezoTech Araştırma Grubu tarafından saklıdır.
+  </footer>
+</main>
+<script>
+  // Açılış animasyonu (logo ve başlık)
+  document.addEventListener("DOMContentLoaded", function() {
+    anime({
+      targets: '#splash-logo',
+      opacity: [0, 1],
+      scale: [0.8, 1.1],
+      easing: 'easeOutExpo',
+      duration: 900,
+      delay: 300
+    });
+    anime({
+      targets: '#splash-title',
+      opacity: [0, 1],
+      scale: [0.6, 1],
+      easing: 'easeOutExpo',
+      duration: 900,
+      delay: 600
+    });
+    setTimeout(function() {
+      anime({
+        targets: '#splash',
+        opacity: [1, 0],
+        easing: 'easeInOutQuad',
+        duration: 700,
+        complete: function() {
+          document.getElementById('splash').classList.add('hide');
+        }
+      });
+    }, 2100);
+  });
+  // Partiküller
+  (() => {
+    const c = document.querySelector('.particles');
+    for(let i=0;i<30;i++){
+      const p = document.createElement('div');
+      p.className='particle';
+      p.style.left=Math.random()*100+'%';
+      p.style.top=Math.random()*100+'%';
+      p.style.opacity=0.12 + Math.random()*0.1; // 0.12-0.22 arası daha sönük
+      c.appendChild(p);
     }
-    setTimeout(typeWriter, 410);
-  </script>
+  })();
+  // Typewriter
+  const typeTarget = document.getElementById('typewriter');
+  const typeText = 'PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...';
+  let i = 0;
+  function typeWriter() {
+    if (i <= typeText.length) {
+      typeTarget.innerHTML = typeText.substring(0, i);
+      i++;
+      setTimeout(typeWriter, 25);
+    }
+  }
+  setTimeout(typeWriter, 430);
+</script>
 </body>
 </html>
