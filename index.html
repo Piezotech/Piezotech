@@ -87,8 +87,13 @@
       font-size:.9rem; color:#666;
     }
   </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
+<div id="splash" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:#0f0f0f;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+  <img src="logo.png" alt="Piezotech Logo" style="width:140px;margin-bottom:30px;opacity:0;transform:scale(0.6);" id="splash-logo">
+  <h1 id="splash-title" style="font-size:3rem;letter-spacing:4px;font-weight:800;color:#f7c600;opacity:0;transform:scale(0.6);">Piezotech</h1></div>
+<div id="main-content" style="opacity:0;">
   <!-- HERO -->
   <div class="landing">
     <div class="background-particles">
@@ -117,11 +122,11 @@
   <nav id="offcanvas">
     <h2>Menü</h2>
     <ul>
-      <li><a href="#hakkimizda">Hakkımızda</a></li>
-      <li><a href="#projeler">Projeler</a></li>
-      <li><a href="#galeri">Galeri</a></li>
-      <li><a href="#ekibimiz">Ekibimiz</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="projeler.html">Projeler</a></li>
+      <li><a href="galeri.html">Galeri</a></li>
+      <li><a href="ekibimiz.html">Ekibimiz</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
     </ul>
   </nav>
 
@@ -174,5 +179,48 @@
 
     sections.forEach(s => observer.observe(s));
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // LOGO animasyonu
+    anime({
+        targets: '#splash-logo',
+        opacity: [0, 1],
+        scale: [0.6, 1.15],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 300
+    });
+    // Yazı animasyonu
+    anime({
+        targets: '#splash-title',
+        opacity: [0, 1],
+        scale: [0.6, 1],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 700
+    });
+    // Splash kalkıyor, ana içerik geliyor
+    setTimeout(function() {
+        anime({
+            targets: '#splash',
+            opacity: [1, 0],
+            easing: 'easeInOutQuad',
+            duration: 800,
+            complete: function() {
+                document.getElementById('splash').style.display = 'none';
+            }
+        });
+        anime({
+            targets: '#main-content',
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 700
+        });
+    }, 2200);
+});
+</script>
+
+</div>
 </body>
 </html>
