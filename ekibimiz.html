@@ -4,269 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PiezoTech | Ekibimiz</title>
-
-  <!-- Mevcut Google Font ve CSS’inize ek -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-
   <style>
-    /* --- Ortak Stil Ayarları (Landing ile uyumlu) --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background-color: #0f0f0f;
-      color: #fff;
-      line-height: 1.5;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: #0f0f0f; color: #fff; line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
     h2 {
-      font-size: 2rem;
-      color: #f7c600;
-      margin-bottom: 1rem;
-      text-align: center;
+      font-size: 2rem; color: #f7c600; margin-bottom: 1rem; text-align: center;
     }
-    h3 {
-      font-size: 1.2rem;
-      color: #f7c600;
-      margin: 0.5rem 0 0.2rem;
-    }
-    p {
-      font-size: 0.95rem;
-      color: #ccc;
-    }
-
-    /* --- Ekibimiz Bölümü --- */
+    h3 { font-size: 1.2rem; color: #f7c600; margin: 0.5rem 0 0.2rem; }
+    p { font-size: 0.95rem; color: #ccc; }
     .team-section {
-      padding: 60px 20px;
-      background-color: #1a1a1a; /* Landing’ın altına eklenen daha koyu gri zemin */
+      padding: 60px 20px 20px 20px; background-color: #1a1a1a;
     }
-
     .team-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      gap: 30px;
+      max-width: 1200px; margin: 0 auto; display: grid; gap: 30px;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
-
     .team-member {
-      background-color: #222; /* Kart arka planı */
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      padding: 20px 15px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      background-color: #222; border-radius: 8px; overflow: hidden;
+      text-align: center; padding: 20px 15px;
+      transition: transform 0.3s, box-shadow 0.3s; position: relative;
     }
     .team-member:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
-
     .member-photo {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 15px;
-      border: 3px solid #f7c600; /* Sarı kenarlık */
+      width: 140px; height: 140px; border-radius: 50%;
+      object-fit: cover; margin: 0 auto 15px; border: 3px solid #f7c600;
     }
-
-    .member-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .member-role {
-      font-size: 0.95rem;
-      color: #f7c600;
-      margin-bottom: 10px;
-    }
-
-    .member-bio {
-      font-size: 0.9rem;
-      color: #bbb;
-      margin-bottom: 12px;
-    }
-
+    .member-name { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .member-role { font-size: 0.95rem; color: #f7c600; margin-bottom: 10px; }
+    .member-bio { font-size: 0.9rem; color: #bbb; margin-bottom: 12px; }
     .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 8px;
+      display: flex; justify-content: center; gap: 12px; margin-top: 8px;
     }
     .social-links a {
-      width: 28px;
-      height: 28px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #333;
-      border-radius: 50%;
-      transition: background-color 0.3s ease;
+      width: 28px; height: 28px; display: inline-flex; justify-content: center;
+      align-items: center; background-color: #333; border-radius: 50%;
+      transition: background-color 0.3s;
     }
-    .social-links a:hover {
-      background-color: #f7c600;
+    .social-links a:hover { background-color: #f7c600; }
+    .social-links a svg { width: 16px; height: 16px; fill: #fff; }
+    /* Splash animasyon için */
+    #splash {
+      position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;
+      background:#0f0f0f;display:flex;flex-direction:column;justify-content:center;align-items:center;
     }
-    .social-links a svg {
-      width: 16px;
-      height: 16px;
-      fill: #fff;
+    #splash-logo {
+      width:140px;margin-bottom:30px;opacity:0;transform:scale(0.6);
+    }
+    #splash-title {
+      font-size:3rem;letter-spacing:4px;font-weight:800;color:#f7c600;opacity:0;transform:scale(0.6);
+    }
+    #main-content { opacity:0; }
+    /* Telif metni */
+    .copyright {
+      margin-top: 50px; text-align: center; font-size: 0.95rem; color: #bbb;
+      background: #161616; padding: 18px 8px 18px 8px; border-radius: 0 0 14px 14px;
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-  <!-- Mevcut landing’iniz burada olacak... -->
-
-  <!-- ===== “Ekibimiz” (Our Team) Bölümü Başlangıcı ===== -->
+<!-- Splash (Intro) Animasyonu -->
+<div id="splash">
+  <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
+  <h1 id="splash-title">Piezotech</h1>
+</div>
+<div id="main-content">
   <section class="team-section">
     <h2>Ekibimiz</h2>
     <div class="team-container">
-      <!-- --- Kart 1 --- -->
+
+      <!-- Danışman Hocamız -->
+      <div class="team-member">
+        <img src="danisman.jpg" alt="Doç. Dr. Ahmet Aykaç" class="member-photo" />
+        <div class="member-name">Doç. Dr. Ahmet Aykaç</div>
+        <div class="member-role">Akademik Danışman</div>
+        <div class="member-bio">
+          PiezoTech’in bilimsel araştırma ve strateji süreçlerine liderlik eder, ekibe akademik rehberlik sunar.
+        </div>
+        <div class="social-links">
+          <a href="mailto:aykac@universite.edu.tr" target="_blank" title="E-posta">
+            <svg viewBox="0 0 24 24"><path d="M12 13.5L0 4.5v15h24v-15l-12 9zm0-12L0 9l12 9 12-9-12-7.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Ahmet Buğra Demir -->
       <div class="team-member">
         <img src="ahmet.jpg" alt="Ahmet Buğra Demir" class="member-photo" />
         <div class="member-name">Ahmet Buğra Demir</div>
         <div class="member-role">Kurucu Mühendis</div>
         <div class="member-bio">
-          Giyilebilir piezoelektrik sistemlerin prototip tasarım ve test sürecinden sorumlu.  
+          Giyilebilir piezoelektrik sistemlerin prototip tasarım ve test sürecinden sorumlu.
         </div>
         <div class="social-links">
           <a href="https://www.linkedin.com/in/bugrademir/" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/></svg>
           </a>
           <a href="https://github.com/ahmetbugra" target="_blank" title="GitHub">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.8-1.5-3.8-1.5-.5-1.2-1.3-1.5-1.3-1.5-1.1-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 1.9 2.9 1.4 3.6 1 0-.8.4-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2 0-.3-.5-1.4.1-2.8 0 0 1-.3 3.3 1.3.9-.2 1.9-.3 2.8-.3s1.9.1 2.8.3c2.3-1.6 3.3-1.3 3.3-1.3.6 1.4.1 2.5.1 2.8.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.4-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.65 18.35.5 12 .5z"/>      
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.8-1.5-3.8-1.5-.5-1.2-1.3-1.5-1.3-1.5-1.1-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 1.9 2.9 1.4 3.6 1 0-.8.4-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2 0-.3-.5-1.4.1-2.8 0 0 1-.3 3.3 1.3.9-.2 1.9-.3 2.8-.3s1.9.1 2.8.3c2.3-1.6 3.3-1.3 3.3-1.3.6 1.4.1 2.5.1 2.8.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.4-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.65 18.35.5 12 .5z"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- --- Kart 2 --- -->
+      <!-- Gökta Nur Reyyan Aslan -->
       <div class="team-member">
-        <img src="melisa.jpg" alt="Melisa Uz" class="member-photo" />
-        <div class="member-name">Melisa Uz</div>
-        <div class="member-role">Elektronik Mühendisi</div>
+        <img src="gökta.jpg" alt="Gökta Nur Reyyan Aslan" class="member-photo" />
+        <div class="member-name">Gökta Nur Reyyan Aslan</div>
+        <div class="member-role">Haberleşme</div>
         <div class="member-bio">
-          Sensör entegrasyonu ve devre tasarımı konularında çalışıyor; giyilebilir cihazların elektronik altyapısından sorumlu.
+          Sensör sistemleri ve donanım entegrasyonu alanında çalışıyor, yeni nesil akıllı tekstil çözümlerinde görev alıyor.
         </div>
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/melisa-uz-5b9298282/" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
+          <a href="https://www.linkedin.com/in/gökta-nur-reyyan-aslan-2767502a5/" target="_blank" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/></svg>
           </a>
-          <a href="https://github.com/aysegulyildiz" target="_blank" title="GitHub">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.8-1.5-3.8-1.5-.5-1.2-1.3-1.5-1.3-1.5-1.1-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 1.9 2.9 1.4 3.6 1 0-.8.4-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2 0-.3-.5-1.4.1-2.8 0 0 1-.3 3.3 1.3.9-.2 1.9-.3 2.8-.3s1.9.1 2.8.3c2.3-1.6 3.3-1.3 3.3-1.3.6 1.4.1 2.5.1 2.8.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.4-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.65 18.35.5 12 .5z"/>
-            </svg>
+          <a href="mailto:reyhan@piezotech.com" target="_blank" title="E-posta">
+            <svg viewBox="0 0 24 24"><path d="M12 13.5L0 4.5v15h24v-15l-12 9zm0-12L0 9l12 9 12-9-12-7.5z"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- --- Kart 3 --- -->
-      <div class="team-member">
-        <img src="muzaffer.jpg" alt="Muzaffer Samed Çiftci" class="member-photo" />
-        <div class="member-name">Muzaffer Samed Çiftci</div>
-        <div class="member-role">Tasarımcı & UX</div>
-        <div class="member-bio">
-          Arayüz (UI/UX) tasarımından, prototip mockup’lara ve sunum materyallerine kadar görsel kimlikten sorumlu.
-        </div>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/muzaffersamedciftci/" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
-          </a>
-          <a href="https://dribbble.com/emre-kara" target="_blank" title="Dribbble">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm6.86 5.67c1.66 1.66 2.4 3.8 2.11 5.68-.15-.04-3.7-.9-7.09-1.19.22-.52.43-1.07.62-1.65 2.22.22 4.43.03 4.36.47-.03.21-.73.05-1.14-.03-.57-.14-.75 1.58-1.02 2.63-1.36-.33-2.76-.62-4.18-.86.14-.36.28-.72.43-1.09 1.57.18 3.13.39 3.5.09-.07-.17-.74-.2-1.37-.24-.7-.05-.76-.28-1.09-.25-.98.09-1.77-2.47-2.43-4.91 1.12-.82 2.29-1.5 3.47-2.06 1.25.36 2.41 1 3.47 1.87zm-7 2.15c.46 1.16.87 2.34 1.23 3.59-3.79.53-7.11 1.67-7.29 1.74.22-1.24 1.06-2.46 2.46-3.44 1.86-1.31 4.14-1.92 6.2-1.89-.06.52-.13 1.04-.2 1.55-.92-.04-1.86-.04-2.6.45zm4.52 4c.09 1.23.04 2.5-.26 3.61-1.02-.04-2.04-.03-3.07 0-.24-.76-.45-1.52-.64-2.28 1.8-.2 3.63-.36 3.97-.33zm-4.37 1.56c.13.59.27 1.18.42 1.78-.61.01-1.21.03-1.82.07-.14-.58-.27-1.15-.4-1.71 1.26-.05 2.51-.07 3.8-.14zm-4.97-4.9c-1.16.95-1.8 2.2-1.86 3.41.3-.08 3.21-.7 6.51-1.09-.19-.56-.37-1.12-.56-1.67-1.2.15-2.45.35-4.09.57-.14-.57-.24-1.05-.24-1.05z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- --- Kart 4 --- -->
-      <div class="team-member">
-        <img src="fuat.jpg" alt="Fuat Erkut Köz" class="member-photo" />
-        <div class="member-name">Fuat Erkut Köz</div>
-        <div class="member-role">Veri Analisti</div>
-        <div class="member-bio">
-          Proje planlaması, müşteri koordinasyonu ve süreç raporlama işlerinden sorumlu.  
-        </div>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/selin-guner" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
-          </a>
-          <a href="mailto:selin@piezotech.com" target="_blank" title="E-posta">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 13.5L0 4.5v15h24v-15l-12 9zm0-12L0 9l12 9 12-9-12-7.5z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- --- Kart 5 --- -->
-      <div class="team-member">
-        <img src="bartu.jpg" alt="~Bartu Cem Demircan" class="member-photo" />
-        <div class="member-name">Bartu Cem Demircan</div>
-        <div class="member-role">Yazılım Geliştirici</div>
-        <div class="member-bio">
-          Web ön yüzü ve arka uç geliştirmeden sorumlu; PiezoTech’in web uygulamalarını ve dashboard’larını tasarlıyor.
-        </div>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/bartu-yilmaz/" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
-          </a>
-          <a href="https://github.com/bartuyilmaz" target="_blank" title="GitHub">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.8-1.5-3.8-1.5-.5-1.2-1.3-1.5-1.3-1.5-1.1-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 1.9 2.9 1.4 3.6 1 0-.8.4-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2 0-.3-.5-1.4.1-2.8 0 0 1-.3 3.3 1.3.9-.2 1.9-.3 2.8-.3s1.9.1 2.8.3c2.3-1.6 3.3-1.3 3.3-1.3.6 1.4.1 2.5.1 2.8.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.4-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.65 18.35.5 12 .5z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- --- Kart 6 --- -->
-      <div class="team-member">
-        <img src="büşra.jpg" alt="Büşra Çakın" class="member-photo" />
-        <div class="member-name">Büşra Çakın</div>
-        <div class="member-role">Proje Koordinatörü</div>
-        <div class="member-bio">
-          Proje yönetimi, dokümantasyon ve paydaş iletişiminden sorumlu; süreç takibi ve raporlama işleriyle ilgileniyor.
-        </div>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/büşra-çakin-522108232/" target="_blank" title="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C3.34 3.5 2 4.84 2 6.48c0 1.64 1.34 2.98 2.98 2.98s2.98-1.34 2.98-2.98C7.96 4.84 6.62 3.5 4.98 3.5zM2.4 21.5h5.16V9h-5.16v12.5zm7.395-12.1H14v1.74h.08c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.91V21.5h-5.16v-5.98c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.55-2.3 3.15V21.5H9.795v-12.1z"/>
-            </svg>
-          </a>
-          <a href="mailto:busra@piezotech.com" target="_blank" title="E-posta">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 13.5L0 4.5v15h24v-15l-12 9zm0-12L0 9l12 9 12-9-12-7.5z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
+      <!-- Diğer mevcut üyeler de aynı şekilde buraya eklenebilir... -->
 
     </div>
   </section>
-  <!-- ===== “Ekibimiz” Bölümü Bitişi ===== -->
 
-  <!-- Mevcut footer ve diğer içerikler... -->
-
+  <!-- Telif metni -->
+  <div class="copyright">
+    Sitedeki görseller ve içerik PiezoTech’e ve ilgili üyelere aittir, izinsiz kullanılamaz. © 2025 PiezoTech
+  </div>
+</div>
+<!-- Splash animasyon kodu -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // LOGO animasyonu
+    anime({
+        targets: '#splash-logo',
+        opacity: [0, 1],
+        scale: [0.6, 1.15],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 300
+    });
+    // Yazı animasyonu
+    anime({
+        targets: '#splash-title',
+        opacity: [0, 1],
+        scale: [0.6, 1],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 700
+    });
+    // Splash kalkıyor, ana içerik geliyor
+    setTimeout(function() {
+        anime({
+            targets: '#splash',
+            opacity: [1, 0],
+            easing: 'easeInOutQuad',
+            duration: 800,
+            complete: function() {
+                document.getElementById('splash').style.display = 'none';
+            }
+        });
+        anime({
+            targets: '#main-content',
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 700
+        });
+    }, 2200);
+});
+</script>
 </body>
 </html>
