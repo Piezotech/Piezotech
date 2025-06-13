@@ -7,13 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background-color: #0f0f0f; color: #fff; line-height: 1.5; }
+    body { background-color: #0f0f0f; color: #fff; line-height: 1.5; overflow-x: hidden;}
     a { text-decoration: none; color: inherit; }
     h2 {
       font-size: 2rem; color: #f7c600; margin-bottom: 1rem; text-align: center;
     }
-    h3 { font-size: 1.2rem; color: #f7c600; margin: 0.5rem 0 0.2rem; }
-    p { font-size: 0.95rem; color: #ccc; }
     .team-section {
       padding: 60px 20px 20px 20px; background-color: #1a1a1a;
     }
@@ -32,6 +30,7 @@
     .member-photo {
       width: 140px; height: 140px; border-radius: 50%;
       object-fit: cover; margin: 0 auto 15px; border: 3px solid #f7c600;
+      background: #fff;
     }
     .member-name { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
     .member-role { font-size: 0.95rem; color: #f7c600; margin-bottom: 10px; }
@@ -46,6 +45,7 @@
     }
     .social-links a:hover { background-color: #f7c600; }
     .social-links a svg { width: 16px; height: 16px; fill: #fff; }
+
     /* Splash animasyon için */
     #splash {
       position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;
@@ -57,11 +57,29 @@
     #splash-title {
       font-size:3rem;letter-spacing:4px;font-weight:800;color:#f7c600;opacity:0;transform:scale(0.6);
     }
-    #main-content { opacity:0; }
-    /* Telif metni */
+    #main-content { opacity:0; transition:opacity .6s;}
     .copyright {
       margin-top: 50px; text-align: center; font-size: 0.95rem; color: #bbb;
       background: #161616; padding: 18px 8px 18px 8px; border-radius: 0 0 14px 14px;
+    }
+
+    /* --- Mobil Uyum Medya Sorguları --- */
+    @media (max-width: 700px) {
+      .team-section { padding: 30px 5px 16px 5px; }
+      .team-container { gap: 14px; }
+      .team-member { padding: 12px 4px; }
+      .member-photo { width: 85px; height: 85px; }
+      h2 { font-size: 1.25rem; }
+      .member-name, .member-role, .member-bio { font-size: 0.97rem; }
+      .copyright { font-size: 0.83rem; padding: 8px 3px 10px 3px;}
+      #splash-logo { width: 70px; }
+      #splash-title { font-size: 1.5rem; }
+    }
+    @media (max-width: 430px) {
+      .team-section { padding-top: 20px; }
+      .team-member { padding: 8px 2px; }
+      .member-photo { width: 60px; height: 60px; }
+      h2 { font-size: 1rem; }
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -76,7 +94,6 @@
   <section class="team-section">
     <h2>Ekibimiz</h2>
     <div class="team-container">
-
       <!-- Danışman -->
       <div class="team-member">
         <img src="danisman.jpg" alt="Doç. Dr. Ahmet Aykaç" class="member-photo" />
@@ -91,7 +108,6 @@
           </a>
         </div>
       </div>
-
       <!-- 1. Üye -->
       <div class="team-member">
         <img src="ahmet.jpg" alt="Ahmet Buğra Demir" class="member-photo" />
@@ -109,7 +125,6 @@
           </a>
         </div>
       </div>
-
       <!-- 2. Üye -->
       <div class="team-member">
         <img src="melisa.jpg" alt="Melisa Uz" class="member-photo" />
@@ -127,7 +142,6 @@
           </a>
         </div>
       </div>
-
       <!-- 3. Üye -->
       <div class="team-member">
         <img src="muzaffer.jpg" alt="Muzaffer Samed Çiftci" class="member-photo" />
@@ -145,7 +159,6 @@
           </a>
         </div>
       </div>
-
       <!-- 4. Üye -->
       <div class="team-member">
         <img src="fuat.jpg" alt="Fuat Erkut Köz" class="member-photo" />
@@ -163,7 +176,6 @@
           </a>
         </div>
       </div>
-
       <!-- 5. Üye -->
       <div class="team-member">
         <img src="bartu.jpg" alt="Bartu Cem Demircan" class="member-photo" />
@@ -181,10 +193,9 @@
           </a>
         </div>
       </div>
-
       <!-- 6. Üye (Yeni) -->
       <div class="team-member">
-        <img src="gökta.jpg" alt="Gökta Nur Reyyan Aslan" class="member-photo" />
+        <img src="reyhan.jpg" alt="Gökta Nur Reyyan Aslan" class="member-photo" />
         <div class="member-name">Gökta Nur Reyyan Aslan</div>
         <div class="member-role">Donanım Geliştirici</div>
         <div class="member-bio">
@@ -199,7 +210,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </section>
   <div class="copyright">
@@ -209,7 +219,6 @@
 <!-- Splash animasyon kodu -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // LOGO animasyonu
     anime({
         targets: '#splash-logo',
         opacity: [0, 1],
@@ -218,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function() {
         duration: 900,
         delay: 300
     });
-    // Yazı animasyonu
     anime({
         targets: '#splash-title',
         opacity: [0, 1],
@@ -227,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function() {
         duration: 900,
         delay: 700
     });
-    // Splash kalkıyor, ana içerik geliyor
     setTimeout(function() {
         anime({
             targets: '#splash',
