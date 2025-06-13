@@ -38,5 +38,51 @@
 </section>
 
   </div>
+   <!-- Telif metni -->
+  <div class="copyright">
+    Sitedeki görseller ve içerik PiezoTech’e ve ilgili üyelere aittir, izinsiz kullanılamaz. © 2025 PiezoTech
+  </div>
+</div>
+<!-- Splash animasyon kodu -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // LOGO animasyonu
+    anime({
+        targets: '#splash-logo',
+        opacity: [0, 1],
+        scale: [0.6, 1.15],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 300
+    });
+    // Yazı animasyonu
+    anime({
+        targets: '#splash-title',
+        opacity: [0, 1],
+        scale: [0.6, 1],
+        easing: 'easeOutExpo',
+        duration: 900,
+        delay: 700
+    });
+    // Splash kalkıyor, ana içerik geliyor
+    setTimeout(function() {
+        anime({
+            targets: '#splash',
+            opacity: [1, 0],
+            easing: 'easeInOutQuad',
+            duration: 800,
+            complete: function() {
+                document.getElementById('splash').style.display = 'none';
+            }
+        });
+        anime({
+            targets: '#main-content',
+            opacity: [0, 1],
+            easing: 'easeOutCubic',
+            duration: 700
+        });
+    }, 2200);
+});
+</script>
 </body>
 </html>
