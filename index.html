@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <!-- Basit ikonlar için Remixicon CDN -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <style>
     :root {
@@ -17,8 +16,8 @@
     body { margin:0; }
     /* Partiküller */
     .particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
-    .particle { position:absolute; width:3px; height:3px; background:var(--yellow); border-radius:50%; opacity:.18; }
-    /* Animasyonlu açılış splash */
+    .particle { position:absolute; width:3px; height:3px; background:var(--yellow); border-radius:50%; opacity:.14; }
+    /* Açılış Splash Animasyonu */
     #splash {
       position:fixed; z-index:200; top:0; left:0; width:100vw; height:100vh; background:var(--dark);
       display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -26,96 +25,121 @@
     }
     #splash.hide { opacity:0; pointer-events:none;}
     #splash-logo {
-      width:130px; margin-bottom:36px; opacity:0; transform:scale(0.8);
-      filter: drop-shadow(0 0 30px #f7c60060);
+      width:180px; margin-bottom:40px; opacity:0; transform:scale(0.8);
+      filter: drop-shadow(0 0 36px #f7c60060);
     }
     #splash-title {
-      font-size:2.8rem; font-weight:800; color:var(--yellow); opacity:0; transform:scale(0.6);
-      text-shadow:0 4px 40px #f7c6004c;
-      letter-spacing:5px;
+      font-size:3.3rem; font-weight:800; color:var(--yellow); opacity:0; transform:scale(0.6);
+      text-shadow:0 4px 50px #f7c6004c;
+      letter-spacing:7px;
     }
-    /* ÜST NAV */
+    /* NAVBAR */
     .topnav {
       width:100vw; position:fixed; top:0; left:0; z-index:21; background:rgba(10,10,10,0.94);
-      height:70px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 44px #0006;
+      height:72px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 44px #0005;
       border-bottom:1.5px solid #1e1e1e;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(9px);
     }
     .nav-inner {
-      display:flex; gap:32px; align-items:center;
+      display:flex; gap:34px; align-items:center;
     }
     .nav-link {
-      display:flex; align-items:center; gap:9px; color:#fff; font-weight:600; font-size:1.14rem;
-      text-decoration:none; transition:.19s; letter-spacing:.04em; padding:8px 12px; border-radius:8px;
+      display:flex; align-items:center; gap:9px; color:#fff; font-weight:600; font-size:1.18rem;
+      text-decoration:none; transition:.18s; letter-spacing:.04em; padding:10px 16px; border-radius:8px;
     }
     .nav-link:hover { background:#232323; color:var(--yellow);}
     .nav-logo {
-      height:38px; margin-right:24px; opacity:.85;
+      height:48px; margin-right:26px; opacity:.88;
     }
     /* HERO */
     .hero {
       display:flex; flex-direction:column; align-items:center; justify-content:center;
-      min-height:75vh;
-      margin-top:100px;
-      z-index:2; position:relative; 
+      min-height:70vh;
+      margin-top:110px;
+      position:relative; z-index:2;
     }
+    .hero-logo {
+      width:152px; margin-bottom:18px; filter:drop-shadow(0 0 44px #f7c6002e);
+      animation: heroLogoAppear 1.4s cubic-bezier(.25,1.3,.45,1) .8s backwards;
+    }
+    @keyframes heroLogoAppear { from{opacity:0;transform:scale(.7);} to{opacity:1;transform:scale(1);} }
     .hero-title {
-      font-size:clamp(2.2rem,7vw,3.6rem); font-weight:800; color:var(--yellow);
-      margin-bottom:18px; letter-spacing:1.3px;
-      text-align:center; line-height:1.15;
-      text-shadow:0 6px 44px #f7c60030, 0 1px 0 #000, 0 2px 14px #f7c60080;
+      font-size:clamp(2.6rem,7vw,3.8rem); font-weight:800; color:var(--yellow);
+      margin-bottom:18px; letter-spacing:1.5px;
+      text-align:center; line-height:1.11;
+      text-shadow:0 6px 44px #f7c60030, 0 1px 0 #000, 0 2px 16px #f7c60099;
       filter:brightness(1.1);
-      animation: glow 2.5s infinite alternate;
+      animation:glow 2.7s infinite alternate;
+      z-index:2; position:relative;
     }
-    @keyframes glow { to {text-shadow:0 8px 70px #f7c60090,0 1px 0 #000, 0 2px 12px #f7c60080;} }
+    @keyframes glow { to {text-shadow:0 8px 80px #f7c600c0,0 1px 0 #000, 0 2px 18px #f7c60085;} }
     .hero-desc {
-      font-size:clamp(1.1rem,2vw,1.6rem);
-      color:#ededed; max-width:650px;
-      margin-bottom:6vh;
+      font-size:clamp(1.18rem,2vw,1.7rem);
+      color:#ededed; max-width:670px;
+      margin-bottom:7vh;
       text-align:center;
-      text-shadow:0 0 14px #f7c60009;
+      text-shadow:0 0 16px #f7c6000b;
+      z-index:2; position:relative;
     }
+    /* SVG Wave arka plan */
+    .hero-wave {
+      position:absolute; left:50%; top:65%; width:120vw; min-width:800px; max-width:1440px; height:230px;
+      z-index:1; transform:translateX(-50%) scaleY(1.02);
+      pointer-events:none; opacity:0.75;
+      filter:blur(0.3px) drop-shadow(0 30px 40px #f7c60022);
+      /* fade-in animasyonu */
+      animation:waveFadeIn 1.6s cubic-bezier(.25,1.5,.45,1) .8s backwards;
+    }
+    @keyframes waveFadeIn { from {opacity:0;transform:translateX(-50%) scaleY(0.9);} to {opacity:.75;transform:translateX(-50%) scaleY(1.02);} }
     /* SECTIONS */
     .sections {
       margin:0 auto; width:100%; max-width:880px;
-      display:flex; flex-direction:column; gap:8vh; z-index:2; position:relative;
+      display:flex; flex-direction:column; gap:10vh; z-index:2; position:relative;
       scroll-snap-type: y proximity;
-      padding-bottom:8vh;
+      padding-bottom:9vh;
     }
     .section {
       text-align:left;
       scroll-snap-align: start;
       padding:0 24px;
+      opacity:0; transform:translateY(60px);
+      transition:all .7s cubic-bezier(.5,1.5,.6,1.2);
     }
+    .section.visible { opacity:1; transform:translateY(0);}
     .section-title {
-      font-size:clamp(1.18rem,2vw,1.46rem); font-weight:700; color:var(--yellow); margin-bottom:.75rem; letter-spacing:0.1em;
-      text-shadow:0 2px 12px #f7c60014;
+      font-size:clamp(1.24rem,2vw,1.5rem); font-weight:700; color:var(--yellow); margin-bottom:.75rem; letter-spacing:0.12em;
+      text-shadow:0 2px 14px #f7c60014;
     }
     .section-title a { color:inherit; text-decoration:none;}
     .section-title a:hover { text-decoration:underline; }
-    .section-desc { font-size:clamp(1.01rem,2vw,1.15rem); color:#efefef; max-width:660px; line-height:1.6;}
+    .section-desc { font-size:clamp(1.05rem,2vw,1.18rem); color:#efefef; max-width:660px; line-height:1.61;}
     /* Footer */
     footer {
-      margin-top:10vh;text-align:center;color:#888;font-size:.88rem;padding-bottom:2.2rem;opacity:.6;
+      margin-top:8vh;text-align:center;color:#888;font-size:.84rem;padding-bottom:2.4rem;opacity:.55;
       letter-spacing:.08em;
     }
-    @media (max-width:700px){
-      .nav-inner {gap:14px;}
-      .nav-logo {height:27px;margin-right:10px;}
-      .hero {margin-top:80px;}
-      .sections {gap:4vh;}
+    @media (max-width:780px){
+      .nav-inner {gap:12px;}
+      .nav-logo {height:28px;margin-right:10px;}
+      .hero {margin-top:84px;}
+      .sections {gap:4.4vh;}
+      .hero-logo {width:97px;}
+      .hero-wave {height:110px;top:66%;}
+    }
+    @media (max-width:450px){
+      .hero-title {font-size:2.2rem;}
+      .hero-desc {font-size:1rem;}
+      .hero-wave {height:88px;}
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-<!-- Açılış Splash Animasyonu -->
+<!-- Açılış Splash -->
 <div id="splash">
   <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
   <div id="splash-title">Piezotech</div>
 </div>
-
-<!-- Üstte Modern Navigation -->
 <nav class="topnav">
   <div class="nav-inner">
     <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
@@ -126,14 +150,35 @@
     <a href="iletisim.html" class="nav-link"><i class="ri-mail-line"></i> İletişim</a>
   </div>
 </nav>
-
-<!-- Partikül Efekti -->
+<!-- Partiküller -->
 <div class="particles"></div>
-
 <main>
   <section class="hero">
+    <img src="yildirim-logo.png" class="hero-logo" alt="PiezoTech Logo" />
     <div class="hero-title">Enerjiyi Geleceğe Taşıyoruz</div>
     <div class="hero-desc" id="typewriter"></div>
+    <!-- SVG Dalga animasyonu -->
+    <svg class="hero-wave" viewBox="0 0 1440 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="yellowGradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f7c600" stop-opacity="0.13"/>
+          <stop offset="0.4" stop-color="#f7c600" stop-opacity="0.29"/>
+          <stop offset="0.7" stop-color="#f7c600" stop-opacity="0.12"/>
+          <stop offset="1" stop-color="#f7c600" stop-opacity="0.08"/>
+        </linearGradient>
+      </defs>
+      <path id="wavepath"
+        d="M0 160 Q 360 80 720 160 Q 1080 240 1440 160 L1440 220 L0 220 Z"
+        fill="url(#yellowGradient)">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+          values="
+            M0 160 Q 360 80 720 160 Q 1080 240 1440 160 L1440 220 L0 220 Z;
+            M0 140 Q 360 130 720 150 Q 1080 180 1440 140 L1440 220 L0 220 Z;
+            M0 170 Q 360 100 720 180 Q 1080 260 1440 170 L1440 220 L0 220 Z;
+            M0 160 Q 360 80 720 160 Q 1080 240 1440 160 L1440 220 L0 220 Z
+          "/>
+      </path>
+    </svg>
   </section>
   <section class="sections">
     <div class="section">
@@ -169,7 +214,7 @@
       opacity: [0, 1],
       scale: [0.8, 1.1],
       easing: 'easeOutExpo',
-      duration: 900,
+      duration: 950,
       delay: 300
     });
     anime({
@@ -178,14 +223,14 @@
       scale: [0.6, 1],
       easing: 'easeOutExpo',
       duration: 900,
-      delay: 600
+      delay: 670
     });
     setTimeout(function() {
       anime({
         targets: '#splash',
         opacity: [1, 0],
         easing: 'easeInOutQuad',
-        duration: 700,
+        duration: 650,
         complete: function() {
           document.getElementById('splash').classList.add('hide');
         }
@@ -195,12 +240,12 @@
   // Partiküller
   (() => {
     const c = document.querySelector('.particles');
-    for(let i=0;i<30;i++){
+    for(let i=0;i<32;i++){
       const p = document.createElement('div');
       p.className='particle';
       p.style.left=Math.random()*100+'%';
       p.style.top=Math.random()*100+'%';
-      p.style.opacity=0.12 + Math.random()*0.1; // 0.12-0.22 arası daha sönük
+      p.style.opacity=0.09 + Math.random()*0.09;
       c.appendChild(p);
     }
   })();
@@ -215,7 +260,18 @@
       setTimeout(typeWriter, 25);
     }
   }
-  setTimeout(typeWriter, 430);
+  setTimeout(typeWriter, 460);
+
+  // Scroll ile fade animasyonu
+  const sectionEls = document.querySelectorAll('.section');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold:0.15 });
+  sectionEls.forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
