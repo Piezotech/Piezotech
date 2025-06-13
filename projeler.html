@@ -5,32 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projeler | PiezoTech</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      padding: 2rem;
-      text-align: center;
+    :root {
+      --yellow: #f7c600;
+      --dark: #121212;
+      --card: #181818;
+      --shadow: 0 8px 32px 0 rgba(15,18,41,0.16);
     }
-    h1 {
-      color: #1f1f1f;
-      margin-bottom: 1rem;
+    html, body {background: var(--dark); color:#fff; font-family:'Inter',sans-serif; margin:0; padding:0;}
+    body { min-height:100vh; padding:0; }
+    .container {
+      max-width:1100px; margin:0 auto; padding:44px 18px 22px;
     }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+    .main-title {
+      font-size:clamp(2rem,4vw,2.8rem); font-weight:800; color:var(--yellow);
+      margin-bottom:1rem; text-align:center; letter-spacing:.07em;
+      text-shadow:0 6px 48px #f7c6002a;
     }
-    img {
-      width: 400px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    .main-desc {
+      text-align:center; max-width:670px; margin:0 auto 3.2rem;
+      color:#ececec; font-size:1.17rem; line-height:1.6; font-weight:400;
+    }
+    .projects-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
+      gap:36px;
+      margin-bottom:2.7rem;
+    }
+    .project-card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.3rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .28s;
+      border: 1.5px solid #2d2d2d;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 44px 0 #f7c6001c, 0 2px 12px 0 #0002;
+      transform:translateY(-6px) scale(1.02);
+      border-color: var(--yellow);
+    }
+    .proj-icon {
+      font-size:2.9rem; color:var(--yellow); margin-bottom: 1.1rem;
+      filter:drop-shadow(0 8px 28px #f7c60038);
+    }
+    .proj-img {
+      width:86px; height:86px; object-fit:cover; border-radius:50%;
+      border:3.5px solid var(--yellow); margin-bottom: 1.1rem; box-shadow:0 4px 28px #f7c6000b;
+      background:#191919;
+    }
+    .proj-title {
+      font-size:1.28rem; font-weight:700; color:var(--yellow); margin-bottom:.45rem; letter-spacing:.04em;
+      text-align:center;
+    }
+    .proj-desc {
+      font-size:1.05rem; color:#ececec; line-height:1.62; text-align:center; margin-bottom:1.2rem;
+      min-height:54px;
+    }
+    .proj-link {
+      margin-top:auto;
+      background: var(--yellow);
+      color: #222;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 7px;
+      border: none;
+      font-size: 1.04rem;
+      box-shadow:0 2px 24px #f7c60020;
+      cursor: pointer;
+      transition: background .22s, color .22s, box-shadow .22s;
+      text-decoration:none; display:inline-block;
+    }
+    .proj-link:hover {
+      background: #ffe06a;
+      color: #000;
+      box-shadow:0 2px 24px #ffe06a44;
+    }
+    @media (max-width:700px){
+      .container {padding-top:22px;}
+      .projects-grid { gap:22px;}
+    }
+    @media (max-width:400px){
+      .project-card {padding:1.3rem .5rem;}
+      .proj-title {font-size:1.01rem;}
+      .proj-img {width:60px;height:60px;}
     }
   </style>
 </head>
 <body>
-  <h1>Piezotech Araştırma Grubu Projeleri</h1>
-  <p>Aktif olarak piezo kumaşlar üzerine AR-GE çalışmaları yürütüyoruz. Bu çalışmalarda amacımız enerji üreten, biyobozunur ve sensör entegreli giyilebilir sistemler geliştirmektir.</p>
-  <img src="piezokumas.png" alt="Projemizin Hedefini Açıklayan Görsel">
+  <div class="container">
+    <div class="main-title">Piezotech Projeleri</div>
+    <div class="main-desc">
+      PiezoTech Araştırma Grubu, enerji üreten, biyobozunur ve sensör entegreli giyilebilir sistemler alanında inovatif projeler geliştirmektedir.<br>
+      Tüm projelerimiz sürdürülebilirlik ve ileri teknoloji vizyonu ile yürütülmektedir.
+    </div>
+    <div class="projects-grid">
+
+      <!-- Proje 1 -->
+      <div class="project-card">
+        <div class="proj-icon"><i class="ri-shirt-fill"></i></div>
+        <div class="proj-title">PiezoEnerji Kumaşı</div>
+        <div class="proj-desc">
+          Hareketle elektrik üreten, ultra ince, biyobozunur sensörlü kumaş prototipi.<br>
+          Giyilebilir teknolojide enerji kaynağı olarak kullanılmaktadır.
+        </div>
+        <a href="#" class="proj-link">Detaylı Bilgi</a>
+      </div>
+
+      <!-- Proje 2 -->
+      <div class="project-card">
+        <img src="sensor-textile.jpg" class="proj-img" alt="Sensörlü Tekstil">
+        <div class="proj-title">Akıllı Sensörlü Tekstil</div>
+        <div class="proj-desc">
+          Vücut hareketi, sıcaklık ve nemi ölçen sensörlerin entegre edildiği ileri seviye akıllı tekstil projeleri.
+        </div>
+        <a href="#" class="proj-link">Detaylı Bilgi</a>
+      </div>
+
+      <!-- Proje 3 -->
+      <div class="project-card">
+        <div class="proj-icon"><i class="ri-flashlight-fill"></i></div>
+        <div class="proj-title">Biyobozunur Enerji Üreticileri</div>
+        <div class="proj-desc">
+          Doğada çözünebilen, sürdürülebilir piezoelektrik jeneratörler.<br>
+          Çevre dostu ve ekonomik enerji üretimi hedefleniyor.
+        </div>
+        <a href="#" class="proj-link">Detaylı Bilgi</a>
+      </div>
+
+      <!-- Proje 4 -->
+      <div class="project-card">
+        <img src="wearable-health.jpg" class="proj-img" alt="Giyilebilir Sağlık">
+        <div class="proj-title">Giyilebilir Sağlık Takibi</div>
+        <div class="proj-desc">
+          Sağlık verilerini anlık toplayıp analiz eden, kablosuz iletişimle çalışan giyilebilir sistemler.<br>
+          Spor ve sağlık teknolojilerinde yeni bir dönem.
+        </div>
+        <a href="#" class="proj-link">Detaylı Bilgi</a>
+      </div>
+
+      <!-- Proje 5 -->
+      <div class="project-card">
+        <div class="proj-icon"><i class="ri-earth-line"></i></div>
+        <div class="proj-title">Yeşil Gelecek Platformu</div>
+        <div class="proj-desc">
+          Sürdürülebilir enerji çözümlerinin yaygınlaştırılması için sosyal sorumluluk ve açık inovasyon projeleri.
+        </div>
+        <a href="#" class="proj-link">Detaylı Bilgi</a>
+      </div>
+
+    </div>
+    <div style="text-align:center;color:#f7c600;font-size:.95rem;margin-top:3.2rem;opacity:.7;">
+      © 2025 PiezoTech Araştırma Grubu <span style="color:#888;font-size:.86em;">| Proje fikirleri, içerikler ve görseller telif hakkına tabidir.</span>
+    </div>
+  </div>
+  <!-- REMIXICON CDN (ikonlar için) -->
+  <script src="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.js"></script>
 </body>
 </html>
