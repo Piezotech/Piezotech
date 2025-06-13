@@ -125,6 +125,56 @@
       box-shadow: 0 6px 20px #f7c60038;
       transform: scale(1.07);
     }
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(24,24,28,0.59);
+      backdrop-filter: blur(6px) brightness(0.8);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn .35s;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-backdrop.active { display: flex; }
+    .modal-content {
+      background: rgba(28,32,36,0.96);
+      border-radius: 22px;
+      box-shadow: 0 8px 40px #000a, 0 2px 18px #f7c60022;
+      padding: 38px 30px 32px 30px;
+      max-width: 410px;
+      width: 90vw;
+      text-align: center;
+      position: relative;
+      animation: popIn .41s cubic-bezier(.33,1.62,.64,1);
+    }
+    @keyframes popIn { 0%{transform:scale(.80); opacity:0;} 90%{transform:scale(1.05);} 100%{transform:scale(1);opacity:1;} }
+    .modal-content h2 {
+      color: var(--yellow);
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .modal-content p {
+      color: #e5eaff;
+      font-size: 1.08rem;
+      margin-bottom: 0;
+      line-height: 1.7;
+      text-align: left;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: #fff8;
+      cursor: pointer;
+      transition: color .15s;
+    }
+    .modal-close:hover { color: var(--yellow);}
     @media (max-width: 1120px) {
       .projects-row {gap: 18px;}
       .project-card {width: 92vw; max-width: 420px;}
@@ -133,6 +183,7 @@
       .projects-main-title { font-size: 1.28rem; margin-top: 28px;}
       .projects-row { flex-direction: column; align-items: center;}
       .project-card { width: 99vw; max-width: 420px; padding: 26px 10px 20px 10px;}
+      .modal-content {padding:22px 10px;}
     }
   </style>
 </head>
@@ -143,7 +194,6 @@
     <!-- Proje Kartı 1 -->
     <div class="project-card">
       <div class="project-icon">
-        <!-- Piezo kumaş ikonunu SVG ile örnek -->
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <rect x="8" y="16" width="48" height="32" rx="12" fill="#f7c600" fill-opacity="0.18"/>
           <rect x="16" y="20" width="32" height="24" rx="8" fill="#f7c600" fill-opacity="0.36"/>
@@ -156,13 +206,12 @@
         Hareketle elektrik üreten, ultra ince &amp; sensörlü giyilebilir kumaş.<br>
         Enerjisini doğrudan insan hareketinden alır, biyobozunur yapıdadır.
       </div>
-      <button class="project-btn">Detaylar</button>
+      <button class="project-btn" data-modal="modal1">Detaylar</button>
     </div>
 
     <!-- Proje Kartı 2 -->
     <div class="project-card">
       <div class="project-icon">
-        <!-- Akıllı sensörler için modern SVG ikon -->
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <circle cx="32" cy="32" r="27" fill="#62f7e1" fill-opacity="0.17"/>
           <circle cx="32" cy="32" r="20" fill="#62f7e1" fill-opacity="0.29"/>
@@ -178,13 +227,12 @@
         Sıcaklık, nem, hareket algılayan entegre sensör teknolojileri.<br>
         Giyilebilir sağlığı yeni nesle taşıyoruz.
       </div>
-      <button class="project-btn">Detaylar</button>
+      <button class="project-btn" data-modal="modal2">Detaylar</button>
     </div>
 
     <!-- Proje Kartı 3 -->
     <div class="project-card">
       <div class="project-icon">
-        <!-- Yeşil teknoloji için SVG ikon -->
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <ellipse cx="32" cy="42" rx="17" ry="12" fill="#85a3f7" fill-opacity="0.23"/>
           <ellipse cx="32" cy="44" rx="10" ry="6" fill="#85a3f7" fill-opacity="0.31"/>
@@ -198,9 +246,79 @@
         Biyobozunur enerji üreten tekstiller ve sürdürülebilir inovasyon.<br>
         Çevre dostu çözümlerle yeşil bir gelecek.
       </div>
-      <button class="project-btn">Detaylar</button>
+      <button class="project-btn" data-modal="modal3">Detaylar</button>
     </div>
-
   </div>
+
+  <!-- MODAL yapısı (hepsi tek seferde, içerik değişir) -->
+  <div class="modal-backdrop" id="modal1">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Kapat">&times;</button>
+      <h2>PiezoEnerji Kumaşı</h2>
+      <p>
+        <b>Proje Özeti:</b> <br>
+        Bu yenilikçi kumaş, insan hareketlerinden elde edilen mekanik enerjiyi elektrik enerjisine çevirir.<br>
+        <b>Teknoloji:</b> <br>
+        - Ultra ince piezoelektrik lifler ve mikro sensörler<br>
+        - Esnek, nefes alabilir, biyobozunur yapı<br>
+        - Giyilebilir cihazlara enerji sağlar ve veri toplayabilir<br>
+        <b>Kullanım Alanları:</b> Akıllı tekstiller, giyilebilir medikal çözümler, spor teknolojileri.<br>
+        <i>Enerjiyi vücudunuzdan alın, doğaya zarar vermeden kullanın!</i>
+      </p>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="modal2">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Kapat">&times;</button>
+      <h2>Akıllı Sensörlü Tekstil</h2>
+      <p>
+        <b>Proje Özeti:</b><br>
+        Kumaş yüzeyine entegre edilen akıllı sensörler sayesinde; sıcaklık, nem ve hareket verileri anlık olarak analiz edilir.<br>
+        <b>Teknoloji:</b><br>
+        - Gelişmiş sensör entegrasyonu<br>
+        - Kablosuz veri iletimi (Bluetooth/IoT)<br>
+        - Giyilebilir sağlık uygulamalarıyla tam uyum<br>
+        <b>Kullanım Alanları:</b> Spor giyimi, hasta takibi, endüstriyel güvenlik.<br>
+        <i>Her hareketinizden veri, her veriden sağlık!</i>
+      </p>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="modal3">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Kapat">&times;</button>
+      <h2>Yeşil Gelecek Projeleri</h2>
+      <p>
+        <b>Proje Özeti:</b><br>
+        Sürdürülebilirlik odaklı bu projede, enerji üreten tekstiller tamamen biyobozunur malzemelerden geliştiriliyor.<br>
+        <b>Teknoloji:</b><br>
+        - Organik &amp; yenilenebilir kaynaklı lifler<br>
+        - Düşük karbon ayak izi<br>
+        - Uzun ömürlü ve çevre dostu tasarım<br>
+        <b>Kullanım Alanları:</b> Çevreci ürünler, yeşil teknoloji AR-GE’si, sürdürülebilir moda.<br>
+        <i>Doğayla dost, gelecek için inovasyon!</i>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // MODAL Kontrolü
+    document.querySelectorAll('.project-btn').forEach(btn => {
+      btn.onclick = function() {
+        const modalId = btn.getAttribute('data-modal');
+        document.getElementById(modalId).classList.add('active');
+      }
+    });
+    document.querySelectorAll('.modal-close, .modal-backdrop').forEach(el => {
+      el.onclick = function(e) {
+        if(e.target.classList.contains('modal-backdrop') || e.target.classList.contains('modal-close')) {
+          el.closest('.modal-backdrop').classList.remove('active');
+        }
+      }
+    });
+    // Escape tuşu ile kapama
+    document.addEventListener('keydown', function(e) {
+      if(e.key === 'Escape') document.querySelectorAll('.modal-backdrop.active').forEach(m => m.classList.remove('active'));
+    });
+  </script>
 </body>
 </html>
