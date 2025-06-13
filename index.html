@@ -81,18 +81,32 @@
     }
     .section p { line-height:1.6; margin-bottom:1rem; }
 
+    /* Başlık linkleri */
+    .section-link {
+      color: #f7c600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .section-link:hover {
+      color: #fff700;
+      text-decoration: underline;
+    }
+
     /* FOOTER */
     footer {
       text-align:center; padding:2rem 1rem; background:#0a0a0a;
       font-size:.9rem; color:#666;
     }
   </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
+<!-- Splash (Intro) Animasyonu -->
 <div id="splash" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:#0f0f0f;display:flex;flex-direction:column;justify-content:center;align-items:center;">
   <img src="yildirim-logo.png" alt="Piezotech Logo" style="width:140px;margin-bottom:30px;opacity:0;transform:scale(0.6);" id="splash-logo">
-  <h1 id="splash-title" style="font-size:3rem;letter-spacing:4px;font-weight:800;color:#f7c600;opacity:0;transform:scale(0.6);">Piezotech</h1></div>
+  <h1 id="splash-title" style="font-size:3rem;letter-spacing:4px;font-weight:800;color:#f7c600;opacity:0;transform:scale(0.6);">Piezotech</h1>
+</div>
 <div id="main-content" style="opacity:0;">
   <!-- HERO -->
   <div class="landing">
@@ -130,29 +144,25 @@
     </ul>
   </nav>
 
-  <!-- SAYFA İÇERİK BÖLÜMLERİ -->
+  <!-- SAYFA İÇERİK BÖLÜMLERİ (Başlıklar link!) -->
   <section id="hakkimizda" class="section">
-    <h2>Hakkımızda</h2>
+    <h2><a href="hakkimizda.html" class="section-link">Hakkımızda</a></h2>
     <p>Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</p>
   </section>
-
   <section id="projeler" class="section">
-    <h2>Projeler</h2>
+    <h2><a href="projeler.html" class="section-link">Projeler</a></h2>
     <p>Projelerimiz arasında akıllı tekstil sensörleri, piezo-enerji kumaşlar...</p>
   </section>
-
   <section id="galeri" class="section">
-    <h2>Galeri</h2>
+    <h2><a href="galeri.html" class="section-link">Galeri</a></h2>
     <p>Görseller yakında eklenecek.</p>
   </section>
-
   <section id="ekibimiz" class="section">
-    <h2>Ekibimiz</h2>
+    <h2><a href="ekibimiz.html" class="section-link">Ekibimiz</a></h2>
     <p>Ar-Ge, tasarım ve üretim departmanlarımız ile uzman kadromuz...</p>
   </section>
-
   <section id="iletisim" class="section">
-    <h2>İletişim</h2>
+    <h2><a href="iletisim.html" class="section-link">İletişim</a></h2>
     <p>Adres: …<br/>Telefon: …<br/>E-posta: …</p>
   </section>
 
@@ -161,6 +171,7 @@
     © 2025 Bu sitenin tüm hakları PiezoTech Araştırma Grubu tarafından saklıdır.
   </footer>
 
+  <!-- Ana JS -->
   <script>
     // Off-canvas toggle
     const toggle = document.getElementById('menu-toggle'),
@@ -179,48 +190,46 @@
 
     sections.forEach(s => observer.observe(s));
   </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // LOGO animasyonu
-    anime({
-        targets: '#splash-logo',
-        opacity: [0, 1],
-        scale: [0.6, 1.15],
-        easing: 'easeOutExpo',
-        duration: 900,
-        delay: 300
-    });
-    // Yazı animasyonu
-    anime({
-        targets: '#splash-title',
-        opacity: [0, 1],
-        scale: [0.6, 1],
-        easing: 'easeOutExpo',
-        duration: 900,
-        delay: 700
-    });
-    // Splash kalkıyor, ana içerik geliyor
-    setTimeout(function() {
-        anime({
-            targets: '#splash',
-            opacity: [1, 0],
-            easing: 'easeInOutQuad',
-            duration: 800,
-            complete: function() {
-                document.getElementById('splash').style.display = 'none';
-            }
-        });
-        anime({
-            targets: '#main-content',
-            opacity: [0, 1],
-            easing: 'easeOutCubic',
-            duration: 700
-        });
-    }, 2200);
-});
-</script>
-
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // LOGO animasyonu
+      anime({
+          targets: '#splash-logo',
+          opacity: [0, 1],
+          scale: [0.6, 1.15],
+          easing: 'easeOutExpo',
+          duration: 900,
+          delay: 300
+      });
+      // Yazı animasyonu
+      anime({
+          targets: '#splash-title',
+          opacity: [0, 1],
+          scale: [0.6, 1],
+          easing: 'easeOutExpo',
+          duration: 900,
+          delay: 700
+      });
+      // Splash kalkıyor, ana içerik geliyor
+      setTimeout(function() {
+          anime({
+              targets: '#splash',
+              opacity: [1, 0],
+              easing: 'easeInOutQuad',
+              duration: 800,
+              complete: function() {
+                  document.getElementById('splash').style.display = 'none';
+              }
+          });
+          anime({
+              targets: '#main-content',
+              opacity: [0, 1],
+              easing: 'easeOutCubic',
+              duration: 700
+          });
+      }, 2200);
+  });
+  </script>
 </div>
 </body>
 </html>
