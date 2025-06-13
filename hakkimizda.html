@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -7,82 +6,131 @@
   <title>Hakkımızda | PiezoTech</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      padding: 2rem;
+      background: #f4f4f4;
+      color: #222;
+      padding: 0;
+      min-height: 100vh;
+    }
+    #main-content {
+      opacity: 0;
+      transition: opacity .6s;
+      padding: 2rem 0;
     }
     h1 {
       text-align: center;
       color: #1f1f1f;
       margin-bottom: 2rem;
+      font-weight: 800;
+      font-size: 2.3rem;
+      letter-spacing: 1px;
+    }
+    h2 {
+      color: #f7c600;
+      margin: 2.3rem 0 1rem 0;
+      font-size: 1.5rem;
+      text-align: center;
     }
     .content {
+      background: #fff;
       max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-      line-height: 1.6;
+      margin: 40px auto 30px auto;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08);
+      font-size: 1.13rem;
+      line-height: 1.7;
+      color: #333;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 1rem;
+      color: #888;
+      background: #191919;
+      padding: 16px 12px 18px 12px;
+      border-radius: 0 0 18px 18px;
+      letter-spacing: .2px;
+      margin-top: 25px;
+    }
+    /* Splash animasyon için */
+    #splash {
+      position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #0f0f0f;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    #splash-logo {
+      width: 140px; margin-bottom: 30px; opacity: 0; transform: scale(0.6);
+    }
+    #splash-title {
+      font-size: 2.8rem; letter-spacing: 4px; font-weight: 800; color: #f7c600; opacity: 0; transform: scale(0.6);
+    }
+    @media (max-width: 700px) {
+      .content { padding: 1.2rem 0.7rem; }
+      #splash-logo { width: 90px; }
+      #splash-title { font-size: 2rem; }
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-  <h1>Hakkımızda / About Us</h1>
-  <div class="content">
-     <p> ... </p><section id="hakkimizda">
-  <h2>Hakkımızda</h2>
-  <p><strong>PiezoTech Araştırma Grubu</strong>, piezoelektrik temelli giyilebilir teknoloji sistemleri geliştirmeye odaklanan disiplinlerarası bir araştırma grubudur. Grup, <strong>Ahmet Buğra Demir</strong> tarafından kurulmuş olup çalışmalarını <strong>Doç. Dr. Ahmet Aykaç</strong> danışmanlığında sürdürmektedir. Araştırmalar, <strong>Aykaç Research Group</strong> bünyesinde yürütülmektedir.</p>
-  <p>PiezoTech; mühendislik, malzeme bilimi, elektronik ve biyoteknoloji gibi farklı disiplinleri bir araya getirerek sağlık teknolojileri, enerji üretimi ve hareket analizine yönelik yenilikçi çözümler üretmektedir.</p>
-  <p><strong>Vizyonumuz</strong>; insan sağlığını, çevreyi ve teknolojiyi bütüncül bir yaklaşımla ele alarak sürdürülebilir ve kullanıcı odaklı sistemler geliştirmek, bu sistemleri erişilebilir ve uygulanabilir hale getirmektir.</p>
-</section>
-
+  <!-- Splash Animasyonu -->
+  <div id="splash">
+    <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
+    <h1 id="splash-title">Piezotech</h1>
   </div>
-   <!-- Telif metni -->
-  <div class="copyright">
-    Sitedeki görseller ve içerik PiezoTech’e ve ilgili üyelere aittir, izinsiz kullanılamaz. © 2025 PiezoTech
+  <!-- Ana içerik -->
+  <div id="main-content">
+    <h1>Hakkımızda / About Us</h1>
+    <div class="content">
+      <section id="hakkimizda">
+        <h2>Hakkımızda</h2>
+        <p><strong>PiezoTech Araştırma Grubu</strong>, piezoelektrik temelli giyilebilir teknoloji sistemleri geliştirmeye odaklanan disiplinlerarası bir araştırma grubudur. Grup, <strong>Ahmet Buğra Demir</strong> tarafından kurulmuş olup çalışmalarını <strong>Doç. Dr. Ahmet Aykaç</strong> danışmanlığında sürdürmektedir. Araştırmalar, <strong>Aykaç Research Group</strong> bünyesinde yürütülmektedir.</p>
+        <p>PiezoTech; mühendislik, malzeme bilimi, elektronik ve biyoteknoloji gibi farklı disiplinleri bir araya getirerek sağlık teknolojileri, enerji üretimi ve hareket analizine yönelik yenilikçi çözümler üretmektedir.</p>
+        <p><strong>Vizyonumuz</strong>; insan sağlığını, çevreyi ve teknolojiyi bütüncül bir yaklaşımla ele alarak sürdürülebilir ve kullanıcı odaklı sistemler geliştirmek, bu sistemleri erişilebilir ve uygulanabilir hale getirmektir.</p>
+      </section>
+    </div>
+    <div class="copyright">
+      Sitedeki görseller ve içerik PiezoTech’e ve ilgili üyelere aittir, izinsiz kullanılamaz. © 2025 PiezoTech
+    </div>
   </div>
-</div>
-<!-- Splash animasyon kodu -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // LOGO animasyonu
-    anime({
-        targets: '#splash-logo',
-        opacity: [0, 1],
-        scale: [0.6, 1.15],
-        easing: 'easeOutExpo',
-        duration: 900,
-        delay: 300
-    });
-    // Yazı animasyonu
-    anime({
-        targets: '#splash-title',
-        opacity: [0, 1],
-        scale: [0.6, 1],
-        easing: 'easeOutExpo',
-        duration: 900,
-        delay: 700
-    });
-    // Splash kalkıyor, ana içerik geliyor
-    setTimeout(function() {
-        anime({
-            targets: '#splash',
-            opacity: [1, 0],
-            easing: 'easeInOutQuad',
-            duration: 800,
-            complete: function() {
-                document.getElementById('splash').style.display = 'none';
-            }
-        });
-        anime({
-            targets: '#main-content',
-            opacity: [0, 1],
-            easing: 'easeOutCubic',
-            duration: 700
-        });
-    }, 2200);
-});
-</script>
+  <!-- Splash animasyon kodu -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      anime({
+          targets: '#splash-logo',
+          opacity: [0, 1],
+          scale: [0.6, 1.15],
+          easing: 'easeOutExpo',
+          duration: 900,
+          delay: 300
+      });
+      anime({
+          targets: '#splash-title',
+          opacity: [0, 1],
+          scale: [0.6, 1],
+          easing: 'easeOutExpo',
+          duration: 900,
+          delay: 700
+      });
+      setTimeout(function() {
+          anime({
+              targets: '#splash',
+              opacity: [1, 0],
+              easing: 'easeInOutQuad',
+              duration: 800,
+              complete: function() {
+                  document.getElementById('splash').style.display = 'none';
+              }
+          });
+          anime({
+              targets: '#main-content',
+              opacity: [0, 1],
+              easing: 'easeOutCubic',
+              duration: 700
+          });
+      }, 2200);
+  });
+  </script>
 </body>
 </html>
