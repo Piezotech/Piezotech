@@ -17,7 +17,7 @@
     /* Partiküller */
     .particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
     .particle { position:absolute; width:3px; height:3px; background:var(--yellow); border-radius:50%; opacity:.14; }
-    /* Açılış Splash Animasyonu */
+    /* Splash Animasyonu */
     #splash {
       position:fixed; z-index:200; top:0; left:0; width:100vw; height:100vh; background:var(--dark);
       display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -33,25 +33,66 @@
       text-shadow:0 4px 50px #f7c6004c;
       letter-spacing:7px;
     }
-    /* NAVBAR */
+    /* Navbar */
     .topnav {
       width:100vw; position:fixed; top:0; left:0; z-index:21; background:rgba(10,10,10,0.94);
       height:72px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 44px #0005;
       border-bottom:1.5px solid #1e1e1e;
       backdrop-filter: blur(9px);
+      transition:background .28s;
     }
     .nav-inner {
       display:flex; gap:34px; align-items:center;
+    }
+    .nav-logo {
+      height:48px; margin-right:26px; opacity:.88;
     }
     .nav-link {
       display:flex; align-items:center; gap:9px; color:#fff; font-weight:600; font-size:1.18rem;
       text-decoration:none; transition:.18s; letter-spacing:.04em; padding:10px 16px; border-radius:8px;
     }
     .nav-link:hover { background:#232323; color:var(--yellow);}
-    .nav-logo {
-      height:48px; margin-right:26px; opacity:.88;
+    /* Hamburger */
+    .hamburger {
+      display:none;
+      position:absolute;
+      right:20px; top:16px; z-index:32;
+      width:40px; height:40px;
+      background:none; border:none; cursor:pointer; outline:none;
     }
-    /* HERO */
+    .hamburger .bar {
+      display:block;
+      width:28px; height:3.8px; margin:6px auto; border-radius:2px;
+      background:var(--yellow);
+      transition:.33s;
+    }
+    /* Mobil Menü Panel */
+    .mobile-menu {
+      display:none;
+      position:fixed; z-index:99; left:0; top:0; width:100vw; height:100vh;
+      background:rgba(20,20,20,0.97);
+      backdrop-filter:blur(11px);
+      flex-direction:column; align-items:center; justify-content:center;
+      animation:menuFadeIn .35s cubic-bezier(.35,1.4,.6,1.01);
+    }
+    @keyframes menuFadeIn { from{opacity:0;transform:scale(.98);} to{opacity:1;transform:scale(1);} }
+    .mobile-menu .nav-link {
+      font-size:1.48rem; margin:18px 0; background:none; color:#fff; padding:12px 0; border-radius:0;
+    }
+    .mobile-menu .nav-link:hover { color:var(--yellow);}
+    .mobile-menu .nav-logo {height:74px;margin-bottom:32px; margin-right:0;}
+    .mobile-menu .close-btn {
+      position:absolute; right:26px; top:24px; font-size:2.5rem; color:var(--yellow); background:none; border:none; cursor:pointer;
+    }
+    @media (max-width: 700px) {
+      .nav-inner { display:none;}
+      .hamburger { display:block;}
+    }
+    @media (max-width:450px){
+      .mobile-menu .nav-logo {height:48px;}
+      .mobile-menu .nav-link {font-size:1.11rem;}
+    }
+    /* HERO ve diğer kodların aynısı */
     .hero {
       display:flex; flex-direction:column; align-items:center; justify-content:center;
       min-height:70vh;
@@ -81,17 +122,14 @@
       text-shadow:0 0 16px #f7c6000b;
       z-index:2; position:relative;
     }
-    /* SVG Wave arka plan */
     .hero-wave {
       position:absolute; left:50%; top:65%; width:120vw; min-width:800px; max-width:1440px; height:230px;
       z-index:1; transform:translateX(-50%) scaleY(1.02);
       pointer-events:none; opacity:0.75;
       filter:blur(0.3px) drop-shadow(0 30px 40px #f7c60022);
-      /* fade-in animasyonu */
       animation:waveFadeIn 1.6s cubic-bezier(.25,1.5,.45,1) .8s backwards;
     }
     @keyframes waveFadeIn { from {opacity:0;transform:translateX(-50%) scaleY(0.9);} to {opacity:.75;transform:translateX(-50%) scaleY(1.02);} }
-    /* SECTIONS */
     .sections {
       margin:0 auto; width:100%; max-width:880px;
       display:flex; flex-direction:column; gap:10vh; z-index:2; position:relative;
@@ -113,23 +151,9 @@
     .section-title a { color:inherit; text-decoration:none;}
     .section-title a:hover { text-decoration:underline; }
     .section-desc { font-size:clamp(1.05rem,2vw,1.18rem); color:#efefef; max-width:660px; line-height:1.61;}
-    /* Footer */
     footer {
       margin-top:8vh;text-align:center;color:#888;font-size:.84rem;padding-bottom:2.4rem;opacity:.55;
       letter-spacing:.08em;
-    }
-    @media (max-width:780px){
-      .nav-inner {gap:12px;}
-      .nav-logo {height:28px;margin-right:10px;}
-      .hero {margin-top:84px;}
-      .sections {gap:4.4vh;}
-      .hero-logo {width:97px;}
-      .hero-wave {height:110px;top:66%;}
-    }
-    @media (max-width:450px){
-      .hero-title {font-size:2.2rem;}
-      .hero-desc {font-size:1rem;}
-      .hero-wave {height:88px;}
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -149,7 +173,22 @@
     <a href="ekibimiz.html" class="nav-link"><i class="ri-team-line"></i> Ekibimiz</a>
     <a href="iletisim.html" class="nav-link"><i class="ri-mail-line"></i> İletişim</a>
   </div>
+  <button class="hamburger" aria-label="Menüyü Aç" id="menuBtn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 </nav>
+<!-- Mobil Menü -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
+  <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
+  <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+  <a href="projeler.html" class="nav-link">Projeler</a>
+  <a href="galeri.html" class="nav-link">Galeri</a>
+  <a href="ekibimiz.html" class="nav-link">Ekibimiz</a>
+  <a href="iletisim.html" class="nav-link">İletişim</a>
+</div>
 <!-- Partiküller -->
 <div class="particles"></div>
 <main>
@@ -272,6 +311,26 @@
     });
   }, { threshold:0.15 });
   sectionEls.forEach(el=>obs.observe(el));
+
+  // Hamburger Menü Scripti
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  menuBtn.addEventListener('click',()=>{
+    mobileMenu.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  });
+  closeMenuBtn.addEventListener('click',()=>{
+    mobileMenu.style.display = "none";
+    document.body.style.overflow = "";
+  });
+  // Menüde bir linke basınca kapanması
+  document.querySelectorAll('.mobile-menu .nav-link').forEach(link=>{
+    link.addEventListener('click',()=>{
+      mobileMenu.style.display = "none";
+      document.body.style.overflow = "";
+    });
+  });
 </script>
 </body>
 </html>
