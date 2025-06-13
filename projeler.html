@@ -22,25 +22,86 @@
       font-family: 'Inter', sans-serif;
       color: #f5f5f7;
       overflow-x: hidden;
+      /* Giriş animasyonu için */
+      opacity: 0;
+      transform: translateY(60px) scale(0.96);
+      animation: bodyIn .9s cubic-bezier(.4,1.6,.5,1) forwards;
     }
-    .projects-main-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: .03em;
+    @keyframes bodyIn {
+      to { opacity: 1; transform: none;}
+    }
+    .proj-navbar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 8px 0;
+      max-width: 1190px;
+      margin: 0 auto 0 auto;
+      position: relative;
+      z-index: 10;
+      opacity: 0;
+      transform: translateY(-32px);
+      animation: navIn .8s .19s cubic-bezier(.4,1.6,.5,1) forwards;
+    }
+    @keyframes navIn {
+      to { opacity: 1; transform: none;}
+    }
+    .proj-back {
+      margin-left: 18px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
       color: var(--yellow);
-      text-align: center;
-      margin-top: 48px;
-      margin-bottom: 40px;
-      text-shadow: 0 3px 24px #f7c60029;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      transition: color .17s;
     }
+    .proj-back:hover { color: var(--aqua);}
+    .proj-titlebox {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-left: 32px;
+    }
+    .proj-logo {
+      height: 42px;
+      width: 42px;
+      border-radius: 16px;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px #f7c60022;
+    }
+    .proj-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: .03em;
+      text-align: center;
+      text-shadow: 0 3px 24px #f7c60029;
+      line-height: 1;
+      margin-right: 6px;
+    }
+    /* Project Card Grid */
     .projects-row {
       display: flex;
       gap: 36px;
       justify-content: center;
       align-items: stretch;
       max-width: 1150px;
-      margin: 0 auto 72px auto;
+      margin: 0 auto 64px auto;
       flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: cardsIn .8s .31s cubic-bezier(.5,1.8,.6,1) forwards;
+    }
+    @keyframes cardsIn {
+      to { opacity: 1; transform: none;}
     }
     .project-card {
       background: var(--glass);
@@ -58,7 +119,7 @@
       transition: box-shadow .23s, border .2s, background .2s;
       opacity: 0;
       transform: translateY(60px) scale(0.95);
-      animation: fadeInUp 0.8s ease forwards;
+      animation: fadeInUp 0.8s cubic-bezier(.5,1.8,.6,1) forwards;
     }
     .project-card:nth-child(2) { animation-delay: 0.19s; }
     .project-card:nth-child(3) { animation-delay: 0.32s; }
@@ -125,74 +186,138 @@
       box-shadow: 0 6px 20px #f7c60038;
       transform: scale(1.07);
     }
-    /* MODAL */
-    .modal-backdrop {
+    /* -------- MODAL -------- */
+    .modal-bg {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(24,24,28,0.59);
-      backdrop-filter: blur(6px) brightness(0.8);
-      z-index: 1000;
-      display: none;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(19,21,28,0.62);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s;
+      display: flex;
       align-items: center;
       justify-content: center;
-      animation: fadeIn .35s;
     }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .modal-backdrop.active { display: flex; }
-    .modal-content {
-      background: rgba(28,32,36,0.96);
-      border-radius: 22px;
-      box-shadow: 0 8px 40px #000a, 0 2px 18px #f7c60022;
-      padding: 38px 30px 32px 30px;
-      max-width: 410px;
-      width: 90vw;
-      text-align: center;
+    .modal-bg.active {
+      opacity: 1;
+      pointer-events: all;
+      transition: opacity 0.25s cubic-bezier(.5,1.8,.6,1);
+    }
+    .modal-box {
+      background: linear-gradient(129deg, #21242d 70%, #18191d 100%);
+      border-radius: 32px;
+      padding: 42px 32px 28px 32px;
+      box-shadow: 0 16px 60px #0009, 0 2px 32px #62f7e129;
+      border: 2.5px solid var(--yellow);
+      min-width: 280px; max-width: 390px;
       position: relative;
-      animation: popIn .41s cubic-bezier(.33,1.62,.64,1);
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.85) translateY(54px);
+      animation: modalIn .5s cubic-bezier(.5,1.8,.6,1) forwards;
+      z-index: 200;
     }
-    @keyframes popIn { 0%{transform:scale(.80); opacity:0;} 90%{transform:scale(1.05);} 100%{transform:scale(1);opacity:1;} }
-    .modal-content h2 {
-      color: var(--yellow);
-      font-size: 1.35rem;
-      margin-bottom: 14px;
-      font-weight: 700;
-    }
-    .modal-content p {
-      color: #e5eaff;
-      font-size: 1.08rem;
-      margin-bottom: 0;
-      line-height: 1.7;
-      text-align: left;
+    @keyframes modalIn {
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
     .modal-close {
-      position: absolute;
-      top: 18px; right: 18px;
+      position: absolute; right: 19px; top: 19px;
+      width: 34px; height: 34px;
       background: none;
       border: none;
-      font-size: 1.6rem;
-      color: #fff8;
+      color: var(--yellow);
+      font-size: 1.82rem;
       cursor: pointer;
-      transition: color .15s;
+      transition: color .18s;
+      z-index: 210;
     }
-    .modal-close:hover { color: var(--yellow);}
+    .modal-close:hover { color: var(--aqua);}
+    .modal-icon {
+      width: 52px; height: 52px;
+      margin-bottom: 17px;
+      display: block;
+      margin-left: auto; margin-right: auto;
+    }
+    .modal-title {
+      font-size: 1.16rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-bottom: .7rem;
+      letter-spacing: .03em;
+    }
+    .modal-desc {
+      font-size: 1.07rem;
+      color: #eaeaea;
+      margin-bottom: 0.9rem;
+      line-height: 1.6;
+      opacity: .97;
+    }
     @media (max-width: 1120px) {
       .projects-row {gap: 18px;}
       .project-card {width: 92vw; max-width: 420px;}
     }
-    @media (max-width: 700px) {
-      .projects-main-title { font-size: 1.28rem; margin-top: 28px;}
-      .projects-row { flex-direction: column; align-items: center;}
-      .project-card { width: 99vw; max-width: 420px; padding: 26px 10px 20px 10px;}
-      .modal-content {padding:22px 10px;}
+    @media (max-width: 700px){
+      .proj-navbar {flex-direction: column; gap:6px;}
+      .proj-titlebox {margin-left: 0;}
+      .proj-logo {height: 36px; width: 36px;}
+      .proj-title { font-size: 1.19rem;}
+      .projects-row {flex-direction: column; align-items: center;}
+      .project-card {width: 99vw; max-width: 410px;}
+      .modal-box {padding: 26px 9px 22px 9px;}
+    }
+    /* Telif Metni */
+    .footer-copyright {
+      color: #f7c600;
+      text-align: center;
+      font-size: .98rem;
+      opacity: .75;
+      margin: 24px 0 14px 0;
+      letter-spacing: .01em;
+      border-top: 1.2px solid #3434373d;
+      padding-top: 16px;
+      width: 100vw;
+      max-width: 100vw;
+      background: transparent;
+    }
+    .footer-copyright span {
+      color: #aaa;
+      font-size: .95em;
+      margin-left: 6px;
     }
   </style>
 </head>
 <body>
-  <div class="projects-main-title">PiezoTech AR-GE Projeleri</div>
+  <!-- NAVBAR -->
+  <div class="proj-navbar">
+    <button class="proj-back" onclick="window.location.href='index.html'" title="Geri Dön">
+      <!-- Sol ok SVG -->
+      <svg width="30" height="30" viewBox="0 0 28 28" fill="none"><path d="M16.75 21L10 14L16.75 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="proj-titlebox">
+      <span class="proj-title">PiezoTech Projeleri</span>
+      <span class="proj-logo">
+        <!-- Logo SVG örnek, kendi logonu buraya koyabilirsin -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="16" fill="#f7c600" fill-opacity="0.85"/>
+          <ellipse cx="16" cy="16" rx="10" ry="6" fill="#1b1d22"/>
+          <ellipse cx="16" cy="16" rx="6" ry="3.5" fill="#f7c600"/>
+        </svg>
+      </span>
+    </div>
+    <span style="width: 60px;"></span>
+  </div>
+  <!-- PROJECT CARDS -->
   <div class="projects-row">
 
     <!-- Proje Kartı 1 -->
-    <div class="project-card">
+    <div class="project-card" data-modal="modal1">
       <div class="project-icon">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <rect x="8" y="16" width="48" height="32" rx="12" fill="#f7c600" fill-opacity="0.18"/>
@@ -210,7 +335,7 @@
     </div>
 
     <!-- Proje Kartı 2 -->
-    <div class="project-card">
+    <div class="project-card" data-modal="modal2">
       <div class="project-icon">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <circle cx="32" cy="32" r="27" fill="#62f7e1" fill-opacity="0.17"/>
@@ -231,7 +356,7 @@
     </div>
 
     <!-- Proje Kartı 3 -->
-    <div class="project-card">
+    <div class="project-card" data-modal="modal3">
       <div class="project-icon">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
           <ellipse cx="32" cy="42" rx="17" ry="12" fill="#85a3f7" fill-opacity="0.23"/>
@@ -250,74 +375,100 @@
     </div>
   </div>
 
-  <!-- MODAL yapısı (hepsi tek seferde, içerik değişir) -->
-  <div class="modal-backdrop" id="modal1">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Kapat">&times;</button>
-      <h2>PiezoEnerji Kumaşı</h2>
-      <p>
-        <b>Proje Özeti:</b> <br>
-        Bu yenilikçi kumaş, insan hareketlerinden elde edilen mekanik enerjiyi elektrik enerjisine çevirir.<br>
-        <b>Teknoloji:</b> <br>
-        - Ultra ince piezoelektrik lifler ve mikro sensörler<br>
-        - Esnek, nefes alabilir, biyobozunur yapı<br>
-        - Giyilebilir cihazlara enerji sağlar ve veri toplayabilir<br>
-        <b>Kullanım Alanları:</b> Akıllı tekstiller, giyilebilir medikal çözümler, spor teknolojileri.<br>
-        <i>Enerjiyi vücudunuzdan alın, doğaya zarar vermeden kullanın!</i>
-      </p>
+  <!-- MODAL 1 -->
+  <div class="modal-bg" id="modal1">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-icon">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <rect x="8" y="16" width="48" height="32" rx="12" fill="#f7c600" fill-opacity="0.18"/>
+          <rect x="16" y="20" width="32" height="24" rx="8" fill="#f7c600" fill-opacity="0.36"/>
+          <ellipse cx="32" cy="32" rx="11" ry="10" fill="#f7c600" />
+          <ellipse cx="32" cy="32" rx="6.5" ry="5.5" fill="#17191c" />
+        </svg>
+      </div>
+      <div class="modal-title">PiezoEnerji Kumaşı</div>
+      <div class="modal-desc">
+        Hareket enerjisini doğrudan elektriğe çeviren piezoelektrik kumaş prototipi.<br>
+        Ultra ince, biyobozunur ve sensör entegreli yapısıyla<br>
+        yeni nesil giyilebilir teknolojinin öncüsü.
+      </div>
     </div>
   </div>
-  <div class="modal-backdrop" id="modal2">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Kapat">&times;</button>
-      <h2>Akıllı Sensörlü Tekstil</h2>
-      <p>
-        <b>Proje Özeti:</b><br>
-        Kumaş yüzeyine entegre edilen akıllı sensörler sayesinde; sıcaklık, nem ve hareket verileri anlık olarak analiz edilir.<br>
-        <b>Teknoloji:</b><br>
-        - Gelişmiş sensör entegrasyonu<br>
-        - Kablosuz veri iletimi (Bluetooth/IoT)<br>
-        - Giyilebilir sağlık uygulamalarıyla tam uyum<br>
-        <b>Kullanım Alanları:</b> Spor giyimi, hasta takibi, endüstriyel güvenlik.<br>
-        <i>Her hareketinizden veri, her veriden sağlık!</i>
-      </p>
+  <!-- MODAL 2 -->
+  <div class="modal-bg" id="modal2">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-icon">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="27" fill="#62f7e1" fill-opacity="0.17"/>
+          <circle cx="32" cy="32" r="20" fill="#62f7e1" fill-opacity="0.29"/>
+          <circle cx="32" cy="32" r="11" fill="#62f7e1"/>
+          <rect x="30" y="16" width="4" height="10" rx="2" fill="#1b1d22"/>
+          <rect x="30" y="38" width="4" height="10" rx="2" fill="#1b1d22"/>
+          <rect x="16" y="30" width="10" height="4" rx="2" fill="#1b1d22"/>
+          <rect x="38" y="30" width="10" height="4" rx="2" fill="#1b1d22"/>
+        </svg>
+      </div>
+      <div class="modal-title">Akıllı Sensörlü Tekstil</div>
+      <div class="modal-desc">
+        Vücut hareketi, sıcaklık ve nemi anlık ölçen sensör entegreli kumaşlar.<br>
+        Sağlık, spor ve endüstriyel izleme alanlarında yenilikçi çözümler.
+      </div>
     </div>
   </div>
-  <div class="modal-backdrop" id="modal3">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Kapat">&times;</button>
-      <h2>Yeşil Gelecek Projeleri</h2>
-      <p>
-        <b>Proje Özeti:</b><br>
-        Sürdürülebilirlik odaklı bu projede, enerji üreten tekstiller tamamen biyobozunur malzemelerden geliştiriliyor.<br>
-        <b>Teknoloji:</b><br>
-        - Organik &amp; yenilenebilir kaynaklı lifler<br>
-        - Düşük karbon ayak izi<br>
-        - Uzun ömürlü ve çevre dostu tasarım<br>
-        <b>Kullanım Alanları:</b> Çevreci ürünler, yeşil teknoloji AR-GE’si, sürdürülebilir moda.<br>
-        <i>Doğayla dost, gelecek için inovasyon!</i>
-      </p>
+  <!-- MODAL 3 -->
+  <div class="modal-bg" id="modal3">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-icon">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <ellipse cx="32" cy="42" rx="17" ry="12" fill="#85a3f7" fill-opacity="0.23"/>
+          <ellipse cx="32" cy="44" rx="10" ry="6" fill="#85a3f7" fill-opacity="0.31"/>
+          <path d="M32 48Q28 42 32 36Q36 42 32 48Z" fill="#62f7e1"/>
+          <path d="M32 32C36.4183 32 40 27.4183 40 22C40 16.5817 36.4183 12 32 12C27.5817 12 24 16.5817 24 22C24 27.4183 27.5817 32 32 32Z" fill="#85a3f7"/>
+          <ellipse cx="32" cy="22" rx="6" ry="7" fill="#1b1d22"/>
+        </svg>
+      </div>
+      <div class="modal-title">Yeşil Gelecek Projeleri</div>
+      <div class="modal-desc">
+        Doğa dostu, biyobozunur malzemelerle geliştirilen enerji tekstilleri.<br>
+        Sürdürülebilirlik odaklı, karbon ayak izini azaltan inovatif projeler.
+      </div>
     </div>
   </div>
 
+  <div class="footer-copyright">
+    © 2025 PiezoTech Araştırma Grubu.
+    <span>Projeler, görseller ve içeriklerin tüm hakları saklıdır.</span>
+  </div>
+
   <script>
-    // MODAL Kontrolü
-    document.querySelectorAll('.project-btn').forEach(btn => {
-      btn.onclick = function() {
-        const modalId = btn.getAttribute('data-modal');
-        document.getElementById(modalId).classList.add('active');
-      }
+    // MODAL AÇMA-KAPAMA
+    function closeModal() {
+      document.querySelectorAll('.modal-bg').forEach(modal => modal.classList.remove('active'));
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.project-btn, .project-card').forEach(el => {
+      el.addEventListener('click', function(e){
+        // Sadece button veya karttan
+        let id = e.target.getAttribute('data-modal');
+        if (!id) return;
+        document.querySelectorAll('.modal-bg').forEach(modal => modal.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.body.style.overflow = 'hidden';
+        e.stopPropagation();
+      });
     });
-    document.querySelectorAll('.modal-close, .modal-backdrop').forEach(el => {
-      el.onclick = function(e) {
-        if(e.target.classList.contains('modal-backdrop') || e.target.classList.contains('modal-close')) {
-          el.closest('.modal-backdrop').classList.remove('active');
-        }
-      }
+    // Modal dışına tıklayınca kapansın
+    document.querySelectorAll('.modal-bg').forEach(bg => {
+      bg.addEventListener('click', function(e){
+        if(e.target===bg) closeModal();
+      });
     });
-    // Escape tuşu ile kapama
-    document.addEventListener('keydown', function(e) {
-      if(e.key === 'Escape') document.querySelectorAll('.modal-backdrop.active').forEach(m => m.classList.remove('active'));
+    // ESC ile modal kapama
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape') closeModal();
     });
   </script>
 </body>
