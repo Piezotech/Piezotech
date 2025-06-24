@@ -1,35 +1,130 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PiezoTech Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <style>
-    body { background:#111; color:#fff; font-family:'Inter',sans-serif; margin:0; padding:20px; }
-    h1 { color:#f7c600; }
-    article { margin-bottom:30px; border-bottom:1px solid #333; padding-bottom:20px; }
-    h2 { color:#fff; }
-    a { color:#f7c600; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .date { color:#ccc; font-size:0.9em; }
+    :root {
+      --yellow: #f7c600;
+      --dark: #111;
+    }
+    body {
+      background: var(--dark);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      color: var(--yellow);
+    }
+    .blog-post {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .blog-post h2 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .blog-post .date {
+      color: #aaa;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+    .blog-post p {
+      line-height: 1.6;
+    }
+    .blog-post a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .blog-post a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: #222;
+      max-width: 700px;
+      width: 90%;
+      padding: 30px;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 0 28px rgba(0,0,0,0.6);
+    }
+    .modal h2 {
+      color: var(--yellow);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      .modal { padding: 20px; }
+    }
   </style>
 </head>
 <body>
-  <h1>PiezoTech Blog</h1>
 
-  <article>
+  <header>
+    <h1>PiezoTech Blog</h1>
+    <p>Piezo teknolojileri, araştırmalarımız ve güncel gelişmeler burada.</p>
+  </header>
+
+  <div class="blog-post">
     <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
     <div class="date">24 Haziran 2025</div>
-    <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor. Bu malzemeler, mekanik hareketi elektrik enerjisine dönüştürme kapasitesiyle dikkat çekiyor.</p>
-    <a href="#">Devamını oku →</a>
-  </article>
+    <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor...</p>
+    <a onclick="openModal()">Devamını oku →</a>
+  </div>
 
-  <article>
-    <h2>Piezoelektrik Enerji Hasadı: Geleceğin Giyilebilir Güç Kaynağı</h2>
-    <div class="date">17 Haziran 2025</div>
-    <p>Bu yazımızda, enerji hasadı yöntemlerinin özellikle medikal tekstiller ve spor ekipmanlarında nasıl devrim yaratabileceğini inceliyoruz.</p>
-    <a href="#">Devamını oku →</a>
-  </article>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
+      <p>
+        Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor.
+        Bu kumaşlar sayesinde spor kıyafetlerinden medikal sensörlere kadar geniş bir alanda enerji üretimi mümkün hale geliyor.
+        Malzemelerin dayanıklılığı, esnekliği ve elektrik üretim kapasiteleri üzerine yapılan testler umut verici sonuçlar ortaya koyuyor.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+  </script>
+
 </body>
 </html>
