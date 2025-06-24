@@ -1,0 +1,138 @@
+:root {
+  --yellow: #f7c600;
+  --dark-bg: #111;
+  --light-bg: #f5f5f5;
+  --light-text: #111;
+  --dark-text: #fff;
+  --radius: 12px;
+  --transition: 0.3s;
+}
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  transition: var(--transition);
+}
+body.light {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+h1 {
+  color: var(--yellow);
+}
+.controls {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+input, select, button {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1rem;
+}
+input, select {
+  width: 200px;
+}
+button {
+  background: var(--yellow);
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  opacity: 0.9;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.blog-post {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+body.light .blog-post {
+  background: #fff;
+  color: #000;
+}
+.blog-post img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+.blog-post h2 {
+  margin: 0 0 8px 0;
+}
+.blog-post .meta {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.blog-post a {
+  color: var(--yellow);
+  text-decoration: none;
+  font-weight: 600;
+}
+.blog-post a:hover {
+  text-decoration: underline;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal {
+  background: #1d1d1d;
+  max-width: 700px;
+  width: 90%;
+  padding: 30px;
+  border-radius: var(--radius);
+  color: #fff;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+body.light .modal {
+  background: #fff;
+  color: #111;
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.modal img {
+  width: 100%;
+  margin: 14px 0;
+  border-radius: var(--radius);
+}
+.comment-box {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1rem;
+}
