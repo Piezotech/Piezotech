@@ -31,10 +31,9 @@
       margin-bottom: 30px;
     }
     .blog-post h2 {
-      color: #fff;
       margin-bottom: 10px;
     }
-    .blog-post .date {
+    .date {
       color: #aaa;
       font-size: 0.85rem;
       margin-bottom: 15px;
@@ -52,41 +51,48 @@
       text-decoration: underline;
     }
 
-    /* Modal */
+    /* MODAL */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
       display: none;
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
     .modal {
-      background: #222;
+      background: #1d1d1d;
+      color: #eee;
       max-width: 700px;
       width: 90%;
-      padding: 30px;
-      border-radius: 8px;
+      padding: 36px 28px;
+      border-radius: 12px;
       position: relative;
-      box-shadow: 0 0 28px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s ease;
     }
     .modal h2 {
       color: var(--yellow);
+      font-size: 1.6rem;
+      margin-bottom: 12px;
     }
     .modal-close {
       position: absolute;
       top: 12px;
       right: 16px;
-      font-size: 1.5rem;
-      color: #fff;
+      font-size: 1.7rem;
+      color: #ccc;
       cursor: pointer;
     }
-
-    @media (max-width: 600px) {
-      body { padding: 10px; }
-      .modal { padding: 20px; }
+    .modal-close:hover {
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -97,32 +103,63 @@
     <p>Piezo teknolojileri, araştırmalarımız ve güncel gelişmeler burada.</p>
   </header>
 
+  <!-- BLOG POSTLAR -->
   <div class="blog-post">
     <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
     <div class="date">24 Haziran 2025</div>
     <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor...</p>
-    <a onclick="openModal()">Devamını oku →</a>
+    <a onclick="openModal('modal1')">Devamını oku →</a>
   </div>
 
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay">
+  <div class="blog-post">
+    <h2>Piezoelektrik Enerji Hasadı: Giyilebilir Teknolojinin Gücü</h2>
+    <div class="date">17 Haziran 2025</div>
+    <p>Enerji hasadı yöntemleriyle spor ekipmanlarında ve medikal alanda sürdürülebilir enerji üretimi...</p>
+    <a onclick="openModal('modal2')">Devamını oku →</a>
+  </div>
+
+  <div class="blog-post">
+    <h2>PiezoTech Ekibi ile Gerçekleştirilen Alan Testleri</h2>
+    <div class="date">10 Haziran 2025</div>
+    <p>Geliştirdiğimiz prototip kumaşlar, test ortamında belirli koşullar altında enerji üretimi sağladı...</p>
+    <a onclick="openModal('modal3')">Devamını oku →</a>
+  </div>
+
+  <!-- MODAL PENCERELER -->
+  <div class="modal-overlay" id="modal1">
     <div class="modal">
-      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
       <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
-      <p>
-        Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor.
-        Bu kumaşlar sayesinde spor kıyafetlerinden medikal sensörlere kadar geniş bir alanda enerji üretimi mümkün hale geliyor.
-        Malzemelerin dayanıklılığı, esnekliği ve elektrik üretim kapasiteleri üzerine yapılan testler umut verici sonuçlar ortaya koyuyor.
-      </p>
+      <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor. 
+      Bu kumaşlar sayesinde spor kıyafetlerinden medikal sensörlere kadar geniş bir alanda enerji üretimi mümkün hale geliyor.
+      Malzemelerin dayanıklılığı, esnekliği ve elektrik üretim kapasiteleri üzerine yapılan testler umut verici sonuçlar ortaya koyuyor.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal2">
+    <div class="modal">
+      <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+      <h2>Piezoelektrik Enerji Hasadı: Giyilebilir Teknolojinin Gücü</h2>
+      <p>Enerji hasadı teknolojileri sayesinde piezoelektrik malzemeler artık yalnızca bilim kurgu değil, giyilebilir gerçeklik haline geliyor. 
+      Bu yazımızda spor ekipmanlarında kullanılan mikro piezo malzemelerin performansını ve sürdürülebilir enerji potansiyelini inceliyoruz.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal3">
+    <div class="modal">
+      <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+      <h2>PiezoTech Ekibi ile Gerçekleştirilen Alan Testleri</h2>
+      <p>Çeşitli prototip kumaşlarla yürüttüğümüz alan testlerinde 8 saatlik kullanımda 0.8V’luk sabit bir enerji üretimi sağlandı. 
+      Bu değerler, gerçek dünya kullanımında piezo tekstil ürünlerinin potansiyelini gösteriyor. Yeni test fazı için hazırlıklarımız sürüyor.</p>
     </div>
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById('modalOverlay').style.display = 'flex';
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
     }
-    function closeModal() {
-      document.getElementById('modalOverlay').style.display = 'none';
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
   </script>
 
