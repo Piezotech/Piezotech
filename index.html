@@ -23,169 +23,215 @@
       color: var(--dark-text);
       font-family: 'Inter',sans-serif;
       min-height: 100vh;
-      scroll-behavior: smooth;
       margin: 0;
+      scroll-behavior: smooth;
       transition: background 0.3s, color 0.3s;
     }
     html.light, body.light {
       background: var(--light-bg);
       color: var(--light-text);
     }
-    /* Partiküller */
-    .particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
-    .particle { position:absolute; width:3px; height:3px; background:var(--yellow); border-radius:50%; opacity:.14; }
-    /* Splash Animasyonu */
+    /* Lightning Flash */
+    #lightning {
+      position: fixed; top:0; left:0;
+      width:100vw; height:100vh;
+      background: #fff; opacity: 0;
+      pointer-events: none; z-index: 250;
+    }
+    /* Splash */
     #splash {
-      position:fixed; z-index:200; top:0; left:0; width:100vw; height:100vh; background:var(--dark-bg);
-      display:flex; flex-direction:column; justify-content:center; align-items:center;
-      transition:opacity .7s;
+      position:fixed; top:0; left:0; width:100vw; height:100vh;
+      background: var(--dark-bg); display:flex; flex-direction:column;
+      justify-content:center; align-items:center; z-index:200; overflow:hidden;
     }
-    html.light #splash { background:var(--light-bg); }
-    #splash.hide { opacity:0; pointer-events:none; }
-    #splash-logo {
-      width:180px; margin-bottom:40px; opacity:0; transform:scale(0.8);
-      filter: drop-shadow(0 0 36px var(--yellow)60);
+    html.light #splash { background: var(--light-bg); }
+    #splash-logo { width:180px; opacity:0; transform:scale(0.8);
+      filter: drop-shadow(0 0 36px rgba(247,198,0,0.6)); margin-bottom:40px;
     }
-    #splash-title {
-      font-size:3.3rem; font-weight:800; color:var(--yellow); opacity:0; transform:scale(0.6);
-      text-shadow:0 4px 50px var(--yellow)4c;
-      letter-spacing:7px;
+    #splash-title { font-size:3.3rem; font-weight:800; color: var(--yellow);
+      opacity:0; transform:scale(0.6); letter-spacing:7px;
+      text-shadow:0 4px 50px rgba(247,198,0,0.3);
     }
     /* Navbar */
-    .topnav {
-      width:100vw; position:fixed; top:0; left:0; z-index:21; background:var(--nav-dark);
-      height:72px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 44px #0005;
-      border-bottom:1.5px solid #1e1e1e; backdrop-filter:blur(9px); transition:background .28s;
+    .topnav { width:100%; position:fixed; top:0; left:0; z-index:21;
+      display:flex; justify-content:center; align-items:center; height:72px;
+      background: var(--nav-dark); backdrop-filter: blur(9px);
+      box-shadow:0 4px 44px rgba(0,0,0,0.3); border-bottom:1.5px solid #1e1e1e;
+      transition: background 0.3s;
     }
-    html.light .topnav { background:var(--nav-light); }
-    .nav-inner {
-      display:flex; gap:34px; align-items:center;
+    html.light .topnav { background: var(--nav-light); }
+    .nav-inner { display:flex; align-items:center; gap:34px; }
+    .nav-logo { height:48px; opacity:.88; }
+    .nav-link { color: inherit; text-decoration:none;
+      display:flex; align-items:center; gap:8px;
+      font-weight:600; padding:10px 16px; border-radius:8px;
+      transition: background 0.2s, color 0.2s;
     }
-    .nav-logo {
-      height:48px; margin-right:26px; opacity:.88;
+    .nav-link:hover { background:#232323; color: var(--yellow); }
+    html.light .nav-link:hover { background:#ddd; color: var(--yellow); }
+    /* Mobile hamburger */
+    .hamburger { display:none; position:absolute; right:20px; top:16px;
+      width:40px; height:40px; background:none; border:none; cursor:pointer;
     }
-    .nav-link {
-      display:flex; align-items:center; gap:9px; color:inherit; font-weight:600; font-size:1.18rem;
-      text-decoration:none; transition:.18s; letter-spacing:.04em; padding:10px 16px; border-radius:8px;
+    .hamburger .bar { width:28px; height:4px; background:var(--yellow);
+      margin:6px auto; border-radius:2px; transition:0.3s;
     }
-    .nav-link:hover { background:#232323; color:var(--yellow); }
-    html.light .nav-link:hover { background:#ddd; color:var(--yellow); }
-    /* Dark/Light Toggle */
-    #darkToggle {
-      position:fixed; bottom:20px; right:20px; z-index:300;
-      background:var(--yellow); color:var(--dark-text); border:none;
-      padding:10px 14px; font-size:1rem; border-radius:8px; cursor:pointer;
-      box-shadow:0 2px 8px rgba(0,0,0,0.3);
-    }
-    html.light #darkToggle { color:var(--light-text); }
-    /* Hamburger */
-    .hamburger {
-      display:none; position:absolute; right:20px; top:16px; z-index:32;
-      width:40px; height:40px; background:none; border:none; cursor:pointer; outline:none;
-    }
-    .hamburger .bar {
-      display:block; width:28px; height:3.8px; margin:6px auto; border-radius:2px;
-      background:var(--yellow); transition:.33s;
-    }
-    /* Mobil Menü Panel */
-    .mobile-menu {
-      display:none; position:fixed; z-index:99; left:0; top:0; width:100vw; height:100vh;
-      background:var(--mobile-bg-dark); backdrop-filter:blur(11px);
+    @media(max-width:700px) { .nav-inner { display:none; } .hamburger{display:block;} }
+    /* Mobile menu */
+    .mobile-menu { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+      background: var(--mobile-bg-dark); backdrop-filter:blur(11px);
       flex-direction:column; align-items:center; justify-content:center;
-      animation:menuFadeIn .35s cubic-bezier(.35,1.4,.6,1.01);
+      animation:fadeIn .35s ease;
     }
-    html.light .mobile-menu { background:var(--mobile-bg-light); }
-    .mobile-menu .nav-link {
-      font-size:1.48rem; margin:18px 0; background:none; color:inherit; padding:12px 0; border-radius:0;
+    html.light .mobile-menu { background: var(--mobile-bg-light); }
+    .mobile-menu .nav-link { margin:16px 0; font-size:1.4rem; }
+    .mobile-menu .close-btn { position:absolute; top:24px; right:26px;
+      background:none; border:none; font-size:2rem; color: var(--yellow); cursor:pointer;
     }
-    .mobile-menu .nav-link:hover { color:var(--yellow); }
-    .mobile-menu .nav-logo { height:74px; margin-bottom:32px; margin-right:0; }
-    .mobile-menu .close-btn {
-      position:absolute; right:26px; top:24px; font-size:2.5rem; color:var(--yellow); background:none; border:none;
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+    /* Particles */
+    .particles { position:fixed; inset:0; pointer-events:none; z-index:0; }
+    .particle { position:absolute; width:3px; height:3px; background:var(--yellow);
+      border-radius:50%; opacity:0.1;
     }
-    @keyframes menuFadeIn { from{opacity:0;transform:scale(.98);} to{opacity:1;transform:scale(1);} }
-    @media (max-width: 700px) { .nav-inner{display:none;} .hamburger{display:block;} }
-    @media (max-width:450px){ .mobile-menu .nav-logo{height:48px;} .mobile-menu .nav-link{font-size:1.11rem;} }
-    /* HERO ve Diğer */
-    .hero {
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      min-height:70vh; margin-top:110px;
-      position:relative; z-index:2;
+    /* Hero */
+    .hero { display:flex; flex-direction:column; align-items:center; justify-content:center;
+      min-height:70vh; margin-top:110px; position:relative; z-index:2;
     }
-    .hero-logo {
-      width:152px; margin-bottom:18px; filter:drop-shadow(0 0 44px var(--yellow)2e);
-      animation:heroLogoAppear 1.4s cubic-bezier(.25,1.3,.45,1) .8s backwards;
+    .hero-logo { width:152px; margin-bottom:18px;
+      filter:drop-shadow(0 0 44px rgba(247,198,0,0.2));
+      animation:fadeInScale 1s ease-out .5s forwards;
+      opacity:0; transform:scale(0.8);
     }
-    @keyframes heroLogoAppear { from{opacity:0;transform:scale(.7);} to{opacity:1;transform:scale(1);} }
-    .hero-title {
-      font-size:clamp(2.6rem,7vw,3.8rem); font-weight:800; color:var(--yellow);
-      margin-bottom:18px; letter-spacing:1.5px;
-      text-align:center; line-height:1.11;
-      text-shadow:0 6px 44px var(--yellow)30,0 1px 0 #000,0 2px 16px var(--yellow)99;
-      filter:brightness(1.1);
-      animation:glow 2.7s infinite alternate;
-      z-index:2; position:relative;
+    @keyframes fadeInScale { to{opacity:1; transform:scale(1);} }
+    .hero-title { font-size:clamp(2.6rem,7vw,3.8rem); font-weight:800;
+      color: var(--yellow); text-align:center; margin-bottom:1rem;
+      animation:pulse 2s infinite alternate;
     }
-    @keyframes glow { to { text-shadow:0 8px 80px var(--yellow)c0,0 1px 0 #000,0 2px 18px var(--yellow)85; } }
-    .hero-desc {
-      font-size:clamp(1.18rem,2vw,1.7rem);
-      color:#ededed; max-width:670px; margin-bottom:7vh;
-      text-align:center; text-shadow:0 0 16px var(--yellow)0b;
-      z-index:2; position:relative;
+    @keyframes pulse { to{text-shadow:0 0 20px rgba(247,198,0,0.7);} }
+    .hero-desc { font-size:1.2rem; max-width:680px; text-align:center;
+      margin-top:0.5rem; color:#eee;
     }
-    .hero-wave {
-      position:absolute; left:50%; top:65%; width:120vw; min-width:800px; max-width:1440px; height:230px;
-      z-index:1; transform:translateX(-50%) scaleY(1.02);
-      pointer-events:none; opacity:0.75;
-      filter:blur(0.3px) drop-shadow(0 30px 40px var(--yellow)22);
-      animation:waveFadeIn 1.6s cubic-bezier(.25,1.5,.45,1) .8s backwards;
+    .hero-wave { position:absolute; bottom:0; left:50%; width:120vw;
+      transform:translateX(-50%); opacity:0.7;
     }
-    @keyframes waveFadeIn { from{opacity:0;transform:translateX(-50%) scaleY(0.9);} to{opacity:.75;transform:translateX(-50%) scaleY(1.02);} }
-    .sections {
-      margin:0 auto; width:100%; max-width:880px;
-      display:flex; flex-direction:column; gap:10vh; z-index:2; position:relative;
-      scroll-snap-type: y proximity; padding-bottom:9vh;
+    /* Sections */
+    .sections { max-width:880px; margin:0 auto; padding:4rem 1rem; display:flex;
+      flex-direction:column; gap:6rem; scroll-snap-type:y proximity;
     }
-    .section {
-      text-align:left; scroll-snap-align:start;
-      padding:0 24px;
-      opacity:0; transform:translateY(60px);
-      transition:all .7s cubic-bezier(.5,1.5,.6,1.2);
+    .section { opacity:0; transform:translateY(60px);
+      transition:all 0.7s ease;
     }
     .section.visible { opacity:1; transform:translateY(0); }
-    .section-title {
-      font-size:clamp(1.24rem,2vw,1.5rem); font-weight:700; color:var(--yellow);
-      margin-bottom:.75rem; letter-spacing:0.12em;
-      text-shadow:0 2px 14px var(--yellow)14;
+    .section-title { font-size:1.5rem; font-weight:700; color: var(--yellow);
+      margin-bottom:0.5rem;
     }
-    .section-desc { font-size:clamp(1.05rem,2vw,1.18rem); color:#efefef; max-width:660px; line-height:1.61; }
-    footer { margin-top:8vh; text-align:center; color:#888; font-size:.84rem; padding-bottom:2.4rem; opacity:.55; }
+    .section-desc { color:#ddd; line-height:1.6; }
+    /* Footer */
+    footer { text-align:center; padding:2rem 1rem; color:#888; font-size:0.9rem;
+      opacity:0.6;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
-  <!-- Dark/Light Mode Toggle -->
+  <!-- Toggle -->
   <button id="darkToggle">🌙 / ☀️</button>
-  <!-- Açılış Splash -->
+  <!-- Lightning Flash -->
+  <div id="lightning"></div>
+  <!-- Splash -->
   <div id="splash">
-    <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
+    <img src="yildirim-logo.png" id="splash-logo" alt="PiezoTech Logo">
     <div id="splash-title">Piezotech</div>
   </div>
   <!-- Navbar -->
   <nav class="topnav">
     <div class="nav-inner">
-      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
-      <a href="hakkimizda.html" class="nav-link"><i class="ri-information-line"></i> Hakkımızda</a>
-      <a href="projeler.html" class="nav-link"><i class="ri-lightbulb-flash-line"></i> Projeler</a>
-      <a href="blog.html" class="nav-link"><i class="ri-image-line"></i> Blog</a>
-      <a href="ekibimiz.html" class="nav-link"><i class="ri-team-line"></i> Ekibimiz</a>
-      <a href="iletisim.html" class="nav-link"><i class="ri-mail-line"></i> İletişim</a>
+      <img src="yildirim-logo.png" class="nav-logo" alt="Logo">
+      <a href="#hakkimizda" class="nav-link"><i class="ri-information-line"></i> Hakkımızda</a>
+      <a href="#projeler" class="nav-link"><i class="ri-lightbulb-flash-line"></i> Projeler</a>
+      <a href="#blog" class="nav-link"><i class="ri-file-list-3-line"></i> Blog</a>
+      <a href="#ekibimiz" class="nav-link"><i class="ri-team-line"></i> Ekibimiz</a>
+      <a href="#iletisim" class="nav-link"><i class="ri-mail-line"></i> İletişim</a>
     </div>
-    <button class="hamburger" aria-label="Menüyü Aç" id="menuBtn">
+    <button class="hamburger" id="menuBtn" aria-label="Open menu">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
   </nav>
-  <!-- Mobil Menü -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
-    <img src="
+    <button class="close-btn" id="closeMenuBtn" aria-label="Close menu"><i class="ri-close-line"></i></button>
+    <img src="yildirim-logo.png" class="nav-logo" alt="Logo">
+    <a href="#hakkimizda" class="nav-link">Hakkimizda</a>
+    <a href="#projeler" class="nav-link">Projeler</a>
+    <a href="#blog" class="nav-link">Blog</a>
+    <a href="#ekibimiz" class="nav-link">Ekibimiz</a>
+    <a href="#iletisim" class="nav-link">İletişim</a>
+  </div>
+  <!-- Particles -->
+  <div class="particles"></div>
+  <!-- Main -->
+  <main>
+    <section class="hero">
+      <img src="yildirim-logo.png" class="hero-logo" alt="Logo">
+      <h1 class="hero-title">Enerjiyi Geleceğe Taşıyoruz</h1>
+      <p class="hero-desc" id="typewriter"></p>
+      <img src="wave.svg" class="hero-wave" alt="Wave">
+    </section>
+    <section class="sections">
+      <div class="section" id="hakkimizda">
+        <h2 class="section-title">Hakkımızda</h2>
+        <p class="section-desc">Biz PiezoTech, giyilebilir enerji çözümleri üreten bir teknoloji firmasıyız...</p>
+      </div>
+      <div class="section" id="projeler">
+        <h2 class="section-title">Projeler</h2>
+        <p class="section-desc">Akıllı tekstil sensörleri, piezo kumaşlar ve daha fazlası...</p>
+      </div>
+      <div class="section" id="blog">
+        <h2 class="section-title">Blog</h2>
+        <p class="section-desc">En son piezo teknolojisi haberleri ve makaleler...</p>
+      </div>
+      <div class="section" id="ekibimiz">
+        <h2 class="section-title">Ekibimiz</h2>
+        <p class="section-desc">Ar-Ge, tasarım ve üretim uzmanlarından oluşan takım...</p>
+      </div>
+      <div class="section" id="iletisim">
+        <h2 class="section-title">İletişim</h2>
+        <p class="section-desc">E-posta: piezotech.ikc@gmail.com | Konum: İzmir</p>
+      </div>
+    </section>
+    <footer>© 2025 PiezoTech Araştırma Grubu. Tüm hakları saklıdır.</footer>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Dark/Light toggle
+    document.getElementById('darkToggle').addEventListener('click',()=>{
+      document.documentElement.classList.toggle('light');
+    });
+    // Splash & lightning
+    document.addEventListener('DOMContentLoaded',function(){
+      const lightning=document.getElementById('lightning');
+      const logo=document.getElementById('splash-logo');
+      const title=document.getElementById('splash-title');
+      anime({targets:lightning,opacity:[0,1,0],duration:200,easing:'steps(2)',delay:200});
+      anime({targets:logo,opacity:[0,1],scale:[0.5,1],duration:800,easing:'easeOutExpo',delay:400});
+      anime({targets:title,opacity:[0,1],scale:[0.5,1],duration:800,easing:'easeOutExpo',delay:800});
+      setTimeout(()=>anime({targets:'#splash',opacity:[1,0],duration:600,easing:'easeInQuad',complete:()=>document.getElementById('splash').remove()}),1600);
+      // Particles
+      const pContainer=document.querySelector('.particles');
+      for(let i=0;i<32;i++){let p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';pContainer.appendChild(p);}      
+      // Typewriter
+      const tgt=document.getElementById('typewriter'),txt='PiezoTech ile giyilebilir enerji sistemlerinin geleceğini keşfedin...';let i=0;
+      function type(){tgt.innerText=txt.substring(0,i);i++<txt.length&&setTimeout(type,30);}setTimeout(type,1000);
+      // Scroll reveal
+      const obs=new IntersectionObserver((es)=>{es.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible');});},{threshold:0.15});
+      document.querySelectorAll('.section').forEach(el=>obs.observe(el));
+      // Mobile menu
+      const btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu'),close=document.getElementById('closeMenuBtn');
+      btn.onclick=()=>{menu.style.display='flex';document.body.style.overflow='hidden';};
+      close.onclick=()=>{menu.style.display='none';document.body.style.overflow='';};
+      document.querySelectorAll('.mobile-menu .nav-link').forEach(l=>l.onclick=()=>{menu.style.display='none';document.body.style.overflow='';});
+    });
+  </script>
+</body>
+</html>
