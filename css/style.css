@@ -1,23 +1,186 @@
-/* — Genel Sıfırlama & Yazı Tipi — */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter',sans-serif; background:#000; color:#fff; }
+:root {
+  --yellow: #f7c600;
+  --dark-bg: #111;
+  --light-bg: #f5f5f5;
+  --dark-text: #fff;
+  --light-text: #111;
+  --radius: 12px;
+  --transition: 0.3s;
+}
 
-/* — Accordion stil — */
-.accordion { width:90%; max-width:800px; margin:4rem auto; }
-.accordion-item { border-bottom:1px solid #333; }
-.accordion-header {
-  background:#111; cursor:pointer; padding:1rem;
-  font-size:1.1rem; display:flex; justify-content:space-between;
+/* GENEL */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  transition: var(--transition);
 }
-.accordion-header::after {
-  content:'\25BC'; transition:transform .3s;
+body.light {
+  background: var(--light-bg);
+  color: var(--light-text);
 }
-.accordion-header.active::after {
-  transform:rotate(-180deg);
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
 }
-.accordion-body {
-  max-height:0; overflow:hidden; transition:max-height .4s ease;
+h1 {
+  color: var(--yellow);
+  margin-bottom: 6px;
 }
-.accordion-body iframe {
-  width:100%; height:300px; border:none;
+.controls {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+input, select, button {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+input, select {
+  width: 200px;
+}
+button {
+  background: var(--yellow);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.9;
+}
+body.light button {
+  background: #d69e00;
+  color: #111;
+}
+
+/* BLOG YAZILARI */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.blog-post {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+body.light .blog-post {
+  background: #fff;
+  color: #111;
+}
+.blog-post img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+}
+.blog-post h2 {
+  font-size: 1.3rem;
+  margin: 0 0 8px 0;
+}
+.blog-post .meta {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+body.light .blog-post .meta {
+  color: #555;
+}
+.blog-post p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.blog-post a {
+  color: var(--yellow);
+  font-weight: 600;
+  text-decoration: none;
+}
+.blog-post a:hover {
+  text-decoration: underline;
+}
+body.light .blog-post a {
+  color: #d69e00;
+}
+body.light .blog-post a:hover {
+  color: #111;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal {
+  background: #1d1d1d;
+  color: #fff;
+  max-width: 700px;
+  width: 90%;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  position: relative;
+}
+body.light .modal {
+  background: #fff;
+  color: #111;
+}
+.modal img {
+  width: 100%;
+  margin: 16px 0;
+  border-radius: var(--radius);
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--yellow);
+}
+.comment-box {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1rem;
+  background: #f0f0f0;
+  color: #000;
+}
+body.light .comment-box {
+  background: #eee;
+  color: #111;
+}
+
+/* Tema Butonu */
+#themeToggle {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--yellow);
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
