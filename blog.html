@@ -3,165 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PiezoTech Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --yellow: #f7c600;
-      --dark: #111;
-    }
-    body {
-      background: var(--dark);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    header h1 {
-      color: var(--yellow);
-    }
-    .blog-post {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
-    .blog-post h2 {
-      margin-bottom: 10px;
-    }
-    .date {
-      color: #aaa;
-      font-size: 0.85rem;
-      margin-bottom: 15px;
-    }
-    .blog-post p {
-      line-height: 1.6;
-    }
-    .blog-post a {
-      color: var(--yellow);
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .blog-post a:hover {
-      text-decoration: underline;
-    }
+  <meta name="description" content="PiezoTech Blog | Giyilebilir enerji, akıllı tekstiller ve piezoelektrik sensör teknolojileri.">
+  <title>PiezoTech | Blog</title>
 
-    /* MODAL */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(6px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal {
-      background: #1d1d1d;
-      color: #eee;
-      max-width: 700px;
-      width: 90%;
-      padding: 36px 28px;
-      border-radius: 12px;
-      position: relative;
-      box-shadow: 0 8px 36px rgba(0,0,0,0.5);
-      animation: fadeIn 0.3s ease;
-    }
-    .modal h2 {
-      color: var(--yellow);
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 1.7rem;
-      color: #ccc;
-      cursor: pointer;
-    }
-    .modal-close:hover {
-      color: #fff;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <button id="themeToggle" type="button">☀️ Açık Tema</button>
 
+  <!-- Basit navbar (isteğe bağlı: index’tekiyle aynı yapıda kullanabilirsin) -->
+  <nav class="topnav">
+    <div class="nav-inner">
+      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
+      <a href="index.html" class="nav-link">Ana Sayfa</a>
+      <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+      <a href="projeler.html" class="nav-link">Projeler</a>
+      <a href="ekibimiz.html" class="nav-link">Ekibimiz</a>
+      <a href="iletisim.html" class="nav-link">İletişim</a>
+    </div>
+    <button class="hamburger" aria-label="Menüyü Aç" id="menuBtn">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- Mobil Menü -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
+    <a href="projeler.html" class="nav-link">Projeler</a>
+    <a href="ekibimiz.html" class="nav-link">Ekibimiz</a>
+    <a href="iletisim.html" class="nav-link">İletişim</a>
+  </div>
+
+  <!-- Arama / Kategori -->
   <header>
-    <h1>PiezoTech Blog</h1>
-    <p>Piezo teknolojileri, araştırmalarımız ve güncel gelişmeler burada.</p>
+    <h1>Blog</h1>
+    <div class="controls">
+      <input type="text" id="search" placeholder="Ara...">
+      <select id="categoryFilter"></select>
+    </div>
   </header>
 
-  <!-- BLOG POSTLAR -->
-  <div class="blog-post">
-    <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
-    <div class="date">24 Haziran 2025</div>
-    <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor...</p>
-    <a onclick="openModal('modal1')">Devamını oku →</a>
+  <!-- Liste -->
+  <main class="container">
+    <div id="blog-container" class="blog-grid"></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal"></div>
   </div>
 
-  <div class="blog-post">
-    <h2>Piezoelektrik Enerji Hasadı: Giyilebilir Teknolojinin Gücü</h2>
-    <div class="date">17 Haziran 2025</div>
-    <p>Enerji hasadı yöntemleriyle spor ekipmanlarında ve medikal alanda sürdürülebilir enerji üretimi...</p>
-    <a onclick="openModal('modal2')">Devamını oku →</a>
-  </div>
+  <footer>© 2025 PiezoTech Araştırma Grubu</footer>
 
-  <div class="blog-post">
-    <h2>PiezoTech Ekibi ile Gerçekleştirilen Alan Testleri</h2>
-    <div class="date">10 Haziran 2025</div>
-    <p>Geliştirdiğimiz prototip kumaşlar, test ortamında belirli koşullar altında enerji üretimi sağladı...</p>
-    <a onclick="openModal('modal3')">Devamını oku →</a>
-  </div>
-
-  <!-- MODAL PENCERELER -->
-  <div class="modal-overlay" id="modal1">
-    <div class="modal">
-      <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
-      <h2>Yeni Nesil Piezo Malzemeler Üzerine Çalışmalarımız</h2>
-      <p>Laboratuvarımızda geliştirdiğimiz yeni piezoelektrik kumaşlar, giyilebilir cihazlarda enerji verimliliğini artırıyor. 
-      Bu kumaşlar sayesinde spor kıyafetlerinden medikal sensörlere kadar geniş bir alanda enerji üretimi mümkün hale geliyor.
-      Malzemelerin dayanıklılığı, esnekliği ve elektrik üretim kapasiteleri üzerine yapılan testler umut verici sonuçlar ortaya koyuyor.</p>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="modal2">
-    <div class="modal">
-      <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
-      <h2>Piezoelektrik Enerji Hasadı: Giyilebilir Teknolojinin Gücü</h2>
-      <p>Enerji hasadı teknolojileri sayesinde piezoelektrik malzemeler artık yalnızca bilim kurgu değil, giyilebilir gerçeklik haline geliyor. 
-      Bu yazımızda spor ekipmanlarında kullanılan mikro piezo malzemelerin performansını ve sürdürülebilir enerji potansiyelini inceliyoruz.</p>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="modal3">
-    <div class="modal">
-      <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
-      <h2>PiezoTech Ekibi ile Gerçekleştirilen Alan Testleri</h2>
-      <p>Çeşitli prototip kumaşlarla yürüttüğümüz alan testlerinde 8 saatlik kullanımda 0.8V’luk sabit bir enerji üretimi sağlandı. 
-      Bu değerler, gerçek dünya kullanımında piezo tekstil ürünlerinin potansiyelini gösteriyor. Yeni test fazı için hazırlıklarımız sürüyor.</p>
-    </div>
-  </div>
-
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-    }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-  </script>
-
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="css/js/main.js" defer></script>
+  <!-- Blog spesifik JS -->
+  <script src="css/js/blog.js" defer></script>
 </body>
 </html>
