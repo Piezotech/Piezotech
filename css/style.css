@@ -115,7 +115,7 @@ h1 { color: var(--yellow); margin-bottom: 6px; }
 /* Footer */
 footer{ margin-top:8vh; text-align:center; color:#888; font-size:.9rem; padding-bottom:2.4rem; opacity:.65; letter-spacing:.04em; }
 
-/* ---- Controls (search/filter/buttons) ---- */
+/* ---- Controls ---- */
 .controls{
   margin-top:20px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
 }
@@ -130,7 +130,7 @@ button{
 button:hover{ filter:brightness(.98); transform:translateY(-1px); }
 body.light button{ background:var(--yellow-dark); color:#111; }
 
-/* ---- Blog Grid & Cards ---- */
+/* ---- Blog ---- */
 .blog-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
 .blog-post{
   background:#1a1a1a; padding:20px; border-radius:var(--radius);
@@ -191,6 +191,7 @@ body.light .comment-box{ background:#eee; color:#111; }
   .blog-post{ padding:16px; }
   #themeToggle{ top:12px; right:16px; padding:7px 12px; }
 }
+
 /* ===== Light tema okunabilirlik düzeltmeleri ===== */
 body.light .topnav{
   background: rgba(255,255,255,0.92);
@@ -199,47 +200,27 @@ body.light .topnav{
 }
 body.light .nav-link{ color:#111; }
 body.light .nav-link:hover{ color: var(--yellow); background:#f3f3f3; }
-
-body.light .hero-desc{
-  color:#333;           /* açık zeminde koyulaştır */
-  text-shadow:none;     /* glow'u kapat */
-}
-body.light .section-desc{ color:#333; }  /* içerik paragrafları */
-body.light .section-title{ color: var(--yellow); } /* başlık sarı kalsın */
-
-body.light .blog-post{
-  background:#fff;
-  color:#111;
-}
+body.light .hero-desc{ color:#333; text-shadow:none; }
+body.light .section-desc{ color:#333; }
+body.light .section-title{ color: var(--yellow); }
+body.light .blog-post{ background:#fff; color:#111; }
 body.light .blog-post h2{ color:#111; }
 body.light .blog-post p{ color:#333; }
 body.light .blog-post .meta{ color:#666; }
 body.light .blog-post a{ color: var(--yellow-dark); }
-
-body.light footer{
-  color:#555;
-  opacity: 1;          /* açık temada opaklaştır */
-}
-
-/* modal zaten #fff/#111'e ayarlı ama link/paragrafı güçlendirelim */
+body.light footer{ color:#555; opacity:1; }
 body.light .modal{ color:#111; }
 body.light .modal p{ color:#333; }
-
-/* partiküller açık temada hafiflesin */
 body.light .particle{ opacity:.10; }
+body.light .section-desc a{ color:#0a0a0a; border-bottom: 1px solid #ddd; text-decoration: none; }
+body.light .section-desc a:hover{ color:#000; border-bottom-color:#bbb; }
+body.light button{ color:#111; }
 
-/* içerikteki linkler (ör. section içi) açık temada görünür olsun */
-body.light .section-desc a{
-  color:#0a0a0a;
-  border-bottom: 1px solid #ddd;
-  text-decoration: none;
+/* Light tema başlık okunabilirlik eklemeleri */
+body.light .hero-title {
+  color: var(--yellow-dark);
+  text-shadow: 0 1px 0 #fff, 0 0 8px rgba(0,0,0,0.15);
 }
-body.light .section-desc a:hover{
-  color:#000;
-  border-bottom-color:#bbb;
-}
-
-/* buton zaten var(--yellow-dark) kullanıyor; metni netleştirelim */
-body.light button{
-  color:#111;
+body.light .section-title {
+  text-shadow: 0 1px 0 #fff, 0 0 4px rgba(0,0,0,0.1);
 }
