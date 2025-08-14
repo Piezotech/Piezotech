@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <!-- Temel Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="PiezoTech | Giyilebilir enerji sistemleri, akıllı tekstiller ve piezoelektrik sensör teknolojileri.">
-  
-  <!-- Başlık -->
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
 
-  <!-- Google Fonts & Remixicon -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  
-  <!-- Harici CSS -->
-  <link rel="stylesheet" href="style.css">
+
+  <!-- DOĞRU CSS YOLU -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Tema Butonu -->
   <button id="themeToggle" type="button">☀️ Açık Tema</button>
 
-  <!-- Açılış Splash -->
   <div id="splash">
     <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo" loading="lazy">
     <div id="splash-title">Piezotech</div>
   </div>
 
-  <!-- Navigasyon -->
   <nav class="topnav">
     <div class="nav-inner">
       <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy" />
@@ -43,7 +36,6 @@
     </button>
   </nav>
 
-  <!-- Mobil Menü -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
     <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy" />
@@ -54,37 +46,31 @@
     <a href="iletisim.html" class="nav-link">İletişim</a>
   </div>
 
-  <!-- Partiküller -->
   <div class="particles"></div>
 
-  <!-- Hero -->
   <section class="hero">
     <img src="yildirim-logo.png" class="hero-logo" alt="PiezoTech Logo" loading="lazy" />
     <div class="hero-title">Enerjiyi Geleceğe Taşıyoruz</div>
     <div class="hero-desc" id="typewriter"></div>
   </section>
 
-  <!-- Blog Arama / Filtre -->
   <div class="controls">
     <input type="text" id="search" placeholder="Ara...">
     <select id="categoryFilter"></select>
   </div>
 
-  <!-- Blog Listesi -->
   <div id="blog-container" class="blog-grid"></div>
 
-  <!-- Modal -->
   <div id="modalOverlay" class="modal-overlay">
     <div class="modal"></div>
   </div>
 
-  <!-- Footer -->
   <footer>
     © 2025 Bu sitenin tüm hakları PiezoTech Araştırma Grubu tarafından saklıdır.
   </footer>
 
-  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <!-- DOĞRU JS YOLU -->
+  <script src="css/js/js/main.js" defer></script>
 </body>
 </html>
