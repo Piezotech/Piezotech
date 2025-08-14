@@ -1,136 +1,121 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PiezoTech | Hakkımızda, Misyon, Vizyon ve Değerler">
   <title>Hakkımızda | PiezoTech</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body {
-      background: #f4f4f4;
-      color: #222;
-      padding: 0;
-      min-height: 100vh;
-    }
-    #main-content {
-      opacity: 0;
-      transition: opacity .6s;
-      padding: 2rem 0;
-    }
-    h1 {
-      text-align: center;
-      color: #1f1f1f;
-      margin-bottom: 2rem;
-      font-weight: 800;
-      font-size: 2.3rem;
-      letter-spacing: 1px;
-    }
-    h2 {
-      color: #f7c600;
-      margin: 2.3rem 0 1rem 0;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-    .content {
-      background: #fff;
-      max-width: 800px;
-      margin: 40px auto 30px auto;
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08);
-      font-size: 1.13rem;
-      line-height: 1.7;
-      color: #333;
-    }
-    .copyright {
-      text-align: center;
-      font-size: 1rem;
-      color: #888;
-      background: #191919;
-      padding: 16px 12px 18px 12px;
-      border-radius: 0 0 18px 18px;
-      letter-spacing: .2px;
-      margin-top: 25px;
-    }
-    /* Splash animasyon için */
-    #splash {
-      position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: #0f0f0f;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-    }
-    #splash-logo {
-      width: 140px; margin-bottom: 30px; opacity: 0; transform: scale(0.6);
-    }
-    #splash-title {
-      font-size: 2.8rem; letter-spacing: 4px; font-weight: 800; color: #f7c600; opacity: 0; transform: scale(0.6);
-    }
-    @media (max-width: 700px) {
-      .content { padding: 1.2rem 0.7rem; }
-      #splash-logo { width: 90px; }
-      #splash-title { font-size: 2rem; }
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Ortak stil -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Splash Animasyonu -->
+  <!-- Tema Butonu -->
+  <button id="themeToggle" type="button">☀️ Açık Tema</button>
+
+  <!-- Splash -->
   <div id="splash">
-    <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo">
-    <h1 id="splash-title">Piezotech</h1>
+    <img id="splash-logo" src="yildirim-logo.png" alt="Piezotech Logo" loading="lazy">
+    <div id="splash-title">Piezotech</div>
   </div>
-  <!-- Ana içerik -->
-  <div id="main-content">
-    <h1>Hakkımızda / About Us</h1>
-    <div class="content">
-      <section id="hakkimizda">
-        <h2>Hakkımızda</h2>
-        <p><strong>PiezoTech Araştırma Grubu</strong>, piezoelektrik temelli giyilebilir teknoloji sistemleri geliştirmeye odaklanan disiplinlerarası bir araştırma grubudur. Grup, <strong>Ahmet Buğra Demir</strong> tarafından kurulmuş olup çalışmalarını <strong>Doç. Dr. Ahmet Aykaç</strong> danışmanlığında sürdürmektedir. Araştırmalar, <strong>Aykaç Research Group</strong> bünyesinde yürütülmektedir.</p>
-        <p>PiezoTech; mühendislik, malzeme bilimi, elektronik ve biyoteknoloji gibi farklı disiplinleri bir araya getirerek sağlık teknolojileri, enerji üretimi ve hareket analizine yönelik yenilikçi çözümler üretmektedir.</p>
-        <p><strong>Vizyonumuz</strong>; insan sağlığını, çevreyi ve teknolojiyi bütüncül bir yaklaşımla ele alarak sürdürülebilir ve kullanıcı odaklı sistemler geliştirmek, bu sistemleri erişilebilir ve uygulanabilir hale getirmektir.</p>
-      </section>
+
+  <!-- Navbar -->
+  <nav class="topnav">
+    <div class="nav-inner">
+      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy">
+      <a class="nav-link" href="index.html"><i class="ri-home-4-line"></i> Ana Sayfa</a>
+      <a class="nav-link" href="projeler.html"><i class="ri-lightbulb-flash-line"></i> Projeler</a>
+      <a class="nav-link" href="blog.html"><i class="ri-image-line"></i> Blog</a>
+      <a class="nav-link" href="ekibimiz.html"><i class="ri-team-line"></i> Ekibimiz</a>
+      <a class="nav-link" href="iletisim.html"><i class="ri-mail-line"></i> İletişim</a>
     </div>
-    <div class="copyright">
-      Sitedeki görseller ve içerik PiezoTech’e ve ilgili üyelere aittir, izinsiz kullanılamaz. © 2025 PiezoTech
+    <button id="menuBtn" class="hamburger" aria-label="Menüyü Aç">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- Partikül arka plan -->
+  <div class="particles"></div>
+
+  <!-- İçerik -->
+  <section class="sections" style="max-width:980px">
+    <!-- Giriş -->
+    <div class="section visible">
+      <div class="section-title">Hakkımızda</div>
+      <div class="section-desc">
+        <p><strong>PiezoTech Araştırma Grubu</strong>, piezoelektrik temelli <em>giyilebilir teknoloji</em> sistemleri geliştiren disiplinlerarası bir topluluktur. Sağlık teknolojileri, enerji hasadı ve hareket analizi alanlarında hem akademik hem de endüstriyel paydaşlarla iş birliği içinde yenilikçi çözümler üretiyoruz. Grup, <strong>Ahmet Buğra Demir</strong> tarafından kurulmuş olup çalışmalar <strong>Doç. Dr. Ahmet Aykaç</strong> danışmanlığında, <strong>Aykaç Research Group</strong> çatısı altında yürütülmektedir.</p>
+      </div>
     </div>
+
+    <!-- Misyon -->
+    <div class="section visible">
+      <div class="section-title">Misyon</div>
+      <div class="section-desc">
+        <p>İnsan sağlığını destekleyen, sürdürülebilir enerji üreten ve günlük yaşamla entegre olabilen <strong>piezoelektrik tabanlı akıllı sistemler</strong> tasarlamak; bu teknolojileri bilimsel doğruluk, mühendislik kalitesi ve erişilebilirlik ilkeleriyle ticarileşmeye hazır prototiplere dönüştürmek.</p>
+      </div>
+    </div>
+
+    <!-- Vizyon -->
+    <div class="section visible">
+      <div class="section-title">Vizyon</div>
+      <div class="section-desc">
+        <p>Türkiye’de ve dünyada giyilebilir piezoelektrik teknolojiler alanında <strong>referans bir Ar-Ge merkezi</strong> olmak; sağlık, spor bilimi ve savunma uygulamalarında <strong>küresel ölçekte</strong> etki yaratan çözümler üretmek.</p>
+      </div>
+    </div>
+
+    <!-- Değerler -->
+    <div class="section visible">
+      <div class="section-title">Değerler</div>
+      <div class="section-desc">
+        <ul style="margin:0; padding-left:18px;">
+          <li><strong>Yenilikçilik:</strong> Bilimsel merakı teşvik eder, hızlı deney–tekrar kültürünü benimseriz.</li>
+          <li><strong>Sürdürülebilirlik:</strong> Malzeme seçimi ve üretim süreçlerinde çevresel etkiyi minimize ederiz.</li>
+          <li><strong>Disiplinlerarası İş Birliği:</strong> Malzeme bilimi, elektronik, yazılım ve biyomekaniği bir araya getiririz.</li>
+          <li><strong>Bilimsel Mükemmeliyet:</strong> Doğrulanabilir veri, etik ve açık bilim ilkeleri.</li>
+          <li><strong>Toplumsal Fayda:</strong> Üretilen teknolojiyi gerçek kullanıcı gereksinimleriyle hizalarız.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Yetkinlikler / Odak Alanları -->
+    <div class="section visible">
+      <div class="section-title">Yetkinlikler & Odak Alanları</div>
+      <div class="section-desc">
+        <ul style="margin:0; padding-left:18px;">
+          <li>Piezoelektrik lif/kumaş tasarımı ve üretimi</li>
+          <li>Enerji hasadı için <em>nanogeneratör</em> ve güç yönetimi devreleri</li>
+          <li>Hareket analizi ve biyomekanik sensör entegrasyonu</li>
+          <li>Veri toplama, sinyal işleme ve gömülü yazılım</li>
+          <li>Uygulama alanları: sağlık teknolojileri, giyilebilir spor analitiği, savunma ve endüstriyel izleme</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- İş Birlikleri / Çağrı -->
+    <div class="section visible">
+      <div class="section-title">İş Birliği ve Proje Çağrıları</div>
+      <div class="section-desc">
+        <p>Sanayi, kamu ve akademi paydaşlarıyla açık inovasyon modeliyle çalışıyoruz. Ortak proje, danışmanlık ya da prototip talepleriniz için bizimle iletişime geçebilirsiniz.</p>
+        <p><a href="iletisim.html" class="nav-link" style="padding:0">İletişim →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal (site genelinde) -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal"></div>
   </div>
-  <!-- Splash animasyon kodu -->
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      anime({
-          targets: '#splash-logo',
-          opacity: [0, 1],
-          scale: [0.6, 1.15],
-          easing: 'easeOutExpo',
-          duration: 900,
-          delay: 300
-      });
-      anime({
-          targets: '#splash-title',
-          opacity: [0, 1],
-          scale: [0.6, 1],
-          easing: 'easeOutExpo',
-          duration: 900,
-          delay: 700
-      });
-      setTimeout(function() {
-          anime({
-              targets: '#splash',
-              opacity: [1, 0],
-              easing: 'easeInOutQuad',
-              duration: 800,
-              complete: function() {
-                  document.getElementById('splash').style.display = 'none';
-              }
-          });
-          anime({
-              targets: '#main-content',
-              opacity: [0, 1],
-              easing: 'easeOutCubic',
-              duration: 700
-          });
-      }, 2200);
-  });
-  </script>
+
+  <footer>© 2025 PiezoTech Araştırma Grubu</footer>
+
+  <!-- Ortak JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="css/js/main.js" defer></script>
 </body>
 </html>
