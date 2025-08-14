@@ -115,7 +115,7 @@ h1 { color: var(--yellow); margin-bottom: 6px; }
 /* Footer */
 footer{ margin-top:8vh; text-align:center; color:#888; font-size:.9rem; padding-bottom:2.4rem; opacity:.65; letter-spacing:.04em; }
 
-/* ---- Controls ---- */
+/* ---- Controls (search/filter/buttons) ---- */
 .controls{
   margin-top:20px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
 }
@@ -130,7 +130,7 @@ button{
 button:hover{ filter:brightness(.98); transform:translateY(-1px); }
 body.light button{ background:var(--yellow-dark); color:#111; }
 
-/* ---- Blog ---- */
+/* ---- Blog Grid & Cards ---- */
 .blog-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
 .blog-post{
   background:#1a1a1a; padding:20px; border-radius:var(--radius);
@@ -192,7 +192,7 @@ body.light .comment-box{ background:#eee; color:#111; }
   #themeToggle{ top:12px; right:16px; padding:7px 12px; }
 }
 
-/* ===== Light tema okunabilirlik düzeltmeleri ===== */
+/* ===== Light tema okunabilirlik & kontrast düzeltmeleri ===== */
 body.light .topnav{
   background: rgba(255,255,255,0.92);
   border-bottom: 1px solid #e6e6e6;
@@ -200,62 +200,47 @@ body.light .topnav{
 }
 body.light .nav-link{ color:#111; }
 body.light .nav-link:hover{ color: var(--yellow); background:#f3f3f3; }
-body.light .hero-desc{ color:#333; text-shadow:none; }
-body.light .section-desc{ color:#333; }
-body.light .section-title{ color: var(--yellow); }
+
+body.light .hero-title{
+  color: var(--yellow-dark);
+  text-shadow: 0 1px 0 #fff, 0 0 8px rgba(0,0,0,0.15);
+}
+body.light .hero-desc{ color:#2a2a2a; text-shadow:none; }
+
+body.light .section-title{
+  color:#b58900; /* koyu altın */
+  text-shadow: 0 1px 0 #fff, 0 0 3px rgba(0,0,0,0.08);
+}
+body.light .section-desc,
+body.light .section-desc p,
+body.light .section-desc li{
+  color:#222 !important;     /* güçlü kontrast */
+}
+body.light .section-desc li::marker{
+  color:#b58900;             /* madde işareti de belirgin */
+}
+
 body.light .blog-post{ background:#fff; color:#111; }
 body.light .blog-post h2{ color:#111; }
 body.light .blog-post p{ color:#333; }
 body.light .blog-post .meta{ color:#666; }
 body.light .blog-post a{ color: var(--yellow-dark); }
-body.light footer{ color:#555; opacity:1; }
+
+body.light footer{ color:#444; opacity:1; }
+
 body.light .modal{ color:#111; }
 body.light .modal p{ color:#333; }
-body.light .particle{ opacity:.10; }
-body.light .section-desc a{ color:#0a0a0a; border-bottom: 1px solid #ddd; text-decoration: none; }
-body.light .section-desc a:hover{ color:#000; border-bottom-color:#bbb; }
-body.light button{ color:#111; }
 
-/* Light tema başlık okunabilirlik eklemeleri */
-body.light .hero-title {
-  color: var(--yellow-dark);
-  text-shadow: 0 1px 0 #fff, 0 0 8px rgba(0,0,0,0.15);
-}
-body.light .section-title {
-  text-shadow: 0 1px 0 #fff, 0 0 4px rgba(0,0,0,0.1);
-}
-/* ===== Light tema: ekstra kontrast düzeltmeleri ===== */
+body.light .particle{ opacity:.06; }
 
-/* Başlıklar: sarıyı koyulaştır, hafif gölge ile netleştir */
-body.light .hero-title,
-body.light .section-title {
-  color: #b58900; /* koyu altın */
-  text-shadow: 0 1px 0 #fff, 0 0 3px rgba(0,0,0,0.08);
-}
-
-/* Paragraflar ve listeler: koyu metin */
-body.light .section-desc,
-body.light .section-desc p,
-body.light .section-desc li {
-  color: #222;            /* neredeyse siyah */
-}
-
-/* Hero açıklaması */
-body.light .hero-desc { color: #2a2a2a; }
-
-/* İçerik bağlantıları: belirgin ve erişilebilir */
-body.light .section-desc a {
-  color: #0d47a1;         /* koyu mavi */
+body.light .section-desc a{
+  color:#0d47a1;
   border-bottom: 1px solid #cfd8dc;
   text-decoration: none;
 }
-body.light .section-desc a:hover {
-  color: #0a3a86;
-  border-bottom-color: #90a4ae;
+body.light .section-desc a:hover{
+  color:#0a3a86;
+  border-bottom-color:#90a4ae;
 }
 
-/* Footer biraz daha okunaklı */
-body.light footer { color:#444; }
-
-/* Partiküller çok silik kalsın (dikkat dağıtmasın) */
-body.light .particle { opacity: .06; }
+body.light button{ color:#111; }
