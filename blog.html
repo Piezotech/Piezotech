@@ -2,40 +2,37 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="PiezoTech Blog | Giyilebilir enerji, akıllı tekstiller ve piezoelektrik sensör teknolojileri.">
   <title>PiezoTech | Blog</title>
 
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <button id="themeToggle" type="button">☀️ Açık Tema</button>
 
-  <!-- Basit navbar (isteğe bağlı: index’tekiyle aynı yapıda kullanabilirsin) -->
+  <!-- Basit navbar -->
   <nav class="topnav">
     <div class="nav-inner">
-      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" />
+      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo">
       <a href="index.html" class="nav-link">Ana Sayfa</a>
       <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
       <a href="projeler.html" class="nav-link">Projeler</a>
       <a href="ekibimiz.html" class="nav-link">Ekibimiz</a>
       <a href="iletisim.html" class="nav-link">İletişim</a>
     </div>
-    <button class="hamburger" aria-label="Menüyü Aç" id="menuBtn">
+    <button id="menuBtn" class="hamburger" aria-label="Menüyü Aç">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
   </nav>
 
-  <!-- Mobil Menü -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <button id="closeMenuBtn" class="close-btn" aria-label="Kapat"><i class="ri-close-line"></i></button>
     <a href="index.html" class="nav-link">Ana Sayfa</a>
     <a href="hakkimizda.html" class="nav-link">Hakkımızda</a>
     <a href="projeler.html" class="nav-link">Projeler</a>
@@ -43,17 +40,15 @@
     <a href="iletisim.html" class="nav-link">İletişim</a>
   </div>
 
-  <!-- Arama / Kategori -->
   <header>
     <h1>Blog</h1>
     <div class="controls">
-      <input type="text" id="search" placeholder="Ara...">
+      <input id="search" type="text" placeholder="Ara...">
       <select id="categoryFilter"></select>
     </div>
   </header>
 
-  <!-- Liste -->
-  <main class="container">
+  <main>
     <div id="blog-container" class="blog-grid"></div>
   </main>
 
@@ -68,6 +63,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <script src="css/js/main.js" defer></script>
   <!-- Blog spesifik JS -->
-  <script src="css/js/blog.js" defer></script>
+  <script src="css/js/js/blog.js" defer></script>
 </body>
 </html>
