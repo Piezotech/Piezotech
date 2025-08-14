@@ -224,3 +224,38 @@ body.light .hero-title {
 body.light .section-title {
   text-shadow: 0 1px 0 #fff, 0 0 4px rgba(0,0,0,0.1);
 }
+/* ===== Light tema: ekstra kontrast düzeltmeleri ===== */
+
+/* Başlıklar: sarıyı koyulaştır, hafif gölge ile netleştir */
+body.light .hero-title,
+body.light .section-title {
+  color: #b58900; /* koyu altın */
+  text-shadow: 0 1px 0 #fff, 0 0 3px rgba(0,0,0,0.08);
+}
+
+/* Paragraflar ve listeler: koyu metin */
+body.light .section-desc,
+body.light .section-desc p,
+body.light .section-desc li {
+  color: #222;            /* neredeyse siyah */
+}
+
+/* Hero açıklaması */
+body.light .hero-desc { color: #2a2a2a; }
+
+/* İçerik bağlantıları: belirgin ve erişilebilir */
+body.light .section-desc a {
+  color: #0d47a1;         /* koyu mavi */
+  border-bottom: 1px solid #cfd8dc;
+  text-decoration: none;
+}
+body.light .section-desc a:hover {
+  color: #0a3a86;
+  border-bottom-color: #90a4ae;
+}
+
+/* Footer biraz daha okunaklı */
+body.light footer { color:#444; }
+
+/* Partiküller çok silik kalsın (dikkat dağıtmasın) */
+body.light .particle { opacity: .06; }
