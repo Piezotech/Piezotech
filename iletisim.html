@@ -1,84 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PiezoTech | İletişim">
   <title>İletişim | PiezoTech</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Ortak stil -->
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    /* Sayfaya özgü ufak düzenlemeler */
+    .contact-wrap{
+      max-width:980px; margin:120px auto 60px; padding:0 20px;
     }
-
-    h1 {
-      color: #1e1e1e;
-      margin-bottom: 2rem;
+    .contact-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px; margin-top:24px;
     }
-
-    .contact-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-      text-align: center;
-      width: 300px;
-      margin: 1rem;
-      transition: transform 0.3s;
+    .contact-card{
+      background:var(--surface-dark, #1a1a1a);
+      color:inherit; border-radius:12px; padding:22px; text-align:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+      transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease;
     }
-
-    .contact-card:hover {
-      transform: scale(1.05);
+    body.light .contact-card{
+      background:#fff; box-shadow:0 1px 0 #ececec, 0 6px 18px rgba(0,0,0,.08);
     }
-
-    .contact-icon {
-      width: 80px;
-      height: auto;
-      margin-bottom: 1rem;
+    .contact-card:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25); }
+    .contact-card img{ width:80px; height:auto; margin:6px auto 14px; border-radius:12px; }
+    .contact-card a{ color:inherit; text-decoration:none; font-weight:700; }
+    .contact-note{ color:#aaa; margin-top:10px; font-size:.95rem; }
+    .contact-meta{
+      margin-top:26px; font-size:1.02rem; line-height:1.7; color:#ddd;
     }
-
-    a {
-      text-decoration: none;
-      color: #222;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    body.light .contact-meta{ color:#333; }
   </style>
 </head>
 <body>
-  <h1>PİEZOTECH ARAŞTIRMA EKİBİNE ULAŞIN</h1>
-  <div class="container">
-    <div class="contact-card">
-      <a href="https://www.linkedin.com/company/piezotechtr/" target="_blank">
-        <img src="linkedin.png" alt="PiezoTech LinkedIn" class="contact-icon">
-        <p>LinkedIn Profilimiz</p>
-      </a>
-    </div>
+  <!-- Tema Butonu -->
+  <button id="themeToggle" type="button">☀️ Açık Tema</button>
 
-    <div class="contact-card">
-      <a href="https://www.instagram.com/piezotechtr/" target="_blank">
-        <img src="instagram.png" alt="PiezoTech Instagram" class="contact-icon">
-        <p>İnstagram Hesabımız</p>
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <a href="mailto:piezotech.ikc@gmail.com">
-        <img src="mail.png" alt="PiezoTech Mail" class="contact-icon">
-        <p>Bize Mail Gönderin</p>
-      </a>
-    </div>
+  <!-- Splash -->
+  <div id="splash">
+    <img id="splash-logo" src="yildirim-logo.png" alt="Piezotech Logo" loading="lazy">
+    <div id="splash-title">Piezotech</div>
   </div>
+
+  <!-- Navbar -->
+  <nav class="topnav">
+    <div class="nav-inner">
+      <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy">
+      <a class="nav-link" href="index.html"><i class="ri-home-4-line"></i> Ana Sayfa</a>
+      <a class="nav-link" href="hakkimizda.html"><i class="ri-information-line"></i> Hakkımızda</a>
+      <a class="nav-link" href="projeler.html"><i class="ri-lightbulb-flash-line"></i> Projeler</a>
+      <a class="nav-link" href="blog.html"><i class="ri-image-line"></i> Blog</a>
+      <a class="nav-link" href="ekibimiz.html"><i class="ri-team-line"></i> Ekibimiz</a>
+    </div>
+    <button id="menuBtn" class="hamburger" aria-label="Menüyü Aç">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- Mobil Menü -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <button id="closeMenuBtn" class="close-btn" aria-label="Kapat"><i class="ri-close-line"></i></button>
+    <a class="nav-link" href="index.html">Ana Sayfa</a>
+    <a class="nav-link" href="hakkimizda.html">Hakkımızda</a>
+    <a class="nav-link" href="projeler.html">Projeler</a>
+    <a class="nav-link" href="blog.html">Blog</a>
+    <a class="nav-link" href="ekibimiz.html">Ekibimiz</a>
+  </div>
+
+  <!-- Partikül arka plan -->
+  <div class="particles"></div>
+
+  <!-- İçerik -->
+  <main class="contact-wrap">
+    <header style="text-align:center">
+      <h1 style="color:var(--yellow); font-weight:800; letter-spacing:.02em;">PiezoTech ile İletişim</h1>
+      <p class="contact-meta">
+        İş birliği, proje, danışmanlık veya prototip talepleriniz için aşağıdaki kanallardan bize ulaşabilirsiniz.
+      </p>
+    </header>
+
+    <section class="contact-grid" aria-label="İletişim Kanalları">
+      <article class="contact-card">
+        <a href="https://www.linkedin.com/company/piezotechtr/" target="_blank" rel="noopener noreferrer">
+          <img src="linkedin.png" alt="PiezoTech LinkedIn" loading="lazy">
+          <div>LinkedIn Profilimiz</div>
+        </a>
+        <div class="contact-note">Güncellemeler ve duyurular</div>
+      </article>
+
+      <article class="contact-card">
+        <a href="https://www.instagram.com/piezotechtr/" target="_blank" rel="noopener noreferrer">
+          <img src="instagram.png" alt="PiezoTech Instagram" loading="lazy">
+          <div>Instagram Hesabımız</div>
+        </a>
+        <div class="contact-note">Laboratuvar ve proje anları</div>
+      </article>
+
+      <article class="contact-card">
+        <a href="mailto:piezotech.ikc@gmail.com">
+          <img src="mail.png" alt="PiezoTech e-posta" loading="lazy">
+          <div>Bize Mail Gönderin</div>
+        </a>
+        <div class="contact-note">Genel sorular ve randevu</div>
+      </article>
+    </section>
+
+    <!-- İstersen adres/telefonu da buraya ekleyebilirsin
+    <section class="contact-meta">
+      <p><strong>Adres:</strong> Balatçık Mah. Havaalanı Şosesi No:33/2, 35620 Çiğli / İZMİR</p>
+      <p><strong>Telefon:</strong> 0 (xxx) xxx xx xx</p>
+    </section>
+    -->
+  </main>
+
+  <!-- Modal (site genelinde) -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal"></div>
+  </div>
+
+  <footer>© 2025 PiezoTech Araştırma Grubu</footer>
+
+  <!-- Ortak JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="css/js/main.js" defer></script>
 </body>
 </html>
