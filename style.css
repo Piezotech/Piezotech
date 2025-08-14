@@ -1,160 +1,243 @@
-:root {
+/* ===============================
+   Piezotech • Base Styles (style.css)
+   - Değişkenler & Tema
+   - Erişilebilir odak stilleri
+   - Grid & Kartlar (Blog)
+   - Modal
+   - Form/Butonlar
+   - Tema anahtarı
+   =============================== */
+
+/* -------------------------------
+   CSS Variables
+----------------------------------*/
+:root{
+  /* Colors */
   --yellow: #f7c600;
-  --dark-bg: #111;
-  --light-bg: #f5f5f5;
-  --dark-text: #fff;
-  --light-text: #111;
+  --yellow-dark: #d69e00;
+  --bg-dark: #111;
+  --bg-light: #f5f5f5;
+  --text-dark: #fff;
+  --text-light: #111;
+  --muted-dark: #aaa;
+  --muted-light: #555;
+
+  /* Surfaces */
+  --surface-dark: #1a1a1a;
+  --surface-light: #ffffff;
+
+  /* Radii & Shadows */
   --radius: 12px;
-  --transition: 0.3s;
+  --radius-sm: 8px;
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.25);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.18);
+
+  /* Motion */
+  --easing: cubic-bezier(.25,.9,.35,1);
+  --t-fast: .18s var(--easing);
+  --t-base: .3s var(--easing);
 }
 
-/* GENEL */
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: 'Inter', sans-serif;
-  background: var(--dark-bg);
-  color: var(--dark-text);
-  transition: var(--transition);
-}
-body.light {
-  background: var(--light-bg);
-  color: var(--light-text);
+/* -------------------------------
+   Global Reset-ish
+----------------------------------*/
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+img{ max-width:100%; height:auto; display:block; }
+
+/* Hareket hassasiyeti için animasyonları azalt */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
 }
 
-header {
-  text-align: center;
-  margin-bottom: 30px;
+/* -------------------------------
+   Body / Theming
+----------------------------------*/
+body{
+  margin:0;
+  padding:20px;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--t-base), color var(--t-base);
 }
-h1 {
-  color: var(--yellow);
-  margin-bottom: 6px;
+body.light{
+  background: var(--bg-light);
+  color: var(--text-light);
 }
-.controls {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
+
+/* -------------------------------
+   Headings / Header
+----------------------------------*/
+header{ text-align:center; margin: 0 0 30px; }
+h1,h2,h3{ margin:0 0 .4em; line-height:1.25; }
+h1{ color: var(--yellow); letter-spacing:.02em; }
+
+/* -------------------------------
+   Controls (inputs/selects/buttons)
+----------------------------------*/
+.controls{
+  margin-top:20px;
+  display:flex; flex-wrap:wrap;
+  gap:12px; justify-content:center;
 }
-input, select, button {
-  padding: 10px 14px;
-  border-radius: var(--radius);
+
+input,select,button,textarea{
+  font: inherit;
   border: none;
-  font-size: 1rem;
   outline: none;
+  border-radius: var(--radius);
 }
-input, select {
+
+input,select{
   width: 200px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.06);
+  color: inherit;
+  transition: background-color var(--t-fast), box-shadow var(--t-fast);
 }
-button {
+body.light input,
+body.light select{
+  background: #fff;
+  color: var(--text-light);
+  box-shadow: inset 0 0 0 1px #e6e6e6;
+}
+
+button{
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
   background: var(--yellow);
   color: #000;
-  font-weight: bold;
-  cursor: pointer;
+  border-radius: var(--radius);
+  transition: filter var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  box-shadow: var(--shadow-md);
 }
-button:hover {
-  opacity: 0.9;
-}
-body.light button {
-  background: #d69e00;
-  color: #111;
+button:hover{ filter: brightness(0.98); transform: translateY(-1px); }
+button:active{ transform: translateY(0); }
+body.light button{ background: var(--yellow-dark); color: var(--text-light); }
+
+/* Klavye odak erişilebilirliği */
+:focus-visible{
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-/* BLOG YAZILARI */
-.blog-grid {
+/* -------------------------------
+   Blog Grid & Cards
+----------------------------------*/
+.blog-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   gap: 24px;
 }
-.blog-post {
-  background: #1a1a1a;
+
+.blog-post{
+  background: var(--surface-dark);
+  color: var(--text-dark);
   padding: 20px;
   border-radius: var(--radius);
-  transition: var(--transition);
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background-color var(--t-fast);
+  box-shadow: var(--shadow-md);
 }
-body.light .blog-post {
-  background: #fff;
-  color: #111;
+.blog-post:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+body.light .blog-post{
+  background: var(--surface-light);
+  color: var(--text-light);
+  box-shadow: 0 1px 0 #ececec, var(--shadow-md);
 }
-.blog-post img {
+
+.blog-post img{
   width: 100%;
-  height: auto;
   border-radius: var(--radius);
   margin-bottom: 14px;
 }
-.blog-post h2 {
-  font-size: 1.3rem;
+
+.blog-post h2{
+  font-size: 1.25rem;
   margin: 0 0 8px 0;
 }
-.blog-post .meta {
-  font-size: 0.9rem;
-  color: #aaa;
+
+.blog-post .meta{
+  font-size: .9rem;
+  color: var(--muted-dark);
   margin-bottom: 8px;
 }
-body.light .blog-post .meta {
-  color: #555;
-}
-.blog-post p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-.blog-post a {
+body.light .blog-post .meta{ color: var(--muted-light); }
+
+.blog-post p{ font-size: 1rem; line-height: 1.65; }
+
+.blog-post a{
   color: var(--yellow);
   font-weight: 600;
   text-decoration: none;
 }
-.blog-post a:hover {
-  text-decoration: underline;
-}
-body.light .blog-post a {
-  color: #d69e00;
-}
-body.light .blog-post a:hover {
-  color: #111;
-}
+.blog-post a:hover{ text-decoration: underline; }
+body.light .blog-post a{ color: var(--yellow-dark); }
+body.light .blog-post a:hover{ color: var(--text-light); }
 
-/* MODAL */
-.modal-overlay {
+/* -------------------------------
+   Modal
+----------------------------------*/
+.modal-overlay{
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0,0,0,.5);
   backdrop-filter: blur(6px);
-  display: none;
+  display: none;           /* .is-open ile aç */
   justify-content: center;
   align-items: center;
   z-index: 999;
+  padding: 20px;
 }
-.modal {
+.modal-overlay.is-open{ display: flex; }
+
+.modal{
+  position: relative;
+  width: min(700px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
   background: #1d1d1d;
   color: #fff;
-  max-width: 700px;
-  width: 90%;
-  padding: 30px;
+  padding: 26px 28px;
   border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  position: relative;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--t-base), opacity var(--t-base);
+  transform: translateY(8px);
+  opacity: 0;
 }
-body.light .modal {
-  background: #fff;
-  color: #111;
+.modal-overlay.is-open .modal{
+  transform: translateY(0);
+  opacity: 1;
 }
-.modal img {
-  width: 100%;
+
+body.light .modal{ background: #fff; color: var(--text-light); }
+
+.modal img{
+  border-radius: var(--radius);
   margin: 16px 0;
-  border-radius: var(--radius);
 }
-.modal-close {
+
+.modal-close{
   position: absolute;
-  top: 14px;
-  right: 20px;
+  top: 14px; right: 18px;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--yellow);
+  background: transparent;
+  border: none;
 }
-.comment-box {
+
+/* -------------------------------
+   Comment Box
+----------------------------------*/
+.comment-box{
   width: 100%;
   margin-top: 16px;
   padding: 12px;
@@ -164,23 +247,47 @@ body.light .modal {
   background: #f0f0f0;
   color: #000;
 }
-body.light .comment-box {
+body.light .comment-box{
   background: #eee;
-  color: #111;
+  color: var(--text-light);
 }
 
-/* Tema Butonu */
-#themeToggle {
+/* -------------------------------
+   Theme Toggle Button
+----------------------------------*/
+#themeToggle{
   position: fixed;
-  top: 16px;
-  right: 24px;
+  top: 16px; right: 24px;
   z-index: 1000;
   background: var(--yellow);
   color: #111;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 8px 14px;
-  font-weight: bold;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--t-fast), filter var(--t-fast), box-shadow var(--t-fast);
+}
+#themeToggle:hover{ transform: translateY(-1px); filter: brightness(.98); }
+#themeToggle:active{ transform: translateY(0); }
+
+/* -------------------------------
+   Utilities
+----------------------------------*/
+.visually-hidden{
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* -------------------------------
+   Small Screens
+----------------------------------*/
+@media (max-width: 450px){
+  .blog-grid{ gap: 18px; }
+  .blog-post{ padding: 16px; }
+  #themeToggle{ top: 12px; right: 16px; padding: 7px 12px; }
 }
