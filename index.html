@@ -6,6 +6,7 @@
   <meta name="description" content="PiezoTech | Giyilebilir enerji sistemleri, akıllı tekstiller ve piezoelektrik sensör teknolojileri.">
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
 
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
@@ -15,13 +16,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Tema Butonu -->
   <button id="themeToggle" type="button">☀️ Açık Tema</button>
 
+  <!-- Splash -->
   <div id="splash">
     <img src="yildirim-logo.png" alt="Piezotech Logo" id="splash-logo" loading="lazy">
     <div id="splash-title">Piezotech</div>
   </div>
 
+  <!-- Navbar -->
   <nav class="topnav">
     <div class="nav-inner">
       <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy" />
@@ -36,6 +40,7 @@
     </button>
   </nav>
 
+  <!-- Mobil Menü -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="close-btn" id="closeMenuBtn" aria-label="Kapat"><i class="ri-close-line"></i></button>
     <img src="yildirim-logo.png" class="nav-logo" alt="PiezoTech Logo" loading="lazy" />
@@ -46,31 +51,39 @@
     <a href="iletisim.html" class="nav-link">İletişim</a>
   </div>
 
+  <!-- Partiküller -->
   <div class="particles"></div>
 
+  <!-- Hero -->
   <section class="hero">
     <img src="yildirim-logo.png" class="hero-logo" alt="PiezoTech Logo" loading="lazy" />
     <div class="hero-title">Enerjiyi Geleceğe Taşıyoruz</div>
     <div class="hero-desc" id="typewriter"></div>
   </section>
 
-  <div class="controls">
-    <input type="text" id="search" placeholder="Ara...">
-    <select id="categoryFilter"></select>
-  </div>
+  <!-- Bölümler (örnek) -->
+  <section class="sections">
+    <div class="section">
+      <div class="section-title"><a href="hakkimizda.html">Hakkımızda</a></div>
+      <div class="section-desc">PiezoTech, giyilebilir enerji çözümleri ve piezoelektrik sensör teknolojileri geliştirir.</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><a href="projeler.html">Projeler</a></div>
+      <div class="section-desc">Akıllı tekstiller, enerji hasadı kumaşlar ve IoT veri platformları.</div>
+    </div>
+  </section>
 
-  <div id="blog-container" class="blog-grid"></div>
-
+  <!-- Modal -->
   <div id="modalOverlay" class="modal-overlay">
     <div class="modal"></div>
   </div>
 
-  <footer>
-    © 2025 Bu sitenin tüm hakları PiezoTech Araştırma Grubu tarafından saklıdır.
-  </footer>
+  <!-- Footer -->
+  <footer>© 2025 PiezoTech Araştırma Grubu</footer>
 
+  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <!-- DOĞRU JS YOLU -->
-  <script src="css/js/js/main.js" defer></script>
+  <script src="css/js/main.js" defer></script>
 </body>
 </html>
